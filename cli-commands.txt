@@ -1,0 +1,1589 @@
+---------------------------------------------------------------------
+bash/zsh + linux terminal cli tools commands 
+---------------------------------------------------------------------
+- setsid :  keep running even when terminal died
+- nohup: send output to nohup.out then continue on terminal
+- run application in background:  foobar &
+    - add & to the end of line
+- run cmd while disabling alias:   \ls
+- rm -r mydir (remove directory)
+- move multiple files: mv -t DESTINATION file1 file2
+- move all folders: mv  -v ~/Downloads/* ~/Videos/
+- check battery status: upower -i /org/freedesktop/UPower/devices/battery_BAT0
+- tmux (with oh-my-tmux installed)
+    - C-b + 
+            - %  split vertically            |
+                - or _
+            - "    split horizontally   -----
+                - or -
+            - navigate btwn panes :   arrowkeys
+            - adjust pane size : hold arrowkeys
+            - create new windows : c
+            - rename session: $
+            - rename window:    ,
+            - kill window: &
+            - move between panes: k,j,l,h
+            - switch between window: 0...9
+            - next window: n
+            - previous window: p
+            - choose from list: w
+            - mv pane to nxt pos: }
+            - mv pane to prev pos: {
+            - rearrange panel: [space]
+            - install plugin : I
+                - add plugin to list(.tmux.conf) first
+            - save session: C-s
+            - restore session: C-r
+            - quit / detach: d
+            - terminate window: &
+            - copy mode: [   -> C-[space] -> alt+w(fin)
+            - paste: ]
+            - source conf file : r
+            - mouse mode on: m
+    - reload config: tmux source ~/.tmux.conf
+    - show all session: tmux ls
+    - kill sessions: tmux kill-session
+        - kill all sessions: tmux kill-server
+    - re-attach: tmux attach-session -t mainSession
+        - tmux attach
+- copy line to clipboard: ctrl-P
+    - paste: xsel
+            - clear xsel: xsel --clear
+- download : wget
+    - specify path:  -O /path/to/file.txt
+    - whole folder : -r
+    - into directory : -R
+    - authentication:
+        -(--user=USERNAME)
+        -(--password=PASS)
+    - all files in dir: 
+        - wget -np -nH --cut-dirs 100 -r -e robots=off --reject="index.html*" http://foo.bar/a/
+            - folders skipping:    --cut-dirs 5
+- add permission:
+    - chmod +x 
+    - All permissions: sudo chmod -R 777
+- nmap
+    - intense:  -T4 -A -v  ipaddress
+    - TCP/UDP scan: -sS -sU -PN ipaddress
+    - test port 80: nmap -sT -P0 -p 80
+        - nmap -sT -p 80
+    - check devices: nmap -sP 192.168.1.0/24
+    - host script: nmap -sC 138.253.207.103
+- access device: telnet 192.168.1.1 23
+    - test HTTP:     GET / HTTP/1.1
+      host: 138.253.207.103
+- check router ip: netstat -rn
+- MC
+    - dc ftp:  C-x a  f
+    - quit : F10
+    - chg to opposite dir panel: tab
+    - quick cd: alt c
+    - scan dir size: ctrl+space
+    - file info: C-x i
+    - quick view file: C-x q
+    - select multiple files: INSERT or C-t
+    - shell autocomplete: ( ESC + Tab ) * 2
+    - place mc in bg/bring back to foreground: C-o
+    - layouts
+        - top-down: Alt + ,
+        - swap panels: C-u
+        - sync panels : Alt + i
+        
+- Ranger
+    - view files:  i
+    - hidden files: zh
+    - rename : cw
+    - select current file: <space>
+    - search: /
+    - copy:yy
+    - open: E
+        - open with: r
+    - new tab: C-n
+    - next tab: <tab>
+    - prev tab: <shift><tab>
+    - close tab : C-w
+    - shell commands: !
+    - cd into folder:   :cd /path
+    - sort by file size: oa
+    - swith to tab N:   Alt-N
+        - close tab: q
+    - open shell in current directory: Shift + s
+        - return abck to ranger : Ctrl + d
+    - {https://pygy.co/gD}
+- compress
+    - (tar.gz): tar -czvfaarchive.tar.gz stuff
+        - max compress(do this first): export GZIP=-9
+            - check echo $GZIP
+            - alternative: tar cvf - stuff | gzip -9 > stuff.tar.gz
+            - exclude folders: tar --exclude='foo/bar' --exclude='foo/a/b' -cvf - foo | gzip -9 > foo.tar.gz
+                - include hidden dot files:
+                    - tar --exclude='foo/bar' --exclude='*foo.tar.gz' -cvf - * ./ | gzip -9 > foo.tar.gz
+        - faster
+    - (tar.xz) :tar -cJf filename.tar.xz stuff
+        - max compression: tar cvf - stuff | xz -9 -e - > stuff.tar.xz
+            - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
+        - slower but higher compression rate
+    - (7z): 7z a foo.7z abc.txt
+- extract:
+    - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
+    - (.tar.xz) tar xJvf abc.tar.xz
+    - (.tar.bz2): tar xvjf file.tar.bz2
+    - (.Z): zcat *.Z |tar -xvf -
+        - {https://kb.iu.edu/d/acsy}
+    - (.tar.gz): tar -xzf abc.tar.gz
+    - to folder: tar -xvzf foo.tar.gz -C bar/ 
+        - (must create folder 'bar' first)
+    - list content: tar -zvtf filename.tar.gz 
+        - vim foobar.tar.gz
+        - with details:
+            - (xz) tar -Jtvf abc.tar.xz | humantvf
+                - pixz -l foo.tar.xz
+                - xz -l foo.tar.xz
+            - (gz): tar -ztvf abc.tar.gz
+                - gzip -tl foo.tar.gz
+            - show max depth: |grep -v '/.*/.*/'
+    - (.7z):  7z x foo.7z
+        - with password: 7za x foo.7z -pabcdef
+        - list: 7z l foo.7z
+        - to directory: 7z x abc.7z -ofoo/bar
+    - (.zip) unzip foo.zip -d foo/
+        - list: unzip -l foo.zip
+        - single file: unzip foo.zip bar.mp4
+        - all files inside folder: unzip foo.zip 'in/folder/*' -d abc
+        - strip path folders: unzip -j foo.zip 'in/folder/*' -d abc
+    - (.rar) extract to curr dir:  unrar e abc.rar
+        - list :  unrar l abc.rar
+        - extract to path: unrar x abc.rar foo/
+        - extract certain files: unrar e test.rar file5 file8
+    -
+- delete folder from tarball :
+    - gunzip foo.tar.gz
+    - tar --delete --file=foo.tar foo/bar
+- restart wifi : sudo service network-manager restart
+- pasting : shift+insert
+- install new font: cp font.tff /usr/share/fonts
+- reset font cache : fc-cache -f -v
+- create file: touch
+- return current directory: pwd
+- move up one level:  mv foo.bar ../
+- convert to pdf:    unoconv -f pdf  foo.pptx
+    - (if error: unable to start own listener)[fix]:
+        - killall soffice.bin
+        - sudo unoconv --listener
+- calculator : bc
+    - use log : bc -l 
+        - l(a)/l(b)
+    - 2 decimal places : scale=2
+- ClamAV: 
+    - start: sudo /etc/init.d/clamav-freshclam start
+        - sudo freshclam
+    - stop: sudo /etc/init.d/clamav-freshclam stop
+    - update virus signature : sudo freshclam -v
+    - status : sudo /etc/init.d/clamav-freshclam status
+- zathura: 
+    - goto page X : Xgg
+    - see table of content: TAB
+- connmanctl (network manager)
+    - enable wifi: enable wifi
+    - scan for wifi: scan wifi
+    - services: services
+    - start: systemctl start connman
+    - stop: systemctl stop connman
+- screenshot : scrot
+- XAMPP : sudo /opt/lampp/lampp start/stop
+    - GUI tool : sudo /opt/lampp/manager-linux-x64.run
+- size: du
+    - human readable + summary: -hs
+    - all files within directory: -hs *
+    - more accurate sizes :   -shc --aparent-size
+        - sorted: -h * | sort -h
+        - full: du -shc --aparent-size *|sort -h
+            - reverse order : -r
+- http header: curl -I  foo.bar
+- info about directory: stat foobar
+- check weather: curl -s wttr.in/Liverpool
+- reload zshrc :       . ~/.zshrc
+- grep filter from ls:  ls | grep linu 
+    - remove sensitivity : grep -i 'hello'
+    - different patterns: grep 'Foo\|bar'
+- create nested subdirectories : mkdir -p d/s/a/e
+- sublime text : subl
+- visual studio code: code
+- list : ls
+    - list + file edit date:  ls -l
+    - list + sort by date : ls -t
+        - ls -tr
+        - with details: ls -lhtr
+    - human readable: ls -lh
+    - sort by file size: ls -Slh
+    - reverse: -r
+    - full: ls -ltrha
+- oh-my-zsh
+    - upgrade: upgrade_oh_my_zsh
+- package manager:
+    - yaourt
+        - uninstall :  -Rsnc
+        - update: -Syu
+            - + resync with mirror: -Syu
+            - + resync with mirror(inc aur): -Syyua
+- wikit 
+    - wikit google
+    - linewrap length:  wikit google -line 100
+    - open in browser: wikit google -b
+- googler
+    - googler -n 5 -c gb -l en hello world
+    - next page: n
+    - previous page: p
+    - news -N gadgets
+    - time:   -t m6
+    - filetype: instrumental filetype:mp3
+- nnn (file manager)
+    - view file: p
+    - edit file: e
+    - open with default file manager: o
+    - rename: ctrl-r
+    - toggle hide dot files: .
+    - sort by file size: s
+    - sort by time :t
+    - go up a  dir: h
+    - chg dir: c
+    - toggle detail view: d
+    - show current file details: D
+    - quit: q
+    - filter current dir: /
+- rtv (reddit terminal viewer)
+    - view comments :  ->
+    - visit site : enter
+    - expand/collapse comments: space
+    - visit subreddit :   /linux
+    - front page:  :  p
+    - refresh : f5  /  r
+-  network details: ifconfig
+-  show ip addr:   ip addr show
+- get external ip addr: 
+    - echo $(wget -qO - https://api.ipify.org)
+    - echo $(curl -s https://api.ipify.org)
+-  get internal ip addr:
+    - ifconfig | grep -w inet | awk '{ print $2}'
+    - ip a s | grep -w inet | awk '{ print $2}'
+- empty file: truncate -s 0 foo.txt
+- see sysinfo:  
+    - neofetch
+    - lsb_release -a
+- change dir perm: chown -R austin:austin abc
+- football-cli:
+    - league table: football standings -l PL
+    - scoreline: football scores -l
+        - team: football scores -t arsenal
+        - team + live: scores -t "arsenal" -l
+    - fixtures:
+        - next 15 days: football fixtures -l PL -d 15 -n
+        - team: football fixtures -t arsenal -d 15 -n
+            - football fixtures -n -d 15 -t "rennais" 
+    - league code: football lists
+- check if site is up: is-up google.com
+- check vid info: 
+    - ffprobe: ffprobe -v quiet -print_format json -show_format -show_streams
+    - mediainfo: mediainfo --fullscan input.mkv
+    - check if vid contains subs: ffmpeg -i video -c copy -map 0:s -f null - -v 0 -hide_banner && echo $? || echo $?
+        - 0 = found subtitles, 1 = not found
+- ftp:
+    - ftp files.000webhost.com
+    - download: get file
+    - upload: put
+    - change local dir: lcd
+    - (http://bit.ly/2z5UT83 , http://bit.ly/2fTTGso)
+- LFTP: lftp
+    - connect: open -u abc files.000webhost.com
+    - copy dir: mirror source target
+    - download file: pget file
+    - upload file: put file
+    - exit: bye
+    - http://zae.bz/jWHYhl
+- colorls : lc
+    - 1 entry per line : lc -1 
+    - only files : lc -f
+    - only directories: lc -
+    - sort by(alphabetical)
+        - dir first : lc -sd
+        - files first : lc -s
+    - including hidden files: -a
+    - check my username: whoami
+    - change password: passwd austin
+    - extract all images from pdf: pdfimages -j abc.pdf ./
+    - convert images:  convert a.ppm b.jpg
+    - docx to txt : docx2txt abc.docx
+    - URL Shortener:
+        - bitly: bitly "google.com"
+        - zaebz: zaebz "google.com"
+    - virus scanner
+        - scan: virustotal file-scan abc.txt
+        - get report : virustotal file-report 12f0326
+    - go back to previous directory: cd -
+    - email client: mutt
+        - top of the page : H
+        - bottom of the page: L
+        - refresh inbox:  :exec imap-fetch-email
+    - todo list (task warrior): task
+        - show list: task next
+        - add task: task add foo bar due:2017-01-30
+            - add priority: priority:H
+            - multiline: task add "ssds adfa adfasfa"
+        - fin task: task 2 done
+        - del task: task 1 delete
+        - modify: task 12 modify due:eom
+            - remove due date : task 12 modify due:
+       - (http://zae.bz/DISgAu , http://zae.bz/DFdvYy)
+    - installed pkg version: apt-cache policy coreutils
+        - dpkg -s coreutils
+    - music player: cmus
+        - file browser: 5
+        - add music to library: a
+        - play: enter
+        - pause/unpause: c
+        - next track: b
+        - previous track: z
+        - stop playback: v
+        - restart track: x
+        - jump view to current track: i
+        - view queue: 4
+        - add song to play next in queue: e
+        - remove from queue: shitf + d
+        - view library : 1
+            - move focus to tracklist : tab
+            - toggle play library: shift + m
+            - toggle artist/all/album : m
+            - toggles:
+                - continue : shift + c
+                - repeat: r
+                - shuffle:  s
+        - view sorted library : 2
+        - view playlist: 3
+        - add from library to playlist: y
+        - update cache:  :update-cache
+        - (http://zae.bz/UhNKOy , http://zae.bz/FGdFCF)
+    - music visualizer 
+        - cava
+            - width of lines: left/right arrow
+            - sensitivity: up/down arrow
+            - reload config file: r
+            - (on WSL) : use tilda
+                - run with :nohup tilda &
+    - youtube-dl
+        - to mp3: youtube-dl -x --audio-format mp3 url
+        - manual:  tldr youtube-dl
+    - IRC client: weechat
+        - add server: /server add oftc irc.oftc.net/6697 -ssl -autoconnect
+        - delete server: /server del freenode
+        - connect : /connect oftc
+        - disconnect: /disconnect oftc
+        - turn on ssl : /set irc.server.freenode.ssl on
+        - turn on/off autoconnect: /set irc.server.freenode.autoconnect on
+        - add tor: /proxy add tor socks5 127.0.0.1 9050
+             - start tor first: sudo service tor start
+                 - reload tor: sudo service tor reload
+        - tor proxy: /set irc.server.freenode.proxy "tor"
+        - register: /msg NickServ REGISTER password youremail@example.com
+        - close buffer/channel:  /close
+        - buffer list:  /buffer
+        - switch buffer: f5/f6
+            - /buffer 3
+            - /buffer foo
+        - windows: /window
+        - list channels: /list
+        - list added servers: /server list
+        - scroll buffer: pg-up/down key
+        - change nickname
+            - default: /set irc.server_default.nicks comma,separated,list,of,nicks
+            - server nick: /set irc.server.freenode.nicks "foo"
+        - change nick colour: /set weechat.color.chat_nick_self
+        - sasl settings:
+            - set username: /set irc.server.freenode.sasl_username
+            - set pw: /set irc.server.freenode.sasl_password
+            - set mechanism: /set irc.server.freenode.sasl_mechanism external
+        - join channel:  /join #programming
+        - part channel : /part [quit message]
+        - private msg: /query foo this is a message
+            -   /msg friend msg?
+        - find channels
+            - freenode
+                - top channels: /msg alis LIST * -min 1500
+        - download dir = ~/.weechat/xfer
+- mps-youtube : mpsyt
+     - set search to all cat. : set search_music false
+     - video video output: set show_video true
+         - audio only: set show_video false
+     - search :   /foo bar
+         - search playlist: //foobar
+         - search album: album foobar
+         - search user : user foobar
+              - user+query: user foo/bar
+    - play from URL : playurl url
+    - open playlist url/id :  pl <url or id>
+    - autoplay in playlist: 1- 
+     - next/previous page:  n  /  p
+     - jump to page: p 3
+     - adjust vol: 9 / 0
+     - pause: spacebar
+     - seek:  left/right & up/down arrows
+     - exit video: q
+     - view info of video: i 2
+     - view comments of video: c 2
+         - exit comments view: ctrl+c
+     - download video: d 2
+     - show videos by uploader: u 2
+     - copy url to clipboard : x 2
+     - set order:  set order date
+            - views: set order views
+     - http://zae.bz/haZMSB
+- pacaur
+        - search : -Ss
+        - update: -Syu
+- torrent cli tool:
+    - rtorrent
+        - magnet links: backspace > past link
+        - hash check: ctrl+r
+        - exit: ctrl+q
+        - stop : ctrl+d
+        - start: ctrl+s
+        - change views: 
+            - file list : right key
+                - chg. priority
+                    - all : *
+                    - single file : SPC
+            - main : 1
+            - active: 0
+            - complete: 5
+            - seeding: 8
+            - leeching: 9
+            - stopped : 4
+        - (http://zae.bz/QBUiHV , http://zae.bz/XRhNCR )
+- convert video: ffmpeg
+    - use libx265: ffmpeg -i abc.mkv -c:v libx265 abc.mp4
+    - extract subtitles: ffmpeg -i abc.mkv -map 0:s:0 subs.srt
+        - if subs>1:  0:s:1 = 2nd sub , 0:s:2 = 3rd sub
+        - convert subs: ffmpeg -i input.srt output.vtt
+    - use vp9: ffmpeg -i foo.mkv -i subs.vtt -c:v libvpx-vp9 -c:a libopus -c:s webvtt foo.webm
+        - good quality : ffmpeg -i orig.mp4 -c:v libvpx-vp9 -c:a libopus -b:v 0 -b:a 0 -crf 30 win.webm
+    - batch convert : for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done
+        - multiple extensions: for i in *.{avi,mkv}
+
+- file transfer :
+    - transfer.sh :
+        - upload: curl --upload-file foo.bar https://transfer.sh/b.c
+        - download: curl https://transfer.sh/a/b.c -o foo.bar
+    - send-cli :
+        - upload: send-cli foo.bar
+        - download: send-cli "send.firefox.com/download/abc"
+            - if error: add --ignore-version
+- tor: 
+    - ubuntu: sudo service tor start
+        - sudo service tor restart
+    - arch: systemctl start tor
+        - status: systemctl status tor
+- get permission (octal) number: stat -c %a directory
+-  change keyboard layout: setxkbmap xkb_layout us
+-  merge gifs: gifsicle --colors 256 --merge *.gif -o out.gif
+-  generate random pw: openssl rand -base64 6
+    - date +%s | sha256sum | base64 | head -c 10
+    - openssl rand -base64 29 | tr -d "=+/" | cut -c1-25
+- httpie: http
+    - PUT: http PUT example.org X-API-Token:123 name=John
+        - multipart/form-data:  http -f PUT localhost:3000/api/file @foo.jpg
+    - POST: http -f POST localhost:8000/api/todos/1/items/ content="todoitem0 inside todo0"
+    - output only headers: -h
+    - output only body: -b
+- system monitoring tools:
+    - htop
+    - vtop
+    - nmon
+    - gtop
+- json processor : jq
+    - e.g.: curl httpbin.org/ip | jq
+    - filter: .foo.bar
+        - array index: .foo[0].bar
+        - e.g.: ffprobe -v quiet -print_format json -show_format -show_streams test.mp4|jq ".streams[0].codec_name"
+        - string: ."foo bar"
+            - e.g. jq '."Foo Bar"'
+        - {https://stedolan.github.io/jq/manual/#Basicfilters}
+    - pipe output into less: curl -s https://api.github.com/users/octocat/repos | jq '.' | less
+
+- HTML processor: pup
+    - e.g.: curl localhost:3000 |pup --color 'body h1,body p'
+    - print all text : text{}
+        - e.g. : curl localhost:3000 |pup --color 'body h1,body p text{}'
+    - print as JSON: json{}
+    - {https://github.com/ericchiang/pup}
+- IP address of domain: nslookup
+- IP geolocation : iplocation 
+- tree view: tree
+    - levels: tree -L 2
+    - exclude folder: tree -I 'test*|docs|bin|lib'
+        - excludes docs,bin,lib and any dir with test in the name
+    - all files: -a
+    - filelimit : --filelimit 
+    - full
+        - e.g. : tree -L 2 -I 'node_modules'
+        - e.g. : tree -L 2 -a --filelimit 20
+    - {https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/}
+- Excel parser: xwbp --json example.xlsx
+- pause/suspends process : ctrl+z
+    - resume: fg
+- suspend/freeze terminal: ctrl+s
+    - resume : ctrl+q
+- anime checker: moe -name "foobar" -info
+    - just rank and score: -score -rank
+- trizen :
+    - package info: -Si
+    - package check dependencies: -Qi
+    - check if no longer required : -Qdt
+    - list of all no longer required : -Qqdt
+    - remove : -Rsn
+    - AUR comments: -C
+    - output PKGBUILD : -Sp
+- webp:
+    - encode: 
+        - cwebp foo.jpg -o foo.webp
+            - target output size (in bytes) : -size int
+                - (e.g.) : 900kb = -size 900000
+        - batch :  for i in *.JPG;do cwebp -q 75 "$i" -o "$i.webp";done
+        - ffmpeg -i foo.jpg foo.webp
+        - good settings:
+            - cwebp foo.jpg -q 100 -o foo.webp
+    - decode:
+        - dwebp foo.webp -o foo.png
+- check file permission : stat
+    - stat FILE_OR_FOLDER_PATH
+    - only show chmod octal permission
+        - stat -c %a FILE_OR_FOLDER_PATH
+- remove files with grep
+    - ls |grep -Z 'mp4\|mkv' |tr '\n' '\0' |xargs -0 rm
+- delete all files inside folder except
+    - find . ! -name test0.tar.xz -delete
+    - find . -type f -not -name 'test2.tar.xz' -print0 | xargs -0 rm --
+        - multiple: find . -type f -not -name 'test2.tar.xz' -not -name 'app.js' -not -name 'package*'  -print0 | xargs -0 rm --
+    - zsh
+        - rm -r ^(*foo|*bar|*png)
+            - need to run (setopt extended_glob) first
+            - if single pattern only: rm ^foo.bar
+- list files in iso
+    - iso-info -f -i foo.iso
+- cloc
+    - count lines of code : cloc foo.tar.gz
+- check hashes
+    - sha256: sha256sum foobar.iso
+    - compare hashes
+        - echo 'asfasfa foo.bar' | sha256sum -c foo.bar
+- mount: mount drives
+    - sudo mount -t foo ~/shared/foo
+    - virtualbox: sudo mount -t vboxsf foo ~/shared/foo
+- umount: unmount drives
+    - sudo umount ~/shared/foo
+    - virtualbox: sudo umount -i ~/shared/foo
+- rover : cli file manager
+    - open shell on current directory : ENTER
+    -  {https://github.com/lecram/rover}
+- snap
+    - install package: snap install foobar
+        - latest version: snap install foobar --edge
+    - list all install packages: snap list
+    - uninstall package: snap remove foobar
+    - find package: snap find foobar
+- dos2unix : convert file styles from dos to unix
+- streamlink
+    - streamlink https://www.twitch.tv/ninja best
+- snap : snap package manager
+    - find : snap find foobar
+    - install : snap install foobar --edge
+    - list : snap list
+
+---------------------------------------------------------------------
+windows setup C/C++ compiler 
+---------------------------------------------------------------------
+- "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
+
+---------------------------------------------------------------------
+start/restart xfce network applet
+---------------------------------------------------------------------
+nm-applet
+- start: nm-applet &
+- kill: killall nm-applet
+
+---------------------------------------------------------------------
+mapscii : map inside the terminal
+---------------------------------------------------------------------
+- telnet mapscii.me
+
+---------------------------------------------------------------------
+Far Manager commands
+---------------------------------------------------------------------
+- change panels: tab
+- quick view: Ctrl+Q
+- view directory size: F3
+- sync panels: cd CTRL+SHIFT+]
+- install addons:
+    - copy file to profile addons directory
+    - addons dir : AppData/Roaming/Far Manager/Profile/Macros/scripts/
+- select multiple files: shift + up/down arrow key
+    - INS key
+    - 
+
+---------------------------------------------------------------------
+downme.xyz cli commands
+---------------------------------------------------------------------
+- upload:
+    - curl -X PUT www.downme.xyz/api/file -F "=@foo.txt"
+- download: 
+    - curl www.downme.xyz/api/file/FqigXPc8wD -o foo.txt
+
+---------------------------------------------------------------------
+windows start hosted wifi
+---------------------------------------------------------------------
+- netsh wlan set hostednetwork mode=allow ssid=foo key=bar
+- netsh wlan start hostednetwork
+
+---------------------------------------------------------------------
+stardog
+---------------------------------------------------------------------
+- start server
+    - windows :
+        - set STARDOG_HOME=C:\data\stardog
+        - stardog-admin.bat server start
+    - ./stardog-admin server start
+- create db with input file
+    - windows:
+        - stardog-admin.bat db create -n myDB data.ttl
+- namepspaces
+    - add:
+        - windows: stardog.bat namespace add test2 --prefix uni --uri http://www.abc.xyz/uni#
+    - remove:
+        - windows: stardog.bat namepsace remove test2 --prefix uni
+
+---------------------------------------------------------------------
+ffmpeg add overlay
+---------------------------------------------------------------------
+- find video scale : ffmpeg -i in.mp4 2>&1 |grep Video: | sed 's_.*, \([0-9]*x[0-9]*\) .*_\1_' | awk 'BEGIN {FS="x"} {print int($1/20)"x"int($2/20)}'
+- ffmpeg -i in.mp4 -i icon-BGtransparent.png -filter_complex "[1:v] scale=96x54 [logo1]; [0:v][logo1] overlay=0:0" -c copy out.mp4
+- overlay: ffmpeg -i in.mp4 -i overlay.png -filter_complex "overlay=10:10" out.mp4
+    - with opacity: 
+        - ffmpeg -i in.mp4 -i overlay.png -filter_complex "[1]geq=r='r(X,Y)':a='0.3*alpha(X,Y)'[a];[0][a]overlay=10:10" out.mp4
+
+---------------------------------------------------------------------
+ffmpeg trim/cut part of the videos
+---------------------------------------------------------------------
+- ffmpeg -ss 00:01:01.000 -i in.mp4 -t 03:18:00.000 -c copy out.mp4
+- {http://bit.ly/2FGq0xe}
+
+---------------------------------------------------------------------
+ffmpeg download m3u8 videos
+---------------------------------------------------------------------
+-  ffmpeg -i "http://foo.bar/test.m3u8" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 out.mp4
+- {https://gist.github.com/tzmartin/fb1f4a8e95ef5fb79596bd4719671b5d}
+
+---------------------------------------------------------------------
+run linux like commands (GNU utils) in powershell
+---------------------------------------------------------------------
+- cash
+
+---------------------------------------------------------------------
+deploy to heroku
+---------------------------------------------------------------------
+- git init
+- echo node_modules > .gitignore
+- git add .
+- git commit -m "Initial commit"
+- heroku create
+- git push heroku master
+
+
+Logs
+- heroku logs
+- heroku config:set NPM_CONFIG_LOGLEVEL=verbose
+
+fix babel
+- "start": "./node_modules/.bin/babel-node ./server/index.js",
+- heroku config:set NPM_CONFIG_PRODUCTION=false
+
+restart
+- heroku restart
+
+---------------------------------------------------------------------
+go-lang packages
+---------------------------------------------------------------------
+- install : go get github.com/foo/bar
+- update: go get -v -u github.com/foo/bar
+
+---------------------------------------------------------------------
+case insensitive search in less 
+---------------------------------------------------------------------
+LESS=-Ri
+
+---------------------------------------------------------------------
+curl - sending requests
+---------------------------------------------------------------------
+POST
+- curl --data "param0=a&param1=b" httpbin.org/post
+
+DELETE
+- curl -X DELETE http://www.url.com/page
+
+---------------------------------------------------------------------
+query online 
+---------------------------------------------------------------------
+cli.fyi
+- bitcoin: http -b cli.fyi/btc
+    - GBP: http -b cli.fyi/btc |grep GBP
+- IP address info: http -b cli.fyi/104.238.168.65
+- domain whois/info: http -b cli.fyi/google.com
+- my info : http -b cli.fyi/me
+- time : http -b cli.fyi/time
+- programming language links: http -b cli.fyi/java
+- country info: http -b cli.fyi/united-kingdom
+- emojis: http -b cli.fyi/emojis
+- check email address info: http -b cli.fyi/john.doe@gmail.com
+- check media/URL info: http -b cli.fyi/"https://vimeo.com/231191863"
+- {https://cli.fyi/}
+
+weather
+- wttr.in : http -b wttr.in
+
+get my public IP
+- api.ipify.org: http -b api.ipify.org
+
+---------------------------------------------------------------------
+ArchLinux Manual Build + Install
+---------------------------------------------------------------------
+- install build essentials
+- download pkgbuild 
+- make package
+    - makepkg
+- make + install
+    - makepkg -si
+- install
+    - sudo pacman -U x.pkg.tar.xz
+
+
+- check dependencies: 
+    - pacman -Qi qt
+    - pacman -Sii qt
+
+
+http://bit.ly/2ALaxWq
+
+---------------------------------------------------------------------
+create git repository
+---------------------------------------------------------------------
+- create local git repo
+    - mkdir foobar
+    - cd foobar
+    - git init
+- check status : git status
+- add files to staging environment
+    - git add
+    - stages modified and deleted without new
+        - git add -u
+    - stages new and modified without deleted
+        - git add .
+- commit: git commit -m "message about commit"
+- push repo:
+    - add remote origin: git remote add origin https://foo.git
+    - push: git push -u origin master
+
+http://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
+
+---------------------------------------------------------------------
+qutebrowser libqt5webengine workaround
+---------------------------------------------------------------------
+sudo execstack -c /usr/lib/libQt5WebEngineCore.so.5
+execstack -q /usr/lib/libQt5WebEngineCore.so.5
+
+---------------------------------------------------------------------
+Powershell
+---------------------------------------------------------------------
+- powershell version: $PSVersionTable.PSVersion
+- check if using cmd or powershell: 
+    - (dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell
+- return profile path: $PROFILE
+- reload profile :    . $PROFILE
+- refresh environment variables: refreshenv
+
+---------------------------------------------------------------------
+yarn
+---------------------------------------------------------------------
+install global packages
+- yarn global add create-react-app
+
+update global packages
+- yarn global upgrade
+- yarn global upgrade-interactive
+- specific package: yarn global add <package>@latest
+
+list installed global packages
+- yarn global list
+
+---------------------------------------------------------------------
+ruby gems
+---------------------------------------------------------------------
+check outdated gems: gem outdated
+update installed gems: gem update
+update gem: gem update --system
+cleanup: gem cleanup
+
+---------------------------------------------------------------------
+pip
+---------------------------------------------------------------------
+python 3 version: python3 -m pip install humanize
+
+list outdated packages
+- pip3 list -o
+
+
+update all
+- pip3:   pip3 install -U $(pip3 freeze | awk '{split($0, a, "=="); print a[1]}')
+- pip:   pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}')
+- powershell : pip list --outdated --format=freeze | %{$_.split('==')[0]} | %{pip install --upgrade $_}
+
+uninstall
+- pip uninstall package
+
+---------------------------------------------------------------------
+chocolatey
+---------------------------------------------------------------------
+Upgrade: choco upgrade chocolatey
+list outdated pkgs: choco outdated
+upgrade all pkgs: cup all -y    || or || choco upgrade all
+list all pkgs: choco list -lo
+uninstall pkg: choco uninstall foo -y --remove-dependencies
+
+---------------------------------------------------------------------
+npm
+---------------------------------------------------------------------
+check latest
+- npm show react version
+
+check installed version
+- npm view react version
+- list all: npm list -g --depth=0
+
+check outdated packages
+- npm outdated
+- global: npm outdated -g
+    - npm outdated -g --depth=0
+
+update all outdated global packages
+- npm update -g
+
+uninstall 
+- global package : npm -g uninstall <name> --save
+
+update npm 
+- npm install -g npm@latest
+- windows
+    - npm install --global --production npm-windows-upgrade
+    - npm-windows-upgrade --npm-version latest
+
+---------------------------------------------------------------------
+reinstall nodejs
+---------------------------------------------------------------------
+uninstall
+- sudo apt-get purge nodejs
+- sudo apt-get purge --auto-remove nodejs
+- sudo rm -rf /usr/local/lib/node_modules
+- sudo rm -rf ~/.npm
+
+---------------------------------------------------------------------
+curl with http2
+---------------------------------------------------------------------
+- install
+sudo apt-get install build-essential nghttp2 libnghttp2-dev 
+
+wget https://curl.haxx.se/download/curl-7.54.0.tar.bz2
+
+tar -xvjf curl-7.54.0.tar.bz2
+
+cd curl-7.54.0
+
+./configure --with-nghttp2 --prefix=/usr/local
+
+make
+
+sudo make install
+
+sudo ldconfig
+
+- use curl
+-  /usr/local/bin/curl --http2 -I https://google.com
+
+---------------------------------------------------------------------
+nodejs (expressjs) setup
+---------------------------------------------------------------------
+npm init -y
+
+./server/index.js
+import express from 'express';
+
+
+
+const app = express();
+
+const port = 3000;
+
+
+
+
+
+app.get('/*',(req,res)=>{
+
+    res.send('Hello world');
+
+});
+
+
+
+app.listen(port,()=>console.log('Running on localhost:'+port));
+
+
+npm install --save-dev babel-cli babel-preset-env
+
+npm install --save express
+
+.babelrc
+{
+
+  "presets": ["env"]
+
+}
+
+
+package.json
+"server": "nodemon --watch server --exec babel-node -- server/index.js",
+
+
+
+
+
+npm install --save-dev
+yarn add --dev
+
+
+
+npm run server
+
+
+
+express-generator
+- npm install -g express-generator
+- express --view=pug helloworld
+- cd helloworld && npm install
+- DEBUG=helloworld:* npm start
+
+------------- LINKS -------------
+
+https://babeljs.io
+
+http://zae.bz/fbyPSY
+
+---------------------------------------------------------------------
+magento
+---------------------------------------------------------------------
+fix pub css/js 
+- php bin/magento setup:static-content:deploy -f
+- php bin/magento setup:static-content:deploy en_GB
+
+reindex 
+- php bin/magento indexer:reindex
+
+check modules
+- php bin\magento module:status
+
+enable module
+- php bin\magento module:enable LiveChat_LiveChat
+
+update/upgrade modules
+- php bin\magento setup:upgrade
+
+recompile modules
+-  php bin\magento setup:di:compile
+
+clear cache
+- php bin/magento cache:clean
+- php bin/magento cache:flush
+
+---------------------------------------------------------------------
+composer
+---------------------------------------------------------------------
+update/install ignoring base dependencies
+- composer install --ignore-platform-reqs
+
+---------------------------------------------------------------------
+mongodb
+---------------------------------------------------------------------
+start:  net start MongoDB
+stop:   net stop MongoDB
+
+shell :  mongo
+list db:  show dbs
+use db:  use foo
+
+---------------------------------------------------------------------
+ffmpeg concat videos
+---------------------------------------------------------------------
+- https://www.youtube.com/watch?v=1Xf1DfvVJbs
+
+- C:\Users\austin\Desktop\New folder>(for %i in (*.mp4) do @echo file '%i') > mylist.txt
+    - for f in ./*.wav; do echo "file '$f'" >> mylist.txt; done
+- C:\Users\austin\Desktop\New folder>ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+
+
+---------------------------------------------------------------------
+windows force high dpi support
+---------------------------------------------------------------------
+/high-dpi-support=1 --force-device-scale-factor=1
+
+
+
+/high-dpi-support=1 /alt-high-dpi-setting=96
+
+--high-dpi-support=1 /force-device-scale-factor=1
+
+
+atom: --force-device-scale-factor=1
+
+---------------------------------------------------------------------
+redhat openshift
+---------------------------------------------------------------------
+params:
+- nodejs-mongo-persistent
+- openshift
+- mongodb
+- sampledb
+
+cli tools
+- oc login https://api.starter-us-east-1.openshift.com
+oc project test-node-proj
+oc status
+
+---------------------------------------------------------------------
+javascript
+---------------------------------------------------------------------
+syntax
+- 3 dots
+    - function App1() {
+      return <Greeting firstName="Ben" lastName="Hector" />;
+    }
+    - function App2() {
+      const props = {firstName: 'Ben', lastName: 'Hector'};
+      return <Greeting {...props} />;
+    }
+
+- ? and :
+    - ? = value if true
+    - : = value if false
+    - (e.g.
+        - hsb.s = max != 0 ? 255 * delta / max : 0;
+        EQUIVALENT TO 
+        - if(max!=0){hsb.s = 255*delta/max}
+        - else{hsb.s=0}
+        
+- shorthands
+    -  LONGHAND
+    if(x){
+    y()
+    }
+
+    - SHORTHAND
+    x && y();
+    -----------------------------------------------
+
+
+    - LONGHAND
+    if (x > 10) {
+        answer = 'is greater';
+    } else {
+        answer = 'is lesser';
+    }
+
+    - SHORTHAND
+    const answer = x > 10 ? 'is greater' : 'is lesser';
+
+
+    -------------------------------------------------
+    - LONGHAND
+    function sayHello(name) {
+      console.log('Hello', name);
+    }
+
+
+    - SHORTHAND
+    sayHello = name => console.log('Hello', name);
+
+    ---------------------------------------------------
+
+    - LONGHAND
+    setTimeout(function() {
+      console.log('Loaded')
+    }, 2000);
+
+
+
+    - SHORTHAND
+    setTimeout(() => console.log('Loaded'), 2000);
+
+    ------------------------------------------------------
+    - LONGHAND
+    list.forEach(function(item) {
+      console.log(item);
+    });
+
+    - SHORTHAND
+    list.forEach(item => console.log(item));
+    -----------------------------------------------------
+    - LONGHAND
+    if (variable1 !== null || variable1 !== undefined || variable1 !== '') {
+         let variable2 = variable1;
+    }
+
+    - SHORTHAND
+    const variable2 = variable1  || 'new';
+
+    ------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------
+SQL 
+---------------------------------------------------------------------
+- mysql 
+    - run: mysql -u root -p
+    - use DB: USE DBName;
+    - rename table:  RENAME TABLE `Stu Table` TO `Stu Table_10`;
+    - alter: ALTER TABLE `xyz` CHANGE `manufacurerid` `manufacturerid` INT;
+    - export sql: mysqldump -u YourUser -p YourDatabaseName > wantedsqlfile.sql
+    
+- postgresql
+    - login : psql -U postgres
+        - psql -U Username DatabaseName 
+    - logout or quit :  \q
+    - list all users: \du
+    - list all db :  \l
+    - switch db:  \connect database_name
+    - list all tables :  \dt
+    - list all columns : \dt+ users
+    - table structure: \d+ "users"
+    - create database: create database "foo-bar";
+    - grant all privileges: grant all privileges on database <dbname> to <username> ;
+    - reset AutoIncrement :  ALTER SEQUENCE product_id_seq RESTART WITH 1453
+        - (table name = product, column name = id)
+
+
+
+- create table:
+    - CREATE TABLE Employees
+        (
+           id INT NOT NULL,
+           age INT NOT NULL,
+           first VARCHAR(255),
+           last VARCHAR(255),
+           PRIMARY KEY ( id )
+        );
+- add primary key + set auto_increment(id):
+    - ALTER TABLE `users` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+    
+- delete from multiple columns
+    - DELETE FROM orders;
+    - DELETE FROM invoice;
+
+---------------------------------------------------------------------
+sncli
+---------------------------------------------------------------------
+help: -h
+quit : q
+up: k
+down: j
+fullsync: S
+create note: C
+edit: e
+tags: t
+trash: T
+search: /
+- by tag:   /tag:foo
+
+---------------------------------------------------------------------
+java
+---------------------------------------------------------------------
+generate javadocs
+- only public = javadoc -d javadocs/ *.java
+- all  = javadoc -private -d javadocs/ *.java
+
+create jar file
+- jar -cvfm example.jar manifest.txt com/mkyong/awt/*.class
+
+compile java with other jar
+- javac -cp '.:foo.jar' bar.java
+- java -cp jar1:jar2:jar3:dir1:. HelloWorld
+    - multiple jars : java -cp .:file1.jar:file2.jar:file3.jar bar
+- run with: java -cp .:foo.jar bar
+
+relational algebra interpreter
+java -cp aql.jar edu.gsu.cs.ra.RA db
+
+TIPS:
+- when to use static
+    - make sense to call this method even no Obj constructed
+        - if yes -> static
+    - never be changed/overridden
+
+Pack Jar
+- jar -cvfm foo.jar manifest.mf *.class *.jar bar
+    - foo.jar is the name of the jar
+    - bar is a folder
+    -  manifest.mf
+        - Manifest-Version: 1.0
+          Created-By: Austin
+          Class-Path: commons-io-2.5.jar commons-lang3-3.5.jar
+          Main-Class: foobar
+
+sign jar
+- keytool -genkey -keystore testKeys -alias jdc
+- jarsigner -keystore testKeys TestJnlp.jar jdc
+
+
+increase stack size
+- java -Xss50m foo
+- java -Xmx256M -jar MyApp.jar
+
+compile files in multiple subfolders
+- go to top level of package
+- dir /b /s *.java >> files.txt
+-  javac @files.txt
+
+compile to dir
+- javac -d ../build/classes org/example/antbook/lesson1/Main.java
+- javac -d [where to compile] [what to compile]
+
+
+ant 
+- build run file
+    - if build.xml exists (default)
+        - ant
+        else
+        - ant -f strutured.xml
+
+        to clean (deletes build and dist directories)
+        - ant clean 
+
+        build in verbose mode
+        - ant -v
+
+        executing class file
+        - java -cp build/classes/ org.example.antbook.lesson1.Main a b
+
+
+
+        (projecthelp/see descriptions)
+        ant -f mybuild.xml -projecthelp
+
+Junit
+- testing src code file: test\org\example\antbook\junit\SimpeTest.java
+- build directory: build/test
+
+- to compile
+    - javac -cp junit-4.12.jar -d build/test/ test/org/example/antbook/junit/SimpleTest.java
+
+- to run
+    - java -cp build/test:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore org.example.antbook.junit.SimpleTest
+
+---------------------------------------------------------------------
+tlp check
+---------------------------------------------------------------------
+sudo tlp-stat -s 
+
+---------------------------------------------------------------------
+update wps-office (linux)
+---------------------------------------------------------------------
+sudo apt-get remove wps-office
+sudo apt-get purge wps-office
+
+---------------------------------------------------------------------
+CMD
+---------------------------------------------------------------------
+- taskkill
+    - Taskkill /F /IM abc.exe
+        - /F /pid 
+
+---------------------------------------------------------------------
+remove highlight of last search in less
+---------------------------------------------------------------------
+Alt+u
+
+---------------------------------------------------------------------
+w3m
+---------------------------------------------------------------------
+shift screen by one line: K,J
+back:  B
+reload: R
+open new in tab: C-t
+new tab: T
+cycle tabs: { and }
+tab selection menu: ESC+t
+view image: I
+peek image URL: i
+close tab: C-q
+add bkmark: ESC-a
+view bkmark: ESC-b
+quit: Q
+download: a
+search: /
+    - next: n
+    - prev: N
+peek link url: u
+goto url: U
+- clear line : C-u
+peek url: c
+download/save link: a
+download image: ESC-I
+view source: v
+options: o
+view version: r
+run shell command: !
+document info: =
+show all links and images: L
+popup link list: ESC-l
+buffer selector: s
+{ http://pygy.co/gM || https://github.com/janosgyerik/cheatsheets/wiki/W3m-cheat-sheet }
+
+---------------------------------------------------------------------
+elinks
+---------------------------------------------------------------------
+goto URL: g
+top of page: HOME
+bottom of pag: End
+search: /
+new tab: t
+open link in newtab: T
+close tab: c
+move tab L/R:  <>
+bookmark: s
+options: o
+quit: q
+
+---------------------------------------------------------------------
+i3wm
+---------------------------------------------------------------------
+(mod = windows key)
+- terminal : mod+enter
+- exit: mod+shift+q
+- window mode: mod+w
+- stack mode: mod+s
+- tiling mode: mod+e
+- horizontal tiling: mod + h
+- vertical tiling: mod + v
+- scroll window: mod + arrowkeys
+- switch window : mod + shift + arrowkeys
+    - left/right: mod+j
+    - up/down: mod+k
+- dmenu: mod+d
+- bmenu: mod+ctrl+b
+- morc_menu: mod+z
+- exit: mod+0
+- help: mod+shift+h
+- toggle floating: mod+shift+space
+- change workspace: mod+numbers
+    - mod+ctrl+arrows
+
+---------------------------------------------------------------------
+emacs
+---------------------------------------------------------------------
+- run in CMD : emacs ret -nw
+- quit: C-x C-c
+- cut: C-w
+- copy : M-w
+- paste : C-y
+- select all: C-x h
+- list buffer: C-x C-b
+- kill buffer: C-x-k
+- find and replace "foo" with "bar"(fullword) :     :%s/\<foo\>/bar/g
+    - (nonfullword):   :%s/foo/bar/g
+- load/new file:  C-x C-f
+- save: C-x C-s
+- split screen :   C-x y  (e.g. C-x 2)
+    - Y=0 : close active window
+    - 1: close all except active window 
+    - 2: split Vertically     ---------
+    - 3: split horizontally      |
+    - o : next window
+    - switch buffer :b
+- compile : M-x  -> compile   -> javac xxx.java
+- undo : C-/
+- cancel command: C-g
+- execute java(debug): M-x  jdb
+-  erase buffer: M-x erase-buffer
+    -(or) C-x h   -> C-w
+- run shell command: M-!
+- tabs : C-T and C-D
+- reload configs : M-x eval-buffer
+- list buffers: :ibuffer
+- neotree
+    - go up a dir: U
+    - {https://www.emacswiki.org/emacs/NeoTree}
+
+---------------------------------------------------------------------
+vim
+---------------------------------------------------------------------
+- copy = yy 
+    - multiple lines:  V (select lines) -> yy
+    - ctrl+INSERT
+- paste = pp
+    - across terminal: "*p
+    - shift+INSERT
+- file explorer tree = :Explore
+    - (quit = :bd)
+    - create file: %
+- vertical slit= :vsplit                  |
+- horizontal split= :split          -----
+- close window = :hide
+- cylce through window = C-w
+- keep only this window open = :only
+- show current buffer = :ls
+- undo = u
+- redo= C-r
+- save = :w
+    - only part of file :  :529,533 w foo.txt
+    - sudo save:  :w !sudo tee %
+- save&quit = :x
+- open another file= :e
+- switch buffer= :b
+- new tab = :Te
+- next tab = gt
+- prev tab = gT
+- close tab = bd
+- search: / 
+    - whole word :  /\<word\>
+- remove(^M) : %s/\r/\r/g
+- remove newlines: shift+j
+    - 3+shift+j
+- install plugins :
+    - cd ~/.vim/bundle && \
+git clone xxx.git
+- move to 
+    - end of line: $
+    - beginning of line : 0
+    - line 42 : 42gg
+    - end of file: G
+    - top of file: gg
+- multiple lines comment: ctrl+v (select lines)
+    - shift + i + # + ESC 
+    - (FOR REMOVING) : x
+- replace ^M linebreaks
+    - :%s/<Ctrl-V><Ctrl-M>/\r/g
+- substitute :  :s
+    - all lines :    :%s/old/new/g
+    - 1st occurence :   :s/foo/bar
+    - every occurence :s/foo/bar/g
+    - specific lines :    :478,480s/old/new/g
+- NERDTree : Ctrl+n
+    - vertical split |  : s
+    - horizontal split ---- : i
+    - menu : m
+    - change dir:   :NERDTreeFind 
+        - C
+    - show hidden files:   SHIFT+i
+- Buffergator:   \b
+    - open in new vertical |   : Ctrl+v
+    - open in new horiz ----- :   Ctrl+S
+    - open in new tab  : Ctrl+T
+    - delete buffer: d
+- resize:
+    - dec height:  ctrl + w + -
+    - same height:  ctrl + w + =
+    - width 
+        - ctrl + w +  (>   or   <)
+- move window (ctrl+w) + :
+    - right : L
+    - left: H
+    - bottom: J
+    - top: K
+- rotate windows (Ctrl+w) + :
+    - up-left : R
+    - down/right: r
+- matching parenthesis : 
+    - place cursor on any (,[,{ 
+    - %
+- external command :   :! 
+- insert contents to file:   :r filename
+- new line:
+    - below cursor : o
+    - above cursor: O
+- append text to end of line:  A
+- replace: R
+- reload file:   :edit
+    - force reload:  :edit!
+- change directory to file:    :cd %:p:h    
+- folds
+    [all] : capital letter(2nd letter)
+    - open : zo
+    - close: zc
+- clear background buffers:  :call Wipeout()
+- autocomplete : ctrl + n
+- vundle:
+    - install: PluginInstall
+    - update: PluginUpdate
+    - cleanup: PluginClean
+- move screen up: C-y
+- move screen down: C-e
+
+
+Vimperator
+- http://sheet.shiar.nl/vimperator
+- open: o
+- newtab: t
+- open in new tab: T
+- select link:
+    - (quick hint mode) : f  -> enter number
+        - (open in new tab) : F
+- save link:    ;s
+- check info of link:  ;?
+- forward: L  or  alt + ->
+- backward: H  or  alt + <-
+- add bookmark: a
+- clean searchhighlight: noh
+- select text: 
+    - use / to find word and n to go to location
+    - c to move around 
+    - v to select then y to yank
+- view source: gf
+- copy url: y
+- reopen closed tab: C-Shift-T  or u
+- change url: O
+
+---------------------------------------------------------------------
+Spacemacs
+---------------------------------------------------------------------
+- split window (vertically): SPC w /
+- split window (horizontall): SPC w -
+- config file : SPC f e d
+- toggle line numbers: SPC t n
+- toggle neotree : SPC f t
+
+---------------------------------------------------------------------
+http://www.downme.xyz
+---------------------------------------------------------------------
+- upload
+    - curl
+        - curl -X PUT www.downme.xyz/api/file -F "=@foo.txt"
+    - httpie
+        - http -f PUT www.downme.xyz/api/file @foo.txt -b
+- download
+    - curl
+        - curl www.downme.xyz/api/file/FqigXPc8wD -o foo.txt
+    - httpie
+        - http www.downme.xyz/api/file/FqigXPc8wD > foo.txt
+        - http -dco foo.txt www.downme.xyz/api/file/FqigXPc8wD -b
+
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
