@@ -46,9 +46,15 @@ bash/zsh + linux terminal cli tools commands
         - kill all sessions: tmux kill-server
     - re-attach: tmux attach-session -t mainSession
         - tmux attach
+- clear screen: clear
+    - ctrl+l
 - copy line to clipboard: ctrl-P
     - paste: xsel
             - clear xsel: xsel --clear
+    - copy from file to clipboard:
+        - xsel -b < abc.txt
+        - xclip -sel c < abc.txt
+
 - download : wget
     - specify path:  -O /path/to/file.txt
     - whole folder : -r
@@ -59,9 +65,14 @@ bash/zsh + linux terminal cli tools commands
     - all files in dir: 
         - wget -np -nH --cut-dirs 100 -r -e robots=off --reject="index.html*" http://foo.bar/a/
             - folders skipping:    --cut-dirs 5
+- download with curl: curl -LO abc.com/foo.bar
 - add permission:
     - chmod +x 
     - All permissions: sudo chmod -R 777
+- shutdown : shutdown now
+    - safely: sudo shutdown -h now
+- reboot : reboot
+    - safely: sudo shutdown -r now
 - nmap
     - intense:  -T4 -A -v  ipaddress
     - TCP/UDP scan: -sS -sU -PN ipaddress
@@ -127,10 +138,14 @@ bash/zsh + linux terminal cli tools commands
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
     - (.tar.xz) tar xJvf abc.tar.xz
+        - xz -d abc.tar.xz
+            - then : tar xvf abc.tar
     - (.tar.bz2): tar xvjf file.tar.bz2
     - (.Z): zcat *.Z |tar -xvf -
         - {https://kb.iu.edu/d/acsy}
     - (.tar.gz): tar -xzf abc.tar.gz
+        - gunzip foo.tar.gz
+            - then : tar xvf abc.tar
     - to folder: tar -xvzf foo.tar.gz -C bar/ 
         - (must create folder 'bar' first)
     - list content: tar -zvtf filename.tar.gz 
@@ -418,6 +433,7 @@ bash/zsh + linux terminal cli tools commands
          - search album: album foobar
          - search user : user foobar
               - user+query: user foo/bar
+        - search channels: channels foo bar
     - play from URL : playurl url
     - open playlist url/id :  pl <url or id>
     - autoplay in playlist: 1- 
@@ -541,6 +557,7 @@ bash/zsh + linux terminal cli tools commands
     - remove : -Rsn
     - AUR comments: -C
     - output PKGBUILD : -Sp
+    - clear cache: -Scc
 - webp:
     - encode: 
         - cwebp foo.jpg -o foo.webp
@@ -577,6 +594,9 @@ bash/zsh + linux terminal cli tools commands
 - mount: mount drives
     - sudo mount -t foo ~/shared/foo
     - virtualbox: sudo mount -t vboxsf foo ~/shared/foo
+    - first check location : sudo fdisk -l
+        - fdisk is in /sbin
+        - then sudo mount -t ntfs /dev/sda1 ~/mnt
 - umount: unmount drives
     - sudo umount ~/shared/foo
     - virtualbox: sudo umount -i ~/shared/foo
@@ -589,13 +609,70 @@ bash/zsh + linux terminal cli tools commands
     - list all install packages: snap list
     - uninstall package: snap remove foobar
     - find package: snap find foobar
+    - enable service :
+        - arch :
+            - systemctl enable snapd.service
+            - systemctl start snapd.service
 - dos2unix : convert file styles from dos to unix
 - streamlink
     - streamlink https://www.twitch.tv/ninja best
+    - define player: streamlink -p mpv twitch.tv/ninja 720p
 - snap : snap package manager
     - find : snap find foobar
     - install : snap install foobar --edge
     - list : snap list
+- ssh
+    - install : openssh
+    - start service: systemctl start sshd.service
+    - connect: ssh user@192.168.1.73
+- scp
+    - scp foo.bar abc@192.168.1.101:/home/abc/
+        - dir with spaces: abc@192.168.1.101:"'/home/a d'"
+- check available wifi frequencies: iwlist freq
+- read pdf: lesspipe abc.pdf |less
+    - might need to install pdftohtml
+    - alternative: pdftotext file.pdf - | less
+- check disk space left: df
+    - human readable: df -h
+- charge ios from usb: sudo usbmuxd -u -U usbmux
+- check files included in a package: dpkg -L foobar
+- reverse search: ctrl-r
+    - backward : ctrl-r
+    - forward: ctrl-s
+- find router ip address:
+    - traceroute 8.8.8.8
+        - 1st one on the list
+    - route -n
+- timedatectl (change timezone)
+    - check available timezones: timedatectl list-timezones
+    - set: timedatectl set-timezone Asia/Hong_Kong
+- diff : find difference between 2 files
+    - diff a.txt b.txt
+
+---------------------------------------------------------------------
+windows fix corrupted usb drive
+---------------------------------------------------------------------
+- chkdsk f: /f
+
+---------------------------------------------------------------------
+bluetoothctl
+---------------------------------------------------------------------
+- steps
+    - default-agent
+    - power on
+    - scan on
+    - pair 00:11
+    - connect 00:11
+
+---------------------------------------------------------------------
+virtualbox mount
+---------------------------------------------------------------------
+- sudo mount -t vboxsf MEGA ~/shared/MEGA
+
+---------------------------------------------------------------------
+install xfce themes
+---------------------------------------------------------------------
+- cp -r axiomd ~/.local/share/themes
 
 ---------------------------------------------------------------------
 windows setup C/C++ compiler 
@@ -627,12 +704,14 @@ Far Manager commands
 - select multiple files: shift + up/down arrow key
     - INS key
     - 
+- faster navigation: hold ALT + first letter of file name
 
 ---------------------------------------------------------------------
 downme.xyz cli commands
 ---------------------------------------------------------------------
 - upload:
     - curl -X PUT www.downme.xyz/api/file -F "=@foo.txt"
+    - windows : curl -X PUT www.downme.xyz/api/file -F file=@nohup.out
 - download: 
     - curl www.downme.xyz/api/file/FqigXPc8wD -o foo.txt
 
@@ -694,6 +773,11 @@ deploy to heroku
 - git commit -m "Initial commit"
 - heroku create
 - git push heroku master
+
+
+update new heroku remote name
+- git remote rm heroku
+- heroku git:remote -a newname
 
 
 Logs
@@ -788,6 +872,12 @@ create git repository
 - push repo:
     - add remote origin: git remote add origin https://foo.git
     - push: git push -u origin master
+- git config
+    - set email: git config --local user.email foo@bar
+        - check email: git config --local user.email
+- see git remote url : git remote -v
+- change git remote url: git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+    
 
 http://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
 
@@ -1360,13 +1450,31 @@ goto URL: g
 top of page: HOME
 bottom of pag: End
 search: /
+- # -> /
 new tab: t
 open link in newtab: T
 close tab: c
 move tab L/R:  <>
 bookmark: s
 options: o
+download (save as) current link: d
+download manager: D
 quit: q
+
+re-written config
+- goto url : o
+- peek url : O
+- close tab: q
+- scroll : vim
+- next link: J
+- prev link: K
+- back page: H
+- go forward: L
+- top of page: g
+- bottom of page: G
+- quit: Q
+- {https://github.com/minimul/dotfiles/blob/master/.elinks/elinks.conf}
+
 
 ---------------------------------------------------------------------
 i3wm
@@ -1391,6 +1499,7 @@ i3wm
 - toggle floating: mod+shift+space
 - change workspace: mod+numbers
     - mod+ctrl+arrows
+- move window to different workspace: mod+shift+numbers
 
 ---------------------------------------------------------------------
 emacs
@@ -1560,11 +1669,14 @@ Vimperator
 ---------------------------------------------------------------------
 Spacemacs
 ---------------------------------------------------------------------
+- M-x : left alt + x
 - split window (vertically): SPC w /
 - split window (horizontall): SPC w -
 - config file : SPC f e d
 - toggle line numbers: SPC t n
 - toggle neotree : SPC f t
+- reload after modifying ~/.spacemacs : SPC f e R
+- clean whitespaces: M-x whitespace-cleanup
 
 ---------------------------------------------------------------------
 http://www.downme.xyz
@@ -1581,6 +1693,28 @@ http://www.downme.xyz
         - http www.downme.xyz/api/file/FqigXPc8wD > foo.txt
         - http -dco foo.txt www.downme.xyz/api/file/FqigXPc8wD -b
 
+---------------------------------------------------------------------
+make and install linux software
+---------------------------------------------------------------------
+- ./configure && make && make install && make clean
+
+---------------------------------------------------------------------
+raspberry pi change wifi supplicant conf 
+---------------------------------------------------------------------
+- directory: roots/etc/wpa_supplicant
+
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+TEMPLATE
+---------------------------------------------------------------------
 ---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
