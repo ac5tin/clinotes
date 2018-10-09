@@ -500,6 +500,7 @@ bash/zsh + linux terminal cli tools commands
 - get permission (octal) number: stat -c %a directory
 -  change keyboard layout: setxkbmap xkb_layout us
 -  merge gifs: gifsicle --colors 256 --merge *.gif -o out.gif
+    - gifsicle --colors 256 a.gif b.gif > c.gif
 -  generate random pw: openssl rand -base64 6
     - date +%s | sha256sum | base64 | head -c 10
     - openssl rand -base64 29 | tr -d "=+/" | cut -c1-25
@@ -648,6 +649,11 @@ bash/zsh + linux terminal cli tools commands
     - set: timedatectl set-timezone Asia/Hong_Kong
 - diff : find difference between 2 files
     - diff a.txt b.txt
+- gif2webp : converts gif to animated webp
+    - gif2webp a.gif -o a.webp
+    - {https://developers.google.com/speed/webp/docs/gif2webp}
+- pngquant : png compressor
+    - pngquant a.png -o out.png
 
 ---------------------------------------------------------------------
 windows fix corrupted usb drive
@@ -872,6 +878,8 @@ create git repository
 - push repo:
     - add remote origin: git remote add origin https://foo.git
     - push: git push -u origin master
+    - mirror: git push --mirror repo2
+    - all : git push --all repo2
 - git config
     - set email: git config --local user.email foo@bar
         - check email: git config --local user.email
