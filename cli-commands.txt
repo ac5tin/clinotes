@@ -40,6 +40,7 @@ bash/zsh + linux terminal cli tools commands
             - paste: ]
             - source conf file : r
             - mouse mode on: m
+            - switch to window: s
     - reload config: tmux source ~/.tmux.conf
     - show all session: tmux ls
     - kill sessions: tmux kill-session
@@ -57,6 +58,7 @@ bash/zsh + linux terminal cli tools commands
 
 - download : wget
     - specify path:  -O /path/to/file.txt
+        - into dir : -P
     - whole folder : -r
     - into directory : -R
     - authentication:
@@ -524,6 +526,8 @@ bash/zsh + linux terminal cli tools commands
             - e.g. jq '."Foo Bar"'
         - {https://stedolan.github.io/jq/manual/#Basicfilters}
     - pipe output into less: curl -s https://api.github.com/users/octocat/repos | jq '.' | less
+    - remove quotes : -r
+    - all elements in array: ".[].name"
 
 - HTML processor: pup
     - e.g.: curl localhost:3000 |pup --color 'body h1,body p'
@@ -550,11 +554,12 @@ bash/zsh + linux terminal cli tools commands
     - resume : ctrl+q
 - anime checker: moe -name "foobar" -info
     - just rank and score: -score -rank
-- trizen :
+- yay / trizen / pacman :
     - package info: -Si
     - package check dependencies: -Qi
     - check if no longer required : -Qdt
     - list of all no longer required : -Qqdt
+    - which package a file/cmd belongs to: -Qo file
     - remove : -Rsn
     - AUR comments: -C
     - output PKGBUILD : -Sp
@@ -654,6 +659,19 @@ bash/zsh + linux terminal cli tools commands
     - {https://developers.google.com/speed/webp/docs/gif2webp}
 - pngquant : png compressor
     - pngquant a.png -o out.png
+- sv : runit services
+    - check status of all enable services : sv status /var/services/*
+    - status of 1 service: sv status service_name
+    - {https://wiki.voidlinux.eu/Runit}
+- sysbench : benchmarking tool
+  - cpu:  sysbench --test=cpu --cpu-max-prime=20000 run
+    - just put 'cpu' instead of '--cpu' for version > 0.4
+    - higher total no. of events = better performance
+- list installed packages sorted by disk usage (arch)
+    - expac '%m\t%n' | sort -h
+    - pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25
+- opusenc : opus encoder
+    - opusenc --bitrate 160 in.wav out.opus
 
 ---------------------------------------------------------------------
 windows fix corrupted usb drive
@@ -1649,6 +1667,8 @@ git clone xxx.git
     - cleanup: PluginClean
 - move screen up: C-y
 - move screen down: C-e
+- fix windows carriage return : :%s/^M/\r/g
+- remove all empty lines: :g/^$/d
 
 
 Vimperator
@@ -1705,21 +1725,43 @@ http://www.downme.xyz
 make and install linux software
 ---------------------------------------------------------------------
 - ./configure && make && make install && make clean
-
+  - if something wrong happened, try : autoreconf -ifv
+    - if err related to guess : cp /usr/share/automake-1.15/config.guess ./config/config.guess
+- to uninstall: make uninstall
 ---------------------------------------------------------------------
 raspberry pi change wifi supplicant conf 
 ---------------------------------------------------------------------
 - directory: roots/etc/wpa_supplicant
 
 ---------------------------------------------------------------------
-TEMPLATE
+change wpa_supplicant & reload dhcpcd
 ---------------------------------------------------------------------
+- edit /etc/wpa_supplicant/wpa_supplicant.conf
+- sudo ip link show
+- sudo ip link set up wlp3s0
+- reload file: sv restart dhcpcd
+
 ---------------------------------------------------------------------
-TEMPLATE
+setup wpa_supplicant + dhcpcd (runit)
 ---------------------------------------------------------------------
+- sudo ln -s /etc/sv/dhcpcd /var/service
+- sudo ln -s /etc/sv/wpa_supplicant /etc/service
+- touch /etc/sv/wpa_supplicant/conf
+    - CONF_FILE=/etc/wpa_supplicant/wpa_supplicant-wlp3s0.conf
+    - WPA_INTERFACE=wlp3s0
+    - OPTS=-s
+- ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /usr/lib/dhcpcd/dhcpcd-hooks
+- {https://wiki.artixlinux.org/runit/NetworkConfiguration}
+
 ---------------------------------------------------------------------
-TEMPLATE
+change dircolors (fix unreadable dir names with permission 777)
 ---------------------------------------------------------------------
+- dircolors -p > ~/.dircolors
+- edit line : OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
+    - change to : OTHER_WRITABLE 30;41 # dir that is other-writable (o+w) and not sticky
+- add to .zshrc: eval "$(dircolors ~/.dircolors)";
+- {http://pygy.co/Dv}
+
 ---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
