@@ -209,6 +209,8 @@ bash/zsh + linux terminal cli tools commands
 - screenshot : scrot
 - XAMPP : sudo /opt/lampp/lampp start/stop
     - GUI tool : sudo /opt/lampp/manager-linux-x64.run
+    - bitnami: sudo /opt/bitnami/ctlscript.sh status/start/stop/restart
+        - restart single service: restart apache
 - size: du
     - human readable + summary: -hs
     - all files within directory: -hs *
@@ -631,6 +633,7 @@ bash/zsh + linux terminal cli tools commands
     - install : openssh
     - start service: systemctl start sshd.service
     - connect: ssh user@192.168.1.73
+    - delete invalid key: ssh-keygen -R 192.168.1.29
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
@@ -672,6 +675,26 @@ bash/zsh + linux terminal cli tools commands
     - pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25
 - opusenc : opus encoder
     - opusenc --bitrate 160 in.wav out.opus
+- tail : output last parts of a file
+    - last 10 lines: tail -10 abc.txt
+- fff : file manager
+    - move: j,k,h,l
+    - top : g
+    - bottom: G
+    - toggle hidden files: .
+    - search: /
+    - go to trash: t
+    - go to home: ~
+    - new file: f
+    - new folder: n
+    - rename: r
+    - move to trash: d
+    - mark copy: y
+    - mark move: m
+    - paste/move: p
+    - quit: q
+    - {https://github.com/dylanaraps/fff}
+- count number of files in dir: ls | wc -l
 
 ---------------------------------------------------------------------
 windows fix corrupted usb drive
@@ -1292,6 +1315,9 @@ SQL
     - reset AutoIncrement :  ALTER SEQUENCE product_id_seq RESTART WITH 1453
         - (table name = product, column name = id)
 
+- truncate
+    - TRUNCATE TABLE `thinkcol`.`upload_original`;
+
 
 
 - create table:
@@ -1617,6 +1643,7 @@ git clone xxx.git
     - 1st occurence :   :s/foo/bar
     - every occurence :s/foo/bar/g
     - specific lines :    :478,480s/old/new/g
+- find no. of matces: :%s/pattern//gn
 - NERDTree : Ctrl+n
     - vertical split |  : s
     - horizontal split ---- : i
@@ -1669,6 +1696,11 @@ git clone xxx.git
 - move screen down: C-e
 - fix windows carriage return : :%s/^M/\r/g
 - remove all empty lines: :g/^$/d
+- page scrolling:
+  - up 1 line: ctrl+y
+  - down 1 line: ctrl+e
+  - up half page: ctrl+u
+  - down half page ctrl+d
 
 
 Vimperator
