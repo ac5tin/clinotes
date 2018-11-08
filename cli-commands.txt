@@ -225,6 +225,7 @@ bash/zsh + linux terminal cli tools commands
 - grep filter from ls:  ls | grep linu 
     - remove sensitivity : grep -i 'hello'
     - different patterns: grep 'Foo\|bar'
+    - inverse: -v
 - create nested subdirectories : mkdir -p d/s/a/e
 - sublime text : subl
 - visual studio code: code
@@ -695,6 +696,17 @@ bash/zsh + linux terminal cli tools commands
     - quit: q
     - {https://github.com/dylanaraps/fff}
 - count number of files in dir: ls | wc -l
+- xrandr: check screens
+    - connect multi sreens:  xrandr --output HDMI1 --left-of eDP1 --auto
+
+---------------------------------------------------------------------
+encoding
+---------------------------------------------------------------------
+- audio
+    - opus
+        - opusenc --bitrate 128 foo.flac foo.opus
+    - aac
+        - ffmpeg -i foo.flac -vn -c:a libfdk_aac -b:a 128k foo.m4a
 
 ---------------------------------------------------------------------
 windows fix corrupted usb drive
@@ -752,6 +764,8 @@ Far Manager commands
     - INS key
     - 
 - faster navigation: hold ALT + first letter of file name
+- rsync : faster than scp when copying multiple large files
+    - rsync -atvzhrP --ignore-existing foo pi@192.168.1.83:"'/home/foobar/Downloads'"
 
 ---------------------------------------------------------------------
 downme.xyz cli commands
