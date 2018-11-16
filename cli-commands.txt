@@ -5,6 +5,7 @@ bash/zsh + linux terminal cli tools commands
 - nohup: send output to nohup.out then continue on terminal
 - run application in background:  foobar &
     - add & to the end of line
+    - multiple commands: nohup sh -c 'a;b;c' &
 - run cmd while disabling alias:   \ls
 - rm -r mydir (remove directory)
 - move multiple files: mv -t DESTINATION file1 file2
@@ -646,6 +647,7 @@ bash/zsh + linux terminal cli tools commands
     - human readable: df -h
 - charge ios from usb: sudo usbmuxd -u -U usbmux
 - check files included in a package: dpkg -L foobar
+- remove package: dpkg -r foobar
 - reverse search: ctrl-r
     - backward : ctrl-r
     - forward: ctrl-s
@@ -666,7 +668,7 @@ bash/zsh + linux terminal cli tools commands
 - sv : runit services
     - check status of all enable services : sv status /var/services/*
     - status of 1 service: sv status service_name
-    - {https://wiki.voidlinux.eu/Runit}
+    - {https://wiki.voidlinux.eu/Runit,https://wiki.archlinux.org/index.php/runit}
 - sysbench : benchmarking tool
   - cpu:  sysbench --test=cpu --cpu-max-prime=20000 run
     - just put 'cpu' instead of '--cpu' for version > 0.4
@@ -698,6 +700,17 @@ bash/zsh + linux terminal cli tools commands
 - count number of files in dir: ls | wc -l
 - xrandr: check screens
     - connect multi sreens:  xrandr --output HDMI1 --left-of eDP1 --auto
+- lsblk
+    - list devices
+- runit-init
+    - shutdown: runit-init 0
+    - reboot: runit-init 6
+
+---------------------------------------------------------------------
+ffmpeg loop in backgound
+---------------------------------------------------------------------
+- nohup sh -c 'for i in *.mp4; do ffmpeg -i "$i" -c:v libx265 "${i%.*}_hevc.mp4"; done' &
+
 
 ---------------------------------------------------------------------
 encoding
