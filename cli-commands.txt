@@ -705,6 +705,16 @@ bash/zsh + linux terminal cli tools commands
 - runit-init
     - shutdown: runit-init 0
     - reboot: runit-init 6
+- rsync : faster than scp when copying multiple large files
+    - rsync -atvzhrP --ignore-existing foo pi@192.168.1.83:"'/home/foobar/Downloads'"
+- git
+	- see changes of added files
+		- git diff --cached abc.js
+
+---------------------------------------------------------------------
+curl with tor
+---------------------------------------------------------------------
+curl --socks5-hostname localhost:9050 https://check.torproject.org
 
 ---------------------------------------------------------------------
 ffmpeg loop in backgound
@@ -777,8 +787,6 @@ Far Manager commands
     - INS key
     - 
 - faster navigation: hold ALT + first letter of file name
-- rsync : faster than scp when copying multiple large files
-    - rsync -atvzhrP --ignore-existing foo pi@192.168.1.83:"'/home/foobar/Downloads'"
 
 ---------------------------------------------------------------------
 downme.xyz cli commands
