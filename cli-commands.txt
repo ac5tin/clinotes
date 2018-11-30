@@ -138,6 +138,7 @@ bash/zsh + linux terminal cli tools commands
             - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
         - slower but higher compression rate
     - (7z): 7z a foo.7z abc.txt
+	- (zst): tar cvf - foo | zstd -19 -T0 -o foo.tar.zst
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
     - (.tar.xz) tar xJvf abc.tar.xz
@@ -648,6 +649,7 @@ bash/zsh + linux terminal cli tools commands
 - charge ios from usb: sudo usbmuxd -u -U usbmux
 - check files included in a package: dpkg -L foobar
 - remove package: dpkg -r foobar
+- install package: dpkg -i abc.deb
 - reverse search: ctrl-r
     - backward : ctrl-r
     - forward: ctrl-s
@@ -710,6 +712,8 @@ bash/zsh + linux terminal cli tools commands
 - git
 	- see changes of added files
 		- git diff --cached abc.js
+- checkinstall
+	- create deb without installing: make -> checkinstall --install=no
 
 ---------------------------------------------------------------------
 curl with tor
