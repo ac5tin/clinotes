@@ -138,6 +138,7 @@ bash/zsh + linux terminal cli tools commands
             - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
         - slower but higher compression rate
     - (7z): 7z a foo.7z abc.txt
+		- max compression: 7z -mx=9 a abc.7z abc
 	- (zst): tar cvf - foo | zstd -19 -T0 -o foo.tar.zst
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
@@ -647,7 +648,9 @@ bash/zsh + linux terminal cli tools commands
 - check disk space left: df
     - human readable: df -h
 - charge ios from usb: sudo usbmuxd -u -U usbmux
+- list installed packages: dpkg -l
 - check files included in a package: dpkg -L foobar
+- check .deb info: dpkg-deb -I abc.deb
 - remove package: dpkg -r foobar
 - install package: dpkg -i abc.deb
 - reverse search: ctrl-r
@@ -712,6 +715,12 @@ bash/zsh + linux terminal cli tools commands
 - git
 	- see changes of added files
 		- git diff --cached abc.js
+	- clean files
+		- git clean -f
+	- set account login cache timeout
+		- git config --global credential.helper 'cache --timeout=7200'
+	- if require ssh key files:
+		- ssh-agent bash -c 'ssh-add ~/keys/abc; git pull'
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 
