@@ -721,6 +721,9 @@ bash/zsh + linux terminal cli tools commands
 		- git config --global credential.helper 'cache --timeout=7200'
 	- if require ssh key files:
 		- ssh-agent bash -c 'ssh-add ~/keys/abc; git pull'
+	- see commit history log: git log
+	- see changes: git show
+		- specific commit: git show 00abcdef
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 
