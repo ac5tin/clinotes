@@ -48,6 +48,7 @@ bash/zsh + linux terminal cli tools commands
         - kill all sessions: tmux kill-server
     - re-attach: tmux attach-session -t mainSession
         - tmux attach
+- refresh dynamic link: sudo ldconfig
 - clear screen: clear
     - ctrl+l
 - copy line to clipboard: ctrl-P
@@ -294,6 +295,10 @@ bash/zsh + linux terminal cli tools commands
     - neofetch
     - lsb_release -a
 - change dir perm: chown -R austin:austin abc
+	- user:group
+- change perm for multiple :
+	- files: find ~/htdocs/staging -type f -exec chmod 644 {} \;
+	- dir: find ~/htdocs/staging/ -type d -exec chmod 755 {} \;
 - football-cli:
     - league table: football standings -l PL
     - scoreline: football scores -l
@@ -726,6 +731,12 @@ bash/zsh + linux terminal cli tools commands
 		- specific commit: git show 00abcdef
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
+- usermod : modify user
+	- add user to group : usermod -a -G group user
+		- multiple groups: usermod -a -G g1,g2,g3 user
+- groups: check user groups
+	- groups user
+- see all groups on system: getent group
 
 ---------------------------------------------------------------------
 curl with tor
