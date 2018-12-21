@@ -575,6 +575,8 @@ bash/zsh + linux terminal cli tools commands
     - check if no longer required : -Qdt
     - list of all no longer required : -Qqdt
     - which package a file/cmd belongs to: -Qo file
+	- list of installed packages: -Qqe
+	- list of files installed by package: -Ql foobar
     - remove : -Rsn
     - AUR comments: -C
     - output PKGBUILD : -Sp
@@ -747,6 +749,8 @@ bash/zsh + linux terminal cli tools commands
 - check process opened port :
 	- check pid: fuser 3306/tcp
 	- ls -l /proc/3141/exe
+- ufw: firewall
+	- start: ufw enable
 
 ---------------------------------------------------------------------
 curl with tor
