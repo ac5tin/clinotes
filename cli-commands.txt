@@ -726,6 +726,7 @@ bash/zsh + linux terminal cli tools commands
 - git
 	- see changes of added files
 		- git diff --cached abc.js
+		- git diff --staged
 	- clean files
 		- git clean -f
 	- set account login cache timeout
@@ -751,6 +752,22 @@ bash/zsh + linux terminal cli tools commands
 	- ls -l /proc/3141/exe
 - ufw: firewall
 	- start: ufw enable
+
+---------------------------------------------------------------------
+postgresql sequelize nodejs
+---------------------------------------------------------------------
+- install:
+	- npm install -g sequelize-cli
+	- yarn add sequelize pg pg-hstore
+- mkir db && cd db
+- sequelize init
+- edit config.json > insert into development:
+	- "use_env_variable": "DATABASE_URL"
+- export DATABASE_URL=our-database-url
+- generate model:
+	- sequelize model:create --name foo --atributes abc:string,abc:number
+- migrate: sequelize db:migrate
+- {https://bit.ly/2hpP7rY}
 
 ---------------------------------------------------------------------
 curl with tor
