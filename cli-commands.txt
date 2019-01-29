@@ -339,108 +339,108 @@ bash/zsh + linux terminal cli tools commands
     - sort by(alphabetical)
         - dir first : lc -sd
         - files first : lc -s
-    - including hidden files: -a
-    - check my username: whoami
-    - change password: passwd austin
-    - extract all images from pdf: pdfimages -j abc.pdf ./
-    - convert images:  convert a.ppm b.jpg
-    - docx to txt : docx2txt abc.docx
-    - URL Shortener:
-        - bitly: bitly "google.com"
-        - zaebz: zaebz "google.com"
-    - virus scanner
-        - scan: virustotal file-scan abc.txt
-        - get report : virustotal file-report 12f0326
-    - go back to previous directory: cd -
-    - email client: mutt
-        - top of the page : H
-        - bottom of the page: L
-        - refresh inbox:  :exec imap-fetch-email
-    - todo list (task warrior): task
-        - show list: task next
-        - add task: task add foo bar due:2017-01-30
-            - add priority: priority:H
-            - multiline: task add "ssds adfa adfasfa"
-        - fin task: task 2 done
-        - del task: task 1 delete
-        - modify: task 12 modify due:eom
-            - remove due date : task 12 modify due:
-       - (http://zae.bz/DISgAu , http://zae.bz/DFdvYy)
-    - installed pkg version: apt-cache policy coreutils
-        - dpkg -s coreutils
-    - music player: cmus
-        - file browser: 5
-        - add music to library: a
-        - play: enter
-        - pause/unpause: c
-        - next track: b
-        - previous track: z
-        - stop playback: v
-        - restart track: x
-        - jump view to current track: i
-        - view queue: 4
-        - add song to play next in queue: e
-        - remove from queue: shitf + d
-        - view library : 1
-            - move focus to tracklist : tab
-            - toggle play library: shift + m
-            - toggle artist/all/album : m
-            - toggles:
-                - continue : shift + c
-                - repeat: r
-                - shuffle:  s
-        - view sorted library : 2
-        - view playlist: 3
-        - add from library to playlist: y
-        - update cache:  :update-cache
-        - (http://zae.bz/UhNKOy , http://zae.bz/FGdFCF)
-    - music visualizer 
-        - cava
-            - width of lines: left/right arrow
-            - sensitivity: up/down arrow
-            - reload config file: r
-            - (on WSL) : use tilda
-                - run with :nohup tilda &
-    - youtube-dl
-        - to mp3: youtube-dl -x --audio-format mp3 url
-        - manual:  tldr youtube-dl
-    - IRC client: weechat
-        - add server: /server add oftc irc.oftc.net/6697 -ssl -autoconnect
-        - delete server: /server del freenode
-        - connect : /connect oftc
-        - disconnect: /disconnect oftc
-        - turn on ssl : /set irc.server.freenode.ssl on
-        - turn on/off autoconnect: /set irc.server.freenode.autoconnect on
-        - add tor: /proxy add tor socks5 127.0.0.1 9050
-             - start tor first: sudo service tor start
-                 - reload tor: sudo service tor reload
-        - tor proxy: /set irc.server.freenode.proxy "tor"
-        - register: /msg NickServ REGISTER password youremail@example.com
-        - close buffer/channel:  /close
-        - buffer list:  /buffer
-        - switch buffer: f5/f6
-            - /buffer 3
-            - /buffer foo
-        - windows: /window
-        - list channels: /list
-        - list added servers: /server list
-        - scroll buffer: pg-up/down key
-        - change nickname
-            - default: /set irc.server_default.nicks comma,separated,list,of,nicks
-            - server nick: /set irc.server.freenode.nicks "foo"
-        - change nick colour: /set weechat.color.chat_nick_self
-        - sasl settings:
-            - set username: /set irc.server.freenode.sasl_username
-            - set pw: /set irc.server.freenode.sasl_password
-            - set mechanism: /set irc.server.freenode.sasl_mechanism external
-        - join channel:  /join #programming
-        - part channel : /part [quit message]
-        - private msg: /query foo this is a message
-            -   /msg friend msg?
-        - find channels
-            - freenode
-                - top channels: /msg alis LIST * -min 1500
-        - download dir = ~/.weechat/xfer
+- including hidden files: -a
+- check my username: whoami
+- change password: passwd austin
+- extract all images from pdf: pdfimages -j abc.pdf ./
+- convert images:  convert a.ppm b.jpg
+- docx to txt : docx2txt abc.docx
+- URL Shortener:
+	- bitly: bitly "google.com"
+	- zaebz: zaebz "google.com"
+- virus scanner
+	- scan: virustotal file-scan abc.txt
+	- get report : virustotal file-report 12f0326
+- go back to previous directory: cd -
+- email client: mutt
+	- top of the page : H
+	- bottom of the page: L
+	- refresh inbox:  :exec imap-fetch-email
+- todo list (task warrior): task
+	- show list: task next
+	- add task: task add foo bar due:2017-01-30
+		- add priority: priority:H
+		- multiline: task add "ssds adfa adfasfa"
+	- fin task: task 2 done
+	- del task: task 1 delete
+	- modify: task 12 modify due:eom
+		- remove due date : task 12 modify due:
+   - (http://zae.bz/DISgAu , http://zae.bz/DFdvYy)
+- installed pkg version: apt-cache policy coreutils
+	- dpkg -s coreutils
+- music player: cmus
+	- file browser: 5
+	- add music to library: a
+	- play: enter
+	- pause/unpause: c
+	- next track: b
+	- previous track: z
+	- stop playback: v
+	- restart track: x
+	- jump view to current track: i
+	- view queue: 4
+	- add song to play next in queue: e
+	- remove from queue: shitf + d
+	- view library : 1
+		- move focus to tracklist : tab
+		- toggle play library: shift + m
+		- toggle artist/all/album : m
+		- toggles:
+			- continue : shift + c
+			- repeat: r
+			- shuffle:  s
+	- view sorted library : 2
+	- view playlist: 3
+	- add from library to playlist: y
+	- update cache:  :update-cache
+	- (http://zae.bz/UhNKOy , http://zae.bz/FGdFCF)
+- music visualizer 
+	- cava
+		- width of lines: left/right arrow
+		- sensitivity: up/down arrow
+		- reload config file: r
+		- (on WSL) : use tilda
+			- run with :nohup tilda &
+- youtube-dl
+	- to mp3: youtube-dl -x --audio-format mp3 url
+	- manual:  tldr youtube-dl
+- IRC client: weechat
+	- add server: /server add oftc irc.oftc.net/6697 -ssl -autoconnect
+	- delete server: /server del freenode
+	- connect : /connect oftc
+	- disconnect: /disconnect oftc
+	- turn on ssl : /set irc.server.freenode.ssl on
+	- turn on/off autoconnect: /set irc.server.freenode.autoconnect on
+	- add tor: /proxy add tor socks5 127.0.0.1 9050
+		 - start tor first: sudo service tor start
+			 - reload tor: sudo service tor reload
+	- tor proxy: /set irc.server.freenode.proxy "tor"
+	- register: /msg NickServ REGISTER password youremail@example.com
+	- close buffer/channel:  /close
+	- buffer list:  /buffer
+	- switch buffer: f5/f6
+		- /buffer 3
+		- /buffer foo
+	- windows: /window
+	- list channels: /list
+	- list added servers: /server list
+	- scroll buffer: pg-up/down key
+	- change nickname
+		- default: /set irc.server_default.nicks comma,separated,list,of,nicks
+		- server nick: /set irc.server.freenode.nicks "foo"
+	- change nick colour: /set weechat.color.chat_nick_self
+	- sasl settings:
+		- set username: /set irc.server.freenode.sasl_username
+		- set pw: /set irc.server.freenode.sasl_password
+		- set mechanism: /set irc.server.freenode.sasl_mechanism external
+	- join channel:  /join #programming
+	- part channel : /part [quit message]
+	- private msg: /query foo this is a message
+		-   /msg friend msg?
+	- find channels
+		- freenode
+			- top channels: /msg alis LIST * -min 1500
+	- download dir = ~/.weechat/xfer
 - mps-youtube : mpsyt
      - set search to all cat. : set search_music false
      - video video output: set show_video true
@@ -491,6 +491,8 @@ bash/zsh + linux terminal cli tools commands
             - leeching: 9
             - stopped : 4
         - (http://zae.bz/QBUiHV , http://zae.bz/XRhNCR )
+	- aria2
+		- aria2c foo.torrent
 - convert video: ffmpeg
     - use libx265: ffmpeg -i abc.mkv -c:v libx265 abc.mp4
     - extract subtitles: ffmpeg -i abc.mkv -map 0:s:0 subs.srt
@@ -752,6 +754,26 @@ bash/zsh + linux terminal cli tools commands
 	- ls -l /proc/3141/exe
 - ufw: firewall
 	- start: ufw enable
+- remove all folders : rm -R -- */
+- count lines from grep: grep abc | wc -l
+- fix broken install: apt --fix-broken install
+
+---------------------------------------------------------------------
+PIA (CLI -- openvpn)
+---------------------------------------------------------------------
+- install openvpn
+- cd /etc/openvpn
+- download file: https://www.privateinternetaccess.com/openvpn/openvpn.zip
+- create pass.txt: 
+	> username
+	> password
+- edit .ovpn file
+	- edit line: auth-user-pass
+		- change to: auth-user-pass pass.txt
+- start: sudo -b openvpn foobar.ovpn
+
+- {https://www.privateinternetaccess.com/helpdesk/guides/desktop/linux/linux-openvpn-terminal-connection}
+- {https://www.privateinternetaccess.com/archive/forum/discussion/29286/manually-run-openvpn-inside-a-screen-terminal}
 
 ---------------------------------------------------------------------
 postgresql sequelize nodejs
@@ -1038,6 +1060,18 @@ Powershell
 - return profile path: $PROFILE
 - reload profile :    . $PROFILE
 - refresh environment variables: refreshenv
+- change security protocol: [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+- services
+	- change startup type: Set-Service ssh-agent -StartupType Manual
+	- service status: Get-Service ssh-agent
+	- start: Start-Service ssh-agent
+- SSH
+	- start openssh :
+		- Install-Module -Force OpenSSHUtils -Scope AllUsers
+		- Start-Service ssh-agent
+		- Start-Service sshd
+	- gen key: ssh-keygen
+	- load key to ssh-agent: ssh-add ~/.ssh/key
 
 ---------------------------------------------------------------------
 yarn
@@ -1052,6 +1086,9 @@ update global packages
 
 list installed global packages
 - yarn global list
+
+update all packages
+- yarn upgrade --latest
 
 ---------------------------------------------------------------------
 ruby gems
@@ -1818,6 +1855,13 @@ Vimperator
 - copy url: y
 - reopen closed tab: C-Shift-T  or u
 - change url: O
+- VimFiler
+	- display dot files: .
+	- make dir: K
+	- new file: N
+	- copy: c
+	- move: m
+	- check keybinds: :help vimfiler-default-keymappings
 
 ---------------------------------------------------------------------
 Spacemacs
