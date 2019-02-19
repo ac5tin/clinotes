@@ -179,7 +179,8 @@ bash/zsh + linux terminal cli tools commands
         - list :  unrar l abc.rar
         - extract to path: unrar x abc.rar foo/
         - extract certain files: unrar e test.rar file5 file8
-    -
+    - (.zst) : unzstd foo.zst
+		- then : tar xvf foo.tar
 - delete folder from tarball :
     - gunzip foo.tar.gz
     - tar --delete --file=foo.tar foo/bar
@@ -725,6 +726,8 @@ bash/zsh + linux terminal cli tools commands
     - reboot: runit-init 6
 - rsync : faster than scp when copying multiple large files
     - rsync -atvzhrP --ignore-existing foo pi@192.168.1.83:"'/home/foobar/Downloads'"
+	- with pem file:
+		- rsync -atvzhrP -e "ssh -i ~/Documents/ssh/foobar.pem"
 - git
 	- see changes of added files
 		- git diff --cached abc.js
@@ -738,6 +741,7 @@ bash/zsh + linux terminal cli tools commands
 	- see commit history log: git log
 	- see changes: git show
 		- specific commit: git show 00abcdef
+	- stash all: git stash --all
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
@@ -757,6 +761,32 @@ bash/zsh + linux terminal cli tools commands
 - remove all folders : rm -R -- */
 - count lines from grep: grep abc | wc -l
 - fix broken install: apt --fix-broken install
+- tsc : ts -> js transpiler
+	- tsc --lib ESNext foo.ts
+		- multi-lib: tsc --lib ESNext,dom bar.ts
+	- tsc --outDir dist --target es5 --module ES6 --lib esnext test.ts
+- gotop:
+	- sorting:
+		- cpu : c
+		- memory: m
+		- pid: p
+
+---------------------------------------------------------------------
+Preact + Parcel setup
+---------------------------------------------------------------------
+- yarn init -y
+- yarn add preact
+- yarn add -D parcel-bundler babel-preset-react babel-preset-env
+- mkdir src
+- touch src/index.html
+- touch src/index.js
+- touch .babelrc
+- package.json <- scripts :
+	- dev: parcel ./src/index,html
+	- build: parcel build ./src/index.html
+- .babelrc <- 
+	presets : ["env"]
+- {https://medium.com/dailyjs/lean-react-project-with-parcel-a6ffe0fac0d2}
 
 ---------------------------------------------------------------------
 PIA (CLI -- openvpn)
@@ -1072,6 +1102,17 @@ Powershell
 		- Start-Service sshd
 	- gen key: ssh-keygen
 	- load key to ssh-agent: ssh-add ~/.ssh/key
+- web request tls
+	- [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+- modules
+	- list installed
+		- all installed on computer: Get-InstalledModule
+		- installed + imported : Get-Module
+	- update all installed: Get-InstalledModule | Update-Module
+- curl/iwr
+	- get content:
+		- (curl cli.fyi/me).Content
+- help : get-help curl
 
 ---------------------------------------------------------------------
 yarn
@@ -1748,6 +1789,8 @@ vim
 - new tab = :Te
 - next tab = gt
 - prev tab = gT
+- cycle to tabs: ALT + number
+	- ALT + left or right
 - close tab = bd
 - search: / 
     - whole word :  /\<word\>
@@ -1861,6 +1904,7 @@ Vimperator
 	- new file: N
 	- copy: c
 	- move: m
+	- rename: r
 	- check keybinds: :help vimfiler-default-keymappings
 
 ---------------------------------------------------------------------
