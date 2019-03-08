@@ -138,12 +138,17 @@ bash/zsh + linux terminal cli tools commands
                     - tar --exclude='foo/bar' --exclude='*foo.tar.gz' -cvf - * ./ | gzip -9 > foo.tar.gz
         - faster
     - (tar.xz) :tar -cJf filename.tar.xz stuff
-        - max compression: tar cvf - stuff | xz -9 -e - > stuff.tar.xz
+        - max compression: tar cvf - stuff | xz -9 -T 0 -e - > stuff.tar.xz
             - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
         - slower but higher compression rate
     - (7z): 7z a foo.7z abc.txt
 		- max compression: 7z -mx=9 a abc.7z abc
-	- (zst): tar cvf - foo | zstd -19 -T0 -o foo.tar.zst
+	- (zst): tar cvf - foo | zstd -22 --ultra -T0 -o foo.tar.zst
+		- training mode: zstd --train path/* -o dictName
+		- cmpr. with dict: zstd -D dictName FILE
+		- dcmpr. with dict: zstd -D dictName --decompress FILE.zst
+		- remove src after cmpr/dcmpr : --rm
+	- (.lz): tar cvf - foo | lzip --best > foo.tar.lz
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
     - (.tar.xz) tar xJvf abc.tar.xz
@@ -626,6 +631,8 @@ bash/zsh + linux terminal cli tools commands
 - umount: unmount drives
     - sudo umount ~/shared/foo
     - virtualbox: sudo umount -i ~/shared/foo
+	- additional step:
+		- remove record : edit /etc/fstab
 - rover : cli file manager
     - open shell on current directory : ENTER
     -  {https://github.com/lecram/rover}
@@ -770,6 +777,15 @@ bash/zsh + linux terminal cli tools commands
 		- cpu : c
 		- memory: m
 		- pid: p
+- get gpu info: sudo lshw -C display
+- see logged in users: w
+- see running process:
+	- ps aux |grep node
+	- pgrep node
+- see working dir of running process: pwdx 3461
+	- pipe pgrep: pgrep node |xargs pwdx
+- npx : npm package runtime
+- pnpm : alternate to npm
 
 ---------------------------------------------------------------------
 Preact + Parcel setup
@@ -1109,6 +1125,7 @@ Powershell
 		- all installed on computer: Get-InstalledModule
 		- installed + imported : Get-Module
 	- update all installed: Get-InstalledModule | Update-Module
+	- install latest: Install-Module -Name Foobar -AllowPrerelease
 - curl/iwr
 	- get content:
 		- (curl cli.fyi/me).Content
@@ -1144,6 +1161,9 @@ pip
 ---------------------------------------------------------------------
 python 3 version: python3 -m pip install humanize
 
+pip install to local dir
+- pip install foobar -t ./
+
 list outdated packages
 - pip3 list -o
 
@@ -1170,6 +1190,12 @@ npm
 ---------------------------------------------------------------------
 check latest
 - npm show react version
+- npx npm-check-updates
+	- npm install -g npm-check-updates && ncu
+
+- update all to latest version
+	- npx npm-check-updates -u
+	- bleeding edge: npx npm-check-updates --pre -n -u
 
 check installed version
 - npm view react version
@@ -1906,6 +1932,10 @@ Vimperator
 	- move: m
 	- rename: r
 	- check keybinds: :help vimfiler-default-keymappings
+- Spacevim
+	- toggle vimfiler: F3 or spc f t
+	- kill buffer: spc b d
+	- home: spc b h
 
 ---------------------------------------------------------------------
 Spacemacs
@@ -1976,8 +2006,12 @@ change dircolors (fix unreadable dir names with permission 777)
 - {http://pygy.co/Dv}
 
 ---------------------------------------------------------------------
-TEMPLATE
+gcc  versions
 ---------------------------------------------------------------------
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+- {https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04}
+
 ---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
