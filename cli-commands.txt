@@ -646,6 +646,9 @@ bash/zsh + linux terminal cli tools commands
         - arch :
             - systemctl enable snapd.service
             - systemctl start snapd.service
+	- change channel: sudo snap switch --channel=stable vlc
+	- refresh: sudo snap refresh --channel=edge ffsend
+	- info: snap info vlc
 - dos2unix : convert file styles from dos to unix
 - streamlink
     - streamlink https://www.twitch.tv/ninja best
@@ -786,6 +789,37 @@ bash/zsh + linux terminal cli tools commands
 	- pipe pgrep: pgrep node |xargs pwdx
 - npx : npm package runtime
 - pnpm : alternate to npm
+- see shell using: ps -p $$
+	- echo $0
+- change default shell: chsh
+	- specific user: chsh -s /bin/zsh foobar
+- ffsend (firefox send)
+	- upload: ffsend upload abc.txt
+	- history: ffsend history
+	- download: ffsend download abc.com/abc
+	- info: ffsend info abc.com/abc
+
+---------------------------------------------------------------------
+multipass (windows)
+---------------------------------------------------------------------
+- $env:MULTIPASS_SERVER_ADDRESS = 'localhost:5001'
+- start daemon: multipassd -V info --address localhost:5001
+- find images: multipass find
+- list: multipass list
+- shell: multipass exec foo -- shell --login
+	- multipass shell foo
+
+---------------------------------------------------------------------
+express + create-react-app (yarn pnp setup)
+---------------------------------------------------------------------
+- express --view=pug foo
+- cd foo
+- add to package.json:
+	"installConfig": {
+		"pnp": true
+	},
+- yarn --use-pnp
+- yarn create react-app client --use-pnp
 
 ---------------------------------------------------------------------
 Preact + Parcel setup
@@ -1135,7 +1169,7 @@ Powershell
 yarn
 ---------------------------------------------------------------------
 install global packages
-- yarn global add create-react-app
+- yarn global add create-react-app@next
 
 update global packages
 - yarn global upgrade
@@ -1147,6 +1181,15 @@ list installed global packages
 
 update all packages
 - yarn upgrade --latest
+
+use pnp
+- yarn --use-pnp
+- cra : yarn create react-app test --use-pnp
+- install: yarn --use-pnp
+- add inside package.json : 
+	"installConfig": {
+		"pnp": true
+	},
 
 ---------------------------------------------------------------------
 ruby gems
@@ -1192,6 +1235,7 @@ check latest
 - npm show react version
 - npx npm-check-updates
 	- npm install -g npm-check-updates && ncu
+- rebuild (recompile binaries) : npm rebuild
 
 - update all to latest version
 	- npx npm-check-updates -u
@@ -1936,6 +1980,14 @@ Vimperator
 	- toggle vimfiler: F3 or spc f t
 	- kill buffer: spc b d
 	- home: spc b h
+	- switch to buffer: \ 2
+		- back and forth switching: spc tab
+- gvim
+	- guifont prompt: set guifont=*
+- vim-surround
+	- braces around highlighted text: Sb
+	- convert ' to " : cs'"
+	- {https://github.com/tpope/vim-surround, https://superuser.com/questions/875095/adding-parenthesis-around-highlighted-text-in-vim}
 
 ---------------------------------------------------------------------
 Spacemacs
