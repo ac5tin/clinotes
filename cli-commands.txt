@@ -798,6 +798,21 @@ bash/zsh + linux terminal cli tools commands
 	- history: ffsend history
 	- download: ffsend download abc.com/abc
 	- info: ffsend info abc.com/abc
+- emcc:
+	- set PATH
+		- source ./emsdk_env.sh
+			- win: ./emsdk_env.bat
+	- update:
+		- ./emsdk update
+		- ./emsdk install latest
+		- ./emsdk activate latest
+		- set PATH
+
+---------------------------------------------------------------------
+openssl localhost sign ssl cert (for https)
+---------------------------------------------------------------------
+- openssl req -nodes -new -x509 -keyout server.key -out server.cert
+- common name must be localhost
 
 ---------------------------------------------------------------------
 multipass (windows)
@@ -1164,6 +1179,12 @@ Powershell
 	- get content:
 		- (curl cli.fyi/me).Content
 - help : get-help curl
+- touch (create empty file): echo $null >> foo.txt
+- see processes (like top):
+	- cpu time : ps | sort -des cpu | select -f 15
+	- memory: ps | sort -des ws
+- exec using wsl: wsl -e ls
+- exec using wsl bash: bash -c ls
 
 ---------------------------------------------------------------------
 yarn
@@ -1261,6 +1282,8 @@ update npm
 - windows
     - npm install --global --production npm-windows-upgrade
     - npm-windows-upgrade --npm-version latest
+- publish : npm publish
+- bump version: npm version patch
 
 ---------------------------------------------------------------------
 reinstall nodejs
@@ -1944,6 +1967,7 @@ git clone xxx.git
   - down 1 line: ctrl+e
   - up half page: ctrl+u
   - down half page ctrl+d
+- remove search highlight:  :noh
 
 
 Vimperator
