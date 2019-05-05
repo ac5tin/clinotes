@@ -1799,6 +1799,8 @@ run shell command: !
 document info: =
 show all links and images: L
 popup link list: ESC-l
+close popup: C-c
+dowloads : D
 buffer selector: s
 mark word as anchor: ;
 first link: [
