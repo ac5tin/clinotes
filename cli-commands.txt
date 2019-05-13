@@ -731,6 +731,8 @@ bash/zsh + linux terminal cli tools commands
 - count number of files in dir: ls | wc -l
 - xrandr: check screens
     - connect multi sreens:  xrandr --output HDMI1 --left-of eDP1 --auto
+	- xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1 --auto
+	- xrandr --auto
 - lsblk
     - list devices
 - runit-init
@@ -812,6 +814,16 @@ bash/zsh + linux terminal cli tools commands
 - stop process : kill
 	- if kill doesnt work:  kill -s QUIT 1234
 	- if still doesnt work: sudo pkill -f uwsgi -9
+- fdisk
+	- list : fdisk -l
+	- delete partition: d
+	- new partition: n -> p -> Enter -> size (e.g +200G)
+	- set swap to parition: t -> (number) -> 82
+	- finish (write parition): w
+- startx: start X session
+- acpi: get battery level
+- set x keymap: setxkbmap -layout gb
+- nitrogen: set wallpaper
 
 ---------------------------------------------------------------------
 uwsgi
@@ -1807,6 +1819,9 @@ first link: [
 last link: ]
 center curr line: z
 history: C-h
+view youtube vids in mpv: shift-M
+- external browser: mpv -ytdl --vo=opengl --ao=alsa
+- https://www.reddit.com/r/commandline/comments/6ixptv/open_current_w3m_video_site_url_with_mpv_the_easy/
 
 { http://pygy.co/gM || https://github.com/janosgyerik/cheatsheets/wiki/W3m-cheat-sheet }
 
@@ -1867,6 +1882,11 @@ i3wm
 - change workspace: mod+numbers
     - mod+ctrl+arrows
 - move window to different workspace: mod+shift+numbers
+- logout: mod + shift + e
+- move/drag: mod+drag
+- alsamixer [*manjaro i3*] : mod + ctrl + m
+- toggle focus (tiling/float): mod + space
+- toggle window (tiling/float): mod + shift + space
 
 ---------------------------------------------------------------------
 emacs
