@@ -131,7 +131,7 @@ bash/zsh + linux terminal cli tools commands
         - return abck to ranger : Ctrl + d
     - {https://pygy.co/gD}
 - compress
-    - (tar.gz): tar -czvfaarchive.tar.gz stuff
+    - (tar.gz): tar -czvf archive.tar.gz stuff
         - max compress(do this first): export GZIP=-9
             - check echo $GZIP
             - alternative: tar cvf - stuff | gzip -9 > stuff.tar.gz
@@ -727,6 +727,10 @@ bash/zsh + linux terminal cli tools commands
     - mark move: m
     - paste/move: p
     - quit: q
+	- x: view file info
+	- e : refresh curr dir
+	- !: open shell in curr dir
+	- r : rename
     - {https://github.com/dylanaraps/fff}
 - count number of files in dir: ls | wc -l
 - xrandr: check screens
@@ -824,6 +828,17 @@ bash/zsh + linux terminal cli tools commands
 - acpi: get battery level
 - set x keymap: setxkbmap -layout gb
 - nitrogen: set wallpaper
+- redis-server : start redis server
+	- redis-cli
+- rg (ripgrep): fast recursive regex searcher
+	- rg foobar
+- apt install from another source: -t <SOURCE>
+	- sudo apt -t stretch-backports install redis
+
+---------------------------------------------------------------------
+gunicorn
+---------------------------------------------------------------------
+- gunicorn -w 4 -b :6614 -t 99999 foobar:app
 
 ---------------------------------------------------------------------
 uwsgi
