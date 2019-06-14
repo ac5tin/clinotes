@@ -664,6 +664,7 @@ bash/zsh + linux terminal cli tools commands
     - start service: systemctl start sshd.service
     - connect: ssh user@192.168.1.73
     - delete invalid key: ssh-keygen -R 192.168.1.29
+	- with key: ssh -xCi ~/ssh/key.pem abc@123.456.789
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
@@ -760,6 +761,11 @@ bash/zsh + linux terminal cli tools commands
 	- see changes: git show
 		- specific commit: git show 00abcdef
 	- stash all: git stash --all
+	- rebase:
+		- git rebase --interactive 'bbcda344'
+		- git commit --all --amend --no-edit
+		- git rebase --continue
+		- git push --force
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
@@ -834,7 +840,138 @@ bash/zsh + linux terminal cli tools commands
 	- rg foobar
 - apt install from another source: -t <SOURCE>
 	- sudo apt -t stretch-backports install redis
+- diff : difference between files/dir
+	- diff f1 f2
+	- dir: diff -r d1 d2
+- colordiff : diff but with colours
+- code-server: visual studio code server
+	- specify port: -p
+	- code-server -p 9001 ~/Documents
+- browsh : firefox-headless in terminal
+	- exit: C-h
+	- focus url: C-l
+	- go back: backspace
+	- reload: C-r
+	- new tab: C-t
+	- close tab: C-w
+	- next tab: C-\
+- abduco:
+	- list sessions
+	- start: abduco -c austin dvtm
+	- detach: Ctrl-\
+	- attach: abduco -a austin
+- dvtm
+	- Ctrl+g:
+		- create window: c
+			- same dir: C
+		- to session no: v <NUMBER>
+		- cycle next: j
+		- cycle back: k
+		- inc size: l
+		- dec size: h
+		- min/max: .
+        - tagging:
+            - to tag: <NUMBER>
+            - view all: 0
+            - apply tag: t <NUMBER>
+            - add/rem tag from VIEW: V <NUMBER>
+            - add/rem tag to focused: T <NUMBER>
+		- quit: qq
+		- kill window: xx
+		- prev window: <TAB>
+		- hide/show status bar: s
+		- mouse mode: M
+		- layouts:
+			- cycle through: <SPACE>
+			- vertical stack: f
+				- master on left, rest share space on right
+			- bottom stack: b
+				- master on top, rest share bottom
+			- grid: g
+				- equal space
+		- scroll: pgUp or pgDn
+- find : find files
+    - find /home/austin/Downloads/ -name "*foobar*"
+- patch : patch -Np1 -i abc.diff
+- feh : image viewer
+    - set wallpaper: feh --bg-scale picture.png
+    - zoom in/out: up/down arrow
+- get news: curl getnews.tech
+- unimatrix
+	- lines move at diff speed: a
+	- bold char: b
+- xbps : void package manager
+    - search: xbps-query -Rs foobar
+    - update/install: xbps-install -Su
 
+
+---------------------------------------------------------------------
+kill with ps aux and grep
+---------------------------------------------------------------------
+- ps aux|grep foobar|awk '{print $2}'|xargs kill
+
+---------------------------------------------------------------------
+make with gcc version
+---------------------------------------------------------------------
+- make CC=gcc-9
+
+---------------------------------------------------------------------
+dwm
+---------------------------------------------------------------------
+- launch terminal: shift + alt + enter
+- next : alt + j
+- prev: alt + k
+- launch dmenu : alt + p
+- kill window: shift + alt + c
+- tags :
+    - focus another: alt + <NUMBER>
+    - apply tag: alt + shift + <NUMBER>
+    - add/remove tag: alt + ctrl + shift + <NUMBER>
+- layouts
+    - tiled : alt + t
+    - float: alt + f
+        - move : alt + left click
+        - resize: alt + right click
+    - fullscreen: alt + m
+        
+- toggle window between master/stack : alt + enter
+- quit: shift + alt + q
+- make 1 window float: alt + left click
+    - resize : alt + right click
+    - back to non-float: alt + middle click
+- increase master size: alt + l
+- decrease master size: alt + h
+- toggle top bar: alt + b
+
+---------------------------------------------------------------------
+dvtm install terminfo
+---------------------------------------------------------------------
+- tic -s dvtm.info
+
+---------------------------------------------------------------------
+fish
+---------------------------------------------------------------------
+- set -gx PATH $PATH <path>
+
+---------------------------------------------------------------------
+mysql
+---------------------------------------------------------------------
+- allow root login (fix 'root'@'localhost' access denied problem):
+	use mysql;
+	UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+	FLUSH PRIVILEGES;
+	exit;
+---------------------------------------------------------------------
+golang 
+---------------------------------------------------------------------
+- clean mod file: go mod tidy
+
+---------------------------------------------------------------------
+jemalloc
+---------------------------------------------------------------------
+- sudo apt-get install libjemalloc-dev
+- LD_PRELOAD $LD_PRELOAD /usr/lib/x86_64-linux-gnu/libjemalloc.so
+- https://stackoverflow.com/questions/53234410/how-to-use-node-js-with-jemalloc
 ---------------------------------------------------------------------
 gunicorn
 ---------------------------------------------------------------------
@@ -1159,6 +1296,9 @@ weather
 get my public IP
 - api.ipify.org: http -b api.ipify.org
 
+news
+- getnews.tech/amazon
+
 ---------------------------------------------------------------------
 ArchLinux Manual Build + Install
 ---------------------------------------------------------------------
@@ -1253,6 +1393,9 @@ Powershell
 	- memory: ps | sort -des ws
 - exec using wsl: wsl -e ls
 - exec using wsl bash: bash -c ls
+- ports/connections : netstat -a
+	- localhost: netstat -ano
+- restart wsl: Restart-Service LxssManager
 
 ---------------------------------------------------------------------
 yarn
