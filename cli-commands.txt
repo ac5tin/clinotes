@@ -1,6 +1,7 @@
 ---------------------------------------------------------------------
 bash/zsh + linux terminal cli tools commands 
 ---------------------------------------------------------------------
+- clear line: ctrl + u
 - setsid :  keep running even when terminal died
 - nohup: send output to nohup.out then continue on terminal
 - run in background with no output: nohup abc > /dev/null 2>&1 &
@@ -113,9 +114,16 @@ bash/zsh + linux terminal cli tools commands
     - view files:  i
     - hidden files: zh
     - rename : cw
+		- a
     - select current file: <space>
     - search: /
     - copy:yy
+	- cut: dd
+	- delete: dD
+	- uncut : ud
+	- unselect : uv
+	- reverse select: v
+	- paste: pp
     - open: E
         - open with: r
     - new tab: C-n
@@ -124,12 +132,12 @@ bash/zsh + linux terminal cli tools commands
     - close tab : C-w
     - shell commands: !
     - cd into folder:   :cd /path
-    - sort by file size: oa
+    - sort by file size: os
     - swith to tab N:   Alt-N
         - close tab: q
     - open shell in current directory: Shift + s
         - return abck to ranger : Ctrl + d
-    - {https://pygy.co/gD}
+    - {https://pygy.co/gD,http://pygy.co/bwj, https://rdd.ro/ranger-cheatsheet/}
 - compress
     - (tar.gz): tar -czvf archive.tar.gz stuff
         - max compress(do this first): export GZIP=-9
@@ -145,7 +153,7 @@ bash/zsh + linux terminal cli tools commands
         - slower but higher compression rate
     - (7z): 7z a foo.7z abc.txt
 		- max compression: 7z -mx=9 a abc.7z abc
-	- (zst): tar cvf - foo | zstd -22 --ultra -T0 -o foo.tar.zst
+	- (zst / zstandard): tar cvf - foo | zstd -22 --ultra -T0 -o foo.tar.zst
 		- training mode: zstd --train path/* -o dictName
 		- cmpr. with dict: zstd -D dictName FILE
 		- dcmpr. with dict: zstd -D dictName --decompress FILE.zst
@@ -229,18 +237,21 @@ bash/zsh + linux terminal cli tools commands
 - size: du
     - human readable + summary: -hs
     - all files within directory: -hs *
-    - more accurate sizes :   -shc --aparent-size
+    - more accurate sizes :   -shc --apparent-size
         - sorted: -h * | sort -h
-        - full: du -shc --aparent-size *|sort -h
+        - full: du -shc --apparent-size *|sort -h
             - reverse order : -r
 - http header: curl -I  foo.bar
 - info about directory: stat foobar
 - check weather: curl -s wttr.in/Liverpool
 - reload zshrc :       . ~/.zshrc
-- grep filter from ls:  ls | grep linu 
-    - remove sensitivity : grep -i 'hello'
-    - different patterns: grep 'Foo\|bar'
-    - inverse: -v
+- grep filter
+	- from ls:  ls | grep linu 
+		- remove sensitivity : grep -i 'hello'
+		- different patterns: grep 'Foo\|bar'
+		- inverse: -v
+		- eg:
+			- ls -ltrha |grep "abc\|def" -i
 - create multiple dirs: mkdir folder0 folder1 folder2 folder3
 - create nested subdirectories : mkdir -p d/s/a/e
 - sublime text : subl
@@ -287,6 +298,22 @@ bash/zsh + linux terminal cli tools commands
     - show current file details: D
     - quit: q
     - filter current dir: /
+    - spawn shell: !
+    - apparent du: S
+    - context/tab
+        - go to : <NUMBER>
+        - quit: q
+    - go to / : `
+    - select all : shift + y
+    - select : ctrl + k
+    - check selected: y
+    - toggle select mode: shift + k
+    - delete : ctrl + x
+        - selected : shift + x
+    - move selected: shift + v
+    - copy selected : P
+    - pin: b
+        - go to pin: ctrl + b
 - rtv (reddit terminal viewer)
     - view comments :  ->
     - visit site : enter
@@ -838,6 +865,8 @@ bash/zsh + linux terminal cli tools commands
 	- redis-cli
 - rg (ripgrep): fast recursive regex searcher
 	- rg foobar
+	- e.g:
+		- ls -ltrha |rg "Abc|def" -i
 - apt install from another source: -t <SOURCE>
 	- sudo apt -t stretch-backports install redis
 - diff : difference between files/dir
@@ -876,12 +905,12 @@ bash/zsh + linux terminal cli tools commands
             - apply tag: t <NUMBER>
             - add/rem tag from VIEW: V <NUMBER>
             - add/rem tag to focused: T <NUMBER>
-		- quit: qq
-		- kill window: xx
-		- prev window: <TAB>
-		- hide/show status bar: s
-		- mouse mode: M
-		- layouts:
+        - quit: qq
+        - kill window: xx
+        - prev window: <TAB>
+        - hide/show status bar: s
+        - mouse mode: M
+        - layouts:
 			- cycle through: <SPACE>
 			- vertical stack: f
 				- master on left, rest share space on right
@@ -903,7 +932,97 @@ bash/zsh + linux terminal cli tools commands
 - xbps : void package manager
     - search: xbps-query -Rs foobar
     - update/install: xbps-install -Su
+- pm2
+    - monitoring: monit
+    - lists: list
+    - start
+    - stop
+    - restart
+- free memory
+    - free -h
+    - free -h |awk '{print $1"\t"$2}'|sed -n '2,3p'
+- cowsay
+    - list cows: -l
+    - use cow: -f
+    - pipe watch: watch -n 5 'free -h|cowsay'
+- date 
+    - date '+Time now is %I:%M %p'
+- farbfeld
+	- encode: png2ff
+		- png2ff < abc.png > abc.ff
+		- png2ff < abc.png | bzip2 -9 > abc.ff.bz2
+	- decode: ff2png
+		- ff2png < abc.ff > abc.png
+		- bzcat abc.ff.bz2 | ff2png > abc.png
+- mtm
+    - ctrl + g :
+        - split horizontal | : h
+        - split vertical - : v
+        - close: w
+        - redraw: l
+        - navigate: <ARROWS>
+- amp : modal based text editor
+    - quit: shift + q
+    - command mode: 0
+        - config: preferences::edit
+    - save: s
 
+
+---------------------------------------------------------------------
+create swap
+---------------------------------------------------------------------
+- sudo dd if=/dev/zero of=/swapfile bs=1G count=4
+- chmod 600 /swapfile
+- mkswap /swapfile
+- swapon /swapfile
+- verify: swapon -s
+- add to /etc/fstab:
+	- swapfile swap swap defaults 0 0
+- {https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/}
+
+---------------------------------------------------------------------
+clear cache
+---------------------------------------------------------------------
+- sync; echo 3 > /proc/sys/vm/drop_caches
+---------------------------------------------------------------------
+bug.n
+---------------------------------------------------------------------
+- tags
+	- go to: win + <NUMBER>
+	- apply tag: win + shift + <NUMBER>
+	- add/rm tag: win + ctrl + <NUMBER>
+	- go to previous tag: win + <BACKSPACE>
+- window
+	- go to: win + <UP/DOWN>
+	- toggle master/slave: win + shift + enter
+	- move win : win + shift + <UP/DOWN>
+	- toggle window titlebar: win + shift + d
+	- close window: win + c
+	- toggle float mode: win + shift + f
+	- resize : win + <LEFT/RIGHT>
+	- in float mode:
+		- move: win + shift + m
+		- resize: win + shift + s
+		- fullscreen: win + shift + x
+- layout
+	- float: win + f
+	- monocle/fullscreen : win + m
+	- tile : win + t
+- launcher: win + y
+- monitor
+	- next monitor: win + .
+	- prev monitor: win + ,
+	- move to next monitor: win + shift + .
+	- move to prev monitor: win + shift + ,
+	- move all to next monitor: win + shift + ctrl + .
+- toggle win bar : win + <SPACE>
+- edit config file: win + ctrl + e
+- quit : win + ctrl + q
+- bug.n config:
+	- ! = alt
+	- ^ = ctrl
+	- # = win
+	- + = shift
 
 ---------------------------------------------------------------------
 kill with ps aux and grep
