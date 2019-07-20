@@ -804,6 +804,7 @@ bash/zsh + linux terminal cli tools commands
 - see ports in use : sudo lsof -i -P -n
 	- netstat: netstat -tulpn |grep LISTEN
 	- ss: ss -lntu
+        - ss -tulpn
 - check process opened port :
 	- check pid: fuser 3306/tcp
 	- ls -l /proc/3141/exe
@@ -910,6 +911,7 @@ bash/zsh + linux terminal cli tools commands
         - prev window: <TAB>
         - hide/show status bar: s
         - mouse mode: M
+        - toggle between master/slave : <ENTER>
         - layouts:
 			- cycle through: <SPACE>
 			- vertical stack: f
@@ -954,6 +956,8 @@ bash/zsh + linux terminal cli tools commands
 	- decode: ff2png
 		- ff2png < abc.ff > abc.png
 		- bzcat abc.ff.bz2 | ff2png > abc.png
+    - for loop
+        - fish: for i in *.PNG;png2ff < $i | bzip2 -9 > (basename $i .PNG).ff.bz2;end
 - mtm
     - ctrl + g :
         - split horizontal | : h
@@ -966,6 +970,13 @@ bash/zsh + linux terminal cli tools commands
     - command mode: 0
         - config: preferences::edit
     - save: s
+- ukuu : update kernel
+    - ukuu --install-latest
+- slabtop : cache memory top
+- ncc
+	- ncc build index.js
+- make
+    - use multi cores: make -j 4
 
 
 ---------------------------------------------------------------------
@@ -1051,7 +1062,10 @@ dwm
     - float: alt + f
         - move : alt + left click
         - resize: alt + right click
-    - fullscreen: alt + m
+    - fullscreen/monocole: alt + m
+    - grid : alt + g
+    - bottom stack: alt + u
+    - column/bottom horiz  stack : alt + o
         
 - toggle window between master/stack : alt + enter
 - quit: shift + alt + q
@@ -1083,6 +1097,7 @@ mysql
 ---------------------------------------------------------------------
 golang 
 ---------------------------------------------------------------------
+- init: go mod init foobar
 - clean mod file: go mod tidy
 
 ---------------------------------------------------------------------
@@ -1590,7 +1605,7 @@ check latest
 
 - update all to latest version
 	- npx npm-check-updates -u
-	- bleeding edge: npx npm-check-updates --pre -n -u
+	- bleeding edge: npx npm-check-updates@latest --pre -n -u
 
 check installed version
 - npm view react version
