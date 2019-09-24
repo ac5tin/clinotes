@@ -28,6 +28,7 @@ bash/zsh + linux terminal cli tools commands
             - move between panes: k,j,l,h
             - switch between window: 0...9
             - next window: n
+            - fullscreen/monocle: z
             - previous window: p
             - choose from list: w
             - mv pane to nxt pos: }
@@ -149,6 +150,7 @@ bash/zsh + linux terminal cli tools commands
         - faster
     - (tar.xz) :tar -cJf filename.tar.xz stuff
         - max compression: tar cvf - stuff | xz -9 -T 0 -e - > stuff.tar.xz
+        - keep original file: xz -9 -T 0 -e < file > file.xz
             - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
         - slower but higher compression rate
     - (7z): 7z a foo.7z abc.txt
@@ -977,6 +979,9 @@ bash/zsh + linux terminal cli tools commands
 	- ncc build index.js
 - make
     - use multi cores: make -j 4
+- cq (csv query tool)
+    - cq foo.csv -q 'select count(*) from foo' -o column
+    - get columns: pragma table_info(foo)
 
 
 ---------------------------------------------------------------------
@@ -1145,6 +1150,7 @@ python venv (virtual environment)
 ---------------------------------------------------------------------
 - python3.7 -m venv foobar
 - source foobar/bin/activate
+	- fish : activate.fish
 - deactivate: deactivate
 
 ---------------------------------------------------------------------
