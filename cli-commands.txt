@@ -780,6 +780,7 @@ bash/zsh + linux terminal cli tools commands
 	- see changes of added files
 		- git diff --cached abc.js
 		- git diff --staged
+        - file name: git diff --staged --name-only
 	- clean files
 		- git clean -f
 	- set account login cache timeout
@@ -982,6 +983,8 @@ bash/zsh + linux terminal cli tools commands
 - cq (csv query tool)
     - cq foo.csv -q 'select count(*) from foo' -o column
     - get columns: pragma table_info(foo)
+- fontforge
+    - nerdfont patch: fontforge -script font-patcher -c -w foo.ttf
 
 
 
