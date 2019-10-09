@@ -923,7 +923,10 @@ bash/zsh + linux terminal cli tools commands
 				- master on top, rest share bottom
 			- grid: g
 				- equal space
+			- monocole: m
+				- fullscreen
 		- scroll: pgUp or pgDn
+        - edit mode: e
 - find : find files
     - find /home/austin/Downloads/ -name "*foobar*"
 - patch : patch -Np1 -i abc.diff
@@ -985,8 +988,11 @@ bash/zsh + linux terminal cli tools commands
     - get columns: pragma table_info(foo)
 - fontforge
     - nerdfont patch: fontforge -script font-patcher -c -w foo.ttf
-
-
+- sed
+    - add line to beginning to file: sed -i '1ifoobar' file
+    - remove 1st line:  sed -i '1d' file
+    - add comma to end of each line(apart from last) :  sed -i.bak '$!s/$/ ,/' file
+    
 
 ---------------------------------------------------------------------
 bulk rename
