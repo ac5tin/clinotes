@@ -582,6 +582,7 @@ bash/zsh + linux terminal cli tools commands
     - pipe output into less: curl -s https://api.github.com/users/octocat/repos | jq '.' | less
     - remove quotes : -r
     - all elements in array: ".[].name"
+	- jq -r '.data | (map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv' foo.json foo.csv
 
 - HTML processor: pup
     - e.g.: curl localhost:3000 |pup --color 'body h1,body p'
@@ -992,6 +993,18 @@ bash/zsh + linux terminal cli tools commands
     - add line to beginning to file: sed -i '1ifoobar' file
     - remove 1st line:  sed -i '1d' file
     - add comma to end of each line(apart from last) :  sed -i.bak '$!s/$/ ,/' file
+- ssconvert (gnumeric) : spreadsheet convert
+    - ssconvert a.xlsx a.csv
+- pkill
+    - remove pid: pkill -9 1234
+    - remove tty: pkill -9 -t pts/0
+- emcc: wasm compiler
+    - emcc test.c -o test.js -O3 -s WASM=1 -s EXPORTED_FUNCTIONS="['_times','_add','_ping']" -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap","getValue"]' -s ASSERTIONS=1
+- mpv
+    - play dir (music) : mpv . --no-audio-display
+    - next : >
+    - prev: <
+    - play/pause: p / <SPACE>
     
 
 ---------------------------------------------------------------------
@@ -1445,6 +1458,8 @@ cli.fyi
 - check email address info: http -b cli.fyi/john.doe@gmail.com
 - check media/URL info: http -b cli.fyi/"https://vimeo.com/231191863"
 - {https://cli.fyi/}
+
+- http://zx2c4.com/ip
 
 weather
 - wttr.in : http -b wttr.in
