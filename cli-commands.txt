@@ -1005,6 +1005,15 @@ bash/zsh + linux terminal cli tools commands
     - next : >
     - prev: <
     - play/pause: p / <SPACE>
+ - qrencode
+    - wireguard: sudo cat /etc/wireguard/clients/user0/user0.conf | qrencode -t ansiutf8
+- musikcube
+    - pause/play: space
+    - quit: ctrl + d
+    - prev track: j
+    - next track: l
+    - volume up: i
+    - volume down: k
     
 
 ---------------------------------------------------------------------
@@ -1109,6 +1118,45 @@ dwm
 - increase master size: alt + l
 - decrease master size: alt + h
 - toggle top bar: alt + b
+
+---------------------------------------------------------------------
+React + Parcel steup
+---------------------------------------------------------------------
+- npm init
+- yarn add react react-dom
+- yarn add -D babel-preset-react babel-preset-env parcel-bundler
+- .babelrc ->
+    {
+          "presets": ["env", "react"]
+    }
+- index.js ->
+    import React from "react";
+    import ReactDOM from "react-dom";
+
+    class HelloMessage extends React.Component {
+          render() {
+                  return <div>Hello {this.props.name}</div>;
+                    }
+    }
+
+    var mountNode = document.getElementById("app");
+    ReactDOM.render(<HelloMessage name="Jane" />, mountNode);
+- index.html ->
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>React starter app</title>
+        </head>
+        <body>
+            <div id="app"></div>
+            <script src="index.js"></script>
+        </body>
+    </html>
+- package.json ->
+    "scripts": {
+          "start": "parcel index.html",
+    },
+- {https://blog.jakoblind.no/react-parcel/}
 
 ---------------------------------------------------------------------
 dvtm install terminfo
