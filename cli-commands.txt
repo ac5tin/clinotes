@@ -1615,6 +1615,7 @@ Powershell
 - ports/connections : netstat -a
 	- localhost: netstat -ano
 - restart wsl: Restart-Service LxssManager
+- change UI title : $Host.UI.RawUI.WindowTitle = "foobar"
 
 ---------------------------------------------------------------------
 yarn
