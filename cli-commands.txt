@@ -442,6 +442,9 @@ bash/zsh + linux terminal cli tools commands
 	- to mp3: youtube-dl -x --audio-format mp3 url
 	- manual:  tldr youtube-dl
 - IRC client: weechat
+    - check user mode: /mode
+    - toggle between core/server: ctrl+x
+    - list servers: /server list
 	- add server: /server add oftc irc.oftc.net/6697 -ssl -autoconnect
 	- delete server: /server del freenode
 	- connect : /connect oftc
@@ -458,6 +461,7 @@ bash/zsh + linux terminal cli tools commands
 	- switch buffer: f5/f6
 		- /buffer 3
 		- /buffer foo
+        - alt + up/down arrow keys
 	- windows: /window
 	- list channels: /list
 	- list added servers: /server list
@@ -470,6 +474,7 @@ bash/zsh + linux terminal cli tools commands
 		- set username: /set irc.server.freenode.sasl_username
 		- set pw: /set irc.server.freenode.sasl_password
 		- set mechanism: /set irc.server.freenode.sasl_mechanism external
+        - save: /save
 	- join channel:  /join #programming
 	- part channel : /part [quit message]
 	- private msg: /query foo this is a message
@@ -478,6 +483,7 @@ bash/zsh + linux terminal cli tools commands
 		- freenode
 			- top channels: /msg alis LIST * -min 1500
 	- download dir = ~/.weechat/xfer
+    - bare display mode: alt+l
 - mps-youtube : mpsyt
      - set search to all cat. : set search_music false
      - video video output: set show_video true
@@ -1015,6 +1021,40 @@ bash/zsh + linux terminal cli tools commands
     - volume up: i
     - volume down: k
     
+
+---------------------------------------------------------------------
+weechat setup
+---------------------------------------------------------------------
+- /server add freenode chat.freenode.net/6667 -autoconnect
+- /set irc.server.freenode.nicks foobar
+- set username: /set irc.server.freenode.sasl_username
+- set pw: /set irc.server.freenode.sasl_password
+- set mechanism: /set irc.server.freenode.sasl_mechanism plain
+- /save
+- /connect freenode
+- mkdir ~/.weechat/certs
+- cd ~/.weechat/certs
+- openssl req -x509 -new -newkey rsa:4096 -sha256 -days 1000 -nodes -out freenode.pem -keyout freenode.pem
+- openssl x509 -in freenode.pem -outform der | sha1sum -b | cut -d' ' -f1
+- /msg nickserv cert add e084219c214d391a8fd75cdbb891b5b966515db7
+- /set irc.server.freenode.ssl_priorities "NORMAL:-VERS-TLS-ALL:+VERS-TLS1.0:+VERS-SSL3.0:%COMPAT"
+- /set irc.server.freenode.ssl_cert "%h/certs/freenode.pem"
+- /set irc.server.freenode.sasl_mechanism external
+- /set irc.server.freenode.ssl on
+- /set irc.server.freenode.addresses "chat.freenode.net/6697"
+- /set irc.server.freenode.ssl_verify off
+- /save
+- /reconnect freenode
+
+-- tor
+- sudo apt install tor
+    - sudo ss -tulpn (check if tor is running on port 9050)
+- /set irc.server.freenode.addresses "freenodeok2gncmy.onion/7000"
+- /proxy add tor socks5 127.0.0.1 9050
+- /set irc.server.freenode.proxy "tor"
+- /save
+- reconnect freenode
+- {https://szorfein.github.io/weechat/tor/configure-weechat/}
 
 ---------------------------------------------------------------------
 bulk rename
