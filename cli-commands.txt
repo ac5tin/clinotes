@@ -442,6 +442,8 @@ bash/zsh + linux terminal cli tools commands
 	- to mp3: youtube-dl -x --audio-format mp3 url
 	- manual:  tldr youtube-dl
 - IRC client: weechat
+    - set ssl_cert :  "%h/certs/freenode.pem"
+    - set nickname: /nick foobar
     - check user mode: /mode
     - toggle between core/server: ctrl+x
     - list servers: /server list
@@ -1268,6 +1270,7 @@ python venv (virtual environment)
 - python3.7 -m venv foobar
 - source foobar/bin/activate
 	- fish : activate.fish
+	- windows: ./venv/Scripts/activate
 - deactivate: deactivate
 
 ---------------------------------------------------------------------
