@@ -800,6 +800,7 @@ bash/zsh + linux terminal cli tools commands
 	- see changes: git show
 		- specific commit: git show 00abcdef
 	- stash all: git stash --all
+    - reset file: git checkout -- file
 	- rebase:
 		- git rebase --interactive 'bbcda344'
 		- git commit --all --amend --no-edit
