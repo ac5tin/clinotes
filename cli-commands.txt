@@ -806,6 +806,8 @@ bash/zsh + linux terminal cli tools commands
 		- git commit --all --amend --no-edit
 		- git rebase --continue
 		- git push --force
+    - untrack file
+        - git rm envfile --cached
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
