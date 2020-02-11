@@ -53,6 +53,10 @@ bash/zsh + linux terminal cli tools commands
         - kill all sessions: tmux kill-server
     - re-attach: tmux attach-session -t mainSession
         - tmux attach
+    - run commands: c-b :
+    - move window
+        - right: swap-window -t +1
+        - left: swap-window -t -1 
 - refresh dynamic link: sudo ldconfig
 - start font server: fontsrv
 - clear screen: clear
@@ -139,6 +143,8 @@ bash/zsh + linux terminal cli tools commands
     - open shell in current directory: Shift + s
         - return abck to ranger : Ctrl + d
     - {https://pygy.co/gD,http://pygy.co/bwj, https://rdd.ro/ranger-cheatsheet/}
+- archive
+	- tar cvf foobar.tar foobar
 - compress
     - (tar.gz): tar -czvf archive.tar.gz stuff
         - max compress(do this first): export GZIP=-9
@@ -161,6 +167,10 @@ bash/zsh + linux terminal cli tools commands
 		- dcmpr. with dict: zstd -D dictName --decompress FILE.zst
 		- remove src after cmpr/dcmpr : --rm
 	- (.lz): tar cvf - foo | lzip --best > foo.tar.lz
+	- (.nz) nanozip: nz a -cc test.nz test.tar
+		- dir: nz a -cc test.nz -r test
+	- (.zpaq) zpaq: zpaq add test.zpaq test -m5
+		- max: zpaq add test.zpaq test -m611 -t1
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
     - (.tar.xz) tar xJvf abc.tar.xz
@@ -198,6 +208,10 @@ bash/zsh + linux terminal cli tools commands
         - extract certain files: unrar e test.rar file5 file8
     - (.zst) : unzstd foo.zst
 		- then : tar xvf foo.tar
+	- (.nz): nz x foo.nz
+		- output dir: nz x -ohere foo.nz
+		- list: nz l foo.nz
+	- (.zpaq): zpaq extract test.zpaq -to foo
 - delete folder from tarball :
     - gunzip foo.tar.gz
     - tar --delete --file=foo.tar foo/bar
@@ -958,6 +972,7 @@ bash/zsh + linux terminal cli tools commands
     - start
     - stop
     - restart
+    - npm start: pm2 start npm -- start
 - free memory
     - free -h
     - free -h |awk '{print $1"\t"$2}'|sed -n '2,3p'
@@ -1025,6 +1040,17 @@ bash/zsh + linux terminal cli tools commands
     - next track: l
     - volume up: i
     - volume down: k
+- docker
+    - build: docker build -t imagename .
+    - run container: docker container run -p 80:80 -d --name containername imagename
+    - list images: docker image list
+    - delete: docker rmi imagename
+    - running containers: docker ps -a
+    - get logs: docker logs containerid
+    - remove container: docker container rm --force containername
+	- run interactive: docker run -it --entrypoint /bin/sh imagename
+	- ssh into running container: docker exec -it containername /bin/sh
+	- restart: docker restart containername
     
 
 ---------------------------------------------------------------------
