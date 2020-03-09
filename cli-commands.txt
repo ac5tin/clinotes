@@ -47,6 +47,7 @@ bash/zsh + linux terminal cli tools commands
             - switch to window: s
 			- move tab: :swap-window -t +1
 				- to left:  :swap-window -t -1
+			- send pane to window: :join-pane -s mywin2
     - reload config: tmux source ~/.tmux.conf
     - show all session: tmux ls
     - kill sessions: tmux kill-session
@@ -145,6 +146,8 @@ bash/zsh + linux terminal cli tools commands
     - {https://pygy.co/gD,http://pygy.co/bwj, https://rdd.ro/ranger-cheatsheet/}
 - archive
 	- tar cvf foobar.tar foobar
+		- tar --exclude="*node_modules*" -cvf - foo > foo.tar
+		- list content: tar tvf foo.tar
 - compress
     - (tar.gz): tar -czvf archive.tar.gz stuff
         - max compress(do this first): export GZIP=-9
@@ -159,6 +162,8 @@ bash/zsh + linux terminal cli tools commands
         - keep original file: xz -9 -T 0 -e < file > file.xz
             - using pixz: tar cvf - foo | pixz -9 > foo.tar.xz
         - slower but higher compression rate
+		- xz -9 -T 0 -e -k foo.tar
+			- keeps input foo.tar file
     - (7z): 7z a foo.7z abc.txt
 		- max compression: 7z -mx=9 a abc.7z abc
 	- (zst / zstandard): tar cvf - foo | zstd -22 --ultra -T0 -o foo.tar.zst
@@ -815,6 +820,7 @@ bash/zsh + linux terminal cli tools commands
 		- specific commit: git show 00abcdef
 	- stash all: git stash --all
     - reset file: git checkout -- file
+	- stash changes : git stash --keep-index
 	- rebase:
 		- git rebase --interactive 'bbcda344'
 		- git commit --all --amend --no-edit
@@ -822,6 +828,7 @@ bash/zsh + linux terminal cli tools commands
 		- git push --force
     - untrack file
         - git rm envfile --cached
+	- permission: git add --chmod=+x file
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
@@ -1043,6 +1050,7 @@ bash/zsh + linux terminal cli tools commands
 - docker
     - build: docker build -t imagename .
     - run container: docker container run -p 80:80 -d --name containername imagename
+	- run: docker run -p 8000:1234 -e PORT=1234 foobar
     - list images: docker image list
     - delete: docker rmi imagename
     - running containers: docker ps -a
@@ -1051,7 +1059,31 @@ bash/zsh + linux terminal cli tools commands
 	- run interactive: docker run -it --entrypoint /bin/sh imagename
 	- ssh into running container: docker exec -it containername /bin/sh
 	- restart: docker restart containername
+	- remove unused/None images: docker image prune
+	- remove stopped containers :  docker rm (docker ps -a -q)
+	- run without sudo:
+		- sudo groupadd docker
+		- sudo gpasswd -a $USER docker
+		- sudo service docker restart
+	- export image: docker save foobar > foobar.tar
+		- compress: docker save foo:latest|xz -9 -T 0 -e - > foo.tar.xz
+	- import : docker load < foo.tar
     
+
+---------------------------------------------------------------------
+Reverse SSH Tunnel
+---------------------------------------------------------------------
+- add to /etc/ssh/sshd_config:
+	Match User ubuntu
+		ClientAliveInterval 60
+		GatewayPorts yes
+- ssh -i abc.pem -R 4567:localhost:8080 abc@123.567
+- {https://askubuntu.com/questions/50064/reverse-port-tunnelling}
+
+---------------------------------------------------------------------
+svelte sapper setup
+---------------------------------------------------------------------
+- npx degit "sveltejs/sapper-template#rollup" foobar
 
 ---------------------------------------------------------------------
 weechat setup
@@ -1252,6 +1284,7 @@ golang
 ---------------------------------------------------------------------
 - init: go mod init foobar
 - clean mod file: go mod tidy
+- update mod dependencies: go list -m -u all
 
 ---------------------------------------------------------------------
 jemalloc
@@ -1524,16 +1557,22 @@ deploy to heroku
 - git commit -m "Initial commit"
 - heroku create
 - git push heroku master
+	- git push -u heroku
 
 
 update new heroku remote name
 - git remote rm heroku
 - heroku git:remote -a newname
 
+teams
+- heroku teams
+- apps in teams: heroku apps -t thinkcol
+
 
 Logs
 - heroku logs
 - heroku config:set NPM_CONFIG_LOGLEVEL=verbose
+- heroku logs --app appname --tail
 
 fix babel
 - "start": "./node_modules/.bin/babel-node ./server/index.js",
@@ -1541,6 +1580,26 @@ fix babel
 
 restart
 - heroku restart
+
+
+docker
+- heroku container:login
+- heroku create
+- heroku container:push web -a foobar
+- heroku container:release web -a foobar
+
+- heroku apps:rename newname --app oldname
+- heroku git:remote -a app-name
+- git push -u heroku
+- heroku open
+- heroku logs --tail
+
+rename
+- heroku apps:rename foobar
+- heroku apps:rename newname --app oldname
+
+update
+- heroku update
 
 ---------------------------------------------------------------------
 go-lang packages
