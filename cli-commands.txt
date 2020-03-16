@@ -1068,7 +1068,32 @@ bash/zsh + linux terminal cli tools commands
 	- export image: docker save foobar > foobar.tar
 		- compress: docker save foo:latest|xz -9 -T 0 -e - > foo.tar.xz
 	- import : docker load < foo.tar
+- save to outpu: >
+- append output to file : >>
+- read input from file : <
+- redirect error messages: 2>
+- pipe output as input to another program: |
+- ngrok : ngrok tcp 22
+    - with region: ngrok tcp 22 -region=ap
     
+
+---------------------------------------------------------------------
+Raspberry Pi headless install
+---------------------------------------------------------------------
+ - burn raspbian iso into usb
+ - create empty ssh file in root dir
+ - create wpa_supplicant.conf in root dir :
+    country=HK
+    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
+
+    network={
+        scan_ssid=1
+        ssid="wifiname"
+        psk="abcdef"
+    }
+- ssh login:  pi:raspberry
+- change password: passwd
 
 ---------------------------------------------------------------------
 Reverse SSH Tunnel
