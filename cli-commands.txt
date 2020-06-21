@@ -47,7 +47,8 @@ bash/zsh + linux terminal cli tools commands
             - switch to window: s
 			- move tab: :swap-window -t +1
 				- to left:  :swap-window -t -1
-			- send pane to window: :join-pane -s mywin2
+			- join pane from window: :join-pane -s mywin2
+			- send pane to window: :join-pane -t mywin2
     - reload config: tmux source ~/.tmux.conf
     - show all session: tmux ls
     - kill sessions: tmux kill-session
@@ -722,6 +723,7 @@ bash/zsh + linux terminal cli tools commands
     - connect: ssh user@192.168.1.73
     - delete invalid key: ssh-keygen -R 192.168.1.29
 	- with key: ssh -xCi ~/ssh/key.pem abc@123.456.789
+	- enable: sudo systemctl enable ssh
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
@@ -819,6 +821,9 @@ bash/zsh + linux terminal cli tools commands
 	- see changes: git show
 		- specific commit: git show 00abcdef
 	- stash all: git stash --all
+	- branching:
+		- new branch: git checkout -b newbranch
+		- push to new branch: git push -u origin newbranch
     - reset file: git checkout -- file
 	- stash changes : git stash --keep-index
 	- rebase:
@@ -1047,6 +1052,8 @@ bash/zsh + linux terminal cli tools commands
     - next track: l
     - volume up: i
     - volume down: k
+- wireguard : wg
+	- show connected : sudo wg show wg0
 - docker
     - build: docker build -t imagename .
     - run container: docker container run -p 80:80 -d --name containername imagename
@@ -1055,6 +1062,7 @@ bash/zsh + linux terminal cli tools commands
     - delete: docker rmi imagename
     - running containers: docker ps -a
     - get logs: docker logs containerid
+		- follow: docker logs -f containerid
     - remove container: docker container rm --force containername
 	- run interactive: docker run -it --entrypoint /bin/sh imagename
 	- ssh into running container: docker exec -it containername /bin/sh
@@ -1065,6 +1073,8 @@ bash/zsh + linux terminal cli tools commands
 		- sudo groupadd docker
 		- sudo gpasswd -a $USER docker
 		- sudo service docker restart
+			- sudo systemctl enable docker.service
+			- sudo sytemctl restart docker.service
 	- export image: docker save foobar > foobar.tar
 		- compress: docker save foo:latest|xz -9 -T 0 -e - > foo.tar.xz
 	- import : docker load < foo.tar
@@ -1075,7 +1085,117 @@ bash/zsh + linux terminal cli tools commands
 - pipe output as input to another program: |
 - ngrok : ngrok tcp 22
     - with region: ngrok tcp 22 -region=ap
+- nethogs : monitor network
     
+
+---------------------------------------------------------------------
+extend filesystem
+---------------------------------------------------------------------
+- check: lsblk
+- fill: sudo growpart /dev/nvme0n1 1
+- resize: sudo resize2fs /dev/nvme0n1p1
+
+---------------------------------------------------------------------
+deno
+---------------------------------------------------------------------
+- update runtime: deno upgrade
+
+---------------------------------------------------------------------
+kubernetes
+---------------------------------------------------------------------
+- steps:
+	- start minikube
+	- kubectl load env
+	- docker build image
+	- apply yaml file
+
+- minikube
+	- start: minikube
+	- set memory: minikube config set memory 8192
+	- set cpus: minikube config set cpus 2
+	- minikube --memory 8192 --cpus 2 start
+	- add local image: minikube cache add foo:latest
+	- list cache images: minikube cache list
+	- delete cache image: minikube cache delete foo
+	- create tunnel to access loadbalancer: minikube tunnel
+	- load env:
+		- powershell: (minikube --shell powershell docker-env) | Invoke-Expression
+
+- kubectl
+	- clusters : cluster-info
+	- nodes: get nodes
+	- deploy: create deployment foo --image=abc/def/foo:v1
+	- list deployments : get deployments
+		- ready = current/desired replicas ratio
+		- uptodate = no. of replicas updated
+		- available = no. of replicas available
+	- proxy: proxy
+	- pods: get pods
+		- pods in deployment label: get pods -l run=foo
+		- details: get pods -o wide
+	- pod info: describe pods
+	- pod logs: logs $POD_NAME
+	- pod exec commands: exec $POD_NAME -- ls
+	- ssh into pod: exec -ti $POD_NAME bash
+		- container in pod: exec -ti $POD_NAME -c foo-server -- /bin/sh
+	- services: get services
+		- services in deployment label: get services -l run=foo
+	- expose deployment: expose deployment/foo --type="NodePort" --port 8080
+		- gets assigned ip port 8080:XXXX/TCP
+		- test: curl $(minikube ip):$NODE_PORT
+	- deployment info: describe deployment
+	- assign label to pod: kubectl label pod $POD_NAME app=xyz
+	- delete service: delete service -l run=foo
+	- list replicaset: get rs
+	- scale deployment replicas: scale deployments/foo --replicas=4
+	- update image: set image deployments/foo abc/def/foo:v2
+		- status: rollout status deployments/foo
+		- undo: rollout undo deployments/foo
+	- log pod: logs foo-pod foo
+	- log previous crashed pod: logs -p foo-pod foo
+	- force update deployment : kubectl rollout restart deployment/demo
+- gen config -> .kube/config
+	- powershell:
+		- $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
+		- kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+	- bash:
+		- TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+		- kubectl config set-credentials kubernetes-admin --token="${TOKEN}"
+
+---------------------------------------------------------------------
+AWS CLI
+---------------------------------------------------------------------
+- aws configure
+- ECR
+	- aws ecr create-repository --repository-name foobar
+	- docker tag foobar 1234.dkr.ecr.us-east-1.amazonaws.com/foobar
+	- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 1234.dkr.amazonaws.com/foobar
+	- docker build -t foobar .
+	- docker tag abc:latest 123.dkr.amazonaws.com/abc:latest
+	- docker push 123.dkr.ecr.amazonaws.com/abc:latest
+
+---------------------------------------------------------------------
+don't suspend on laptop lid close
+---------------------------------------------------------------------
+- edit /etc/systemd/logind.conf :
+	HandleLidSwitch=ignore
+
+---------------------------------------------------------------------
+wpa_supplicant setup network
+---------------------------------------------------------------------
+- create : /etc/wpa_supplicant.conf
+- sudo ip link set wlan0 down
+- sudo ip link set wlan0 up
+- sudo wpa_supplicant -B -iwlan0 -c /etc/wpa_supplicant.conf -Dnl80211,wext
+- sudo dhclient wlan0
+- {https://unix.stackexchange.com/questions/283722/how-to-connect-to-wifi-from-command-line}
+- autostart:
+	- install netctl, wifi-menu
+	- sudo wifi-menu
+	- sudo systemctl enable netctl-auto@wlp3s0.service
+	- sudo netctl-auto enable wlp3s0-WifiNameHere
+	- {https://ricostacruz.com/til/arch-linux-wifi-using-netctl}
+
 
 ---------------------------------------------------------------------
 Raspberry Pi headless install
@@ -1154,6 +1274,7 @@ bulk rename
 create swap
 ---------------------------------------------------------------------
 - sudo dd if=/dev/zero of=/swapfile bs=1G count=4
+	- 4G swap: sudo dd if=/dev/zero of=/swapfile bs=1K count=4M
 - chmod 600 /swapfile
 - mkswap /swapfile
 - swapon /swapfile
@@ -1359,6 +1480,9 @@ python venv (virtual environment)
 	- fish : activate.fish
 	- windows: ./venv/Scripts/activate
 - deactivate: deactivate
+- ubuntu + pip
+	- python3 -m venv myvenv --without-pip
+	- python -m ensurepip
 
 ---------------------------------------------------------------------
 openssl localhost sign ssl cert (for https)
@@ -1772,6 +1896,7 @@ Powershell
 	- localhost: netstat -ano
 - restart wsl: Restart-Service LxssManager
 - change UI title : $Host.UI.RawUI.WindowTitle = "foobar"
+- install msix: Add-AppxPackage PowerShell-7.0.1-win-x64.msix
 
 ---------------------------------------------------------------------
 yarn
