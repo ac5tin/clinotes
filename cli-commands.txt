@@ -820,10 +820,19 @@ bash/zsh + linux terminal cli tools commands
 	- see commit history log: git log
 	- see changes: git show
 		- specific commit: git show 00abcdef
+	- stash single file: git stash -- abc
 	- stash all: git stash --all
+	- revert: git revert --no-comit abc123..HEAD
 	- branching:
 		- new branch: git checkout -b newbranch
 		- push to new branch: git push -u origin newbranch
+		- list: git branch
+		- remove: git branch -d xyz
+		- merge to specific commit: git merge 123abc
+		- branch to specific commit: git checkout abc
+			- git checkout -b old
+		- rename branch: git branch -m newname
+		
     - reset file: git checkout -- file
 	- stash changes : git stash --keep-index
 	- rebase:
@@ -831,6 +840,7 @@ bash/zsh + linux terminal cli tools commands
 		- git commit --all --amend --no-edit
 		- git rebase --continue
 		- git push --force
+		- rebase back to master: rebase master
     - untrack file
         - git rm envfile --cached
 	- permission: git add --chmod=+x file
@@ -905,6 +915,7 @@ bash/zsh + linux terminal cli tools commands
 - nitrogen: set wallpaper
 - redis-server : start redis server
 	- redis-cli
+		- host: redis-cli -h xxx.com -p 6379
 - rg (ripgrep): fast recursive regex searcher
 	- rg foobar
 	- e.g:
@@ -1056,6 +1067,12 @@ bash/zsh + linux terminal cli tools commands
 	- show connected : sudo wg show wg0
 - docker
     - build: docker build -t imagename .
+	- buildx:
+		- create: docker buildx create --name newbuilder
+		- set builder: docker buildx use newbuilder
+		- build: docker buildx build --platform linux/arm64 -t test_arm .
+			- push : --push
+			- multiplatform: --platform linux/amd64,linux/arm64
     - run container: docker container run -p 80:80 -d --name containername imagename
 	- run: docker run -p 8000:1234 -e PORT=1234 foobar
     - list images: docker image list
@@ -1078,6 +1095,7 @@ bash/zsh + linux terminal cli tools commands
 	- export image: docker save foobar > foobar.tar
 		- compress: docker save foo:latest|xz -9 -T 0 -e - > foo.tar.xz
 	- import : docker load < foo.tar
+	- remove network: docker network rm (docker network ls -q)
 - save to outpu: >
 - append output to file : >>
 - read input from file : <
@@ -1103,7 +1121,7 @@ deno
 ---------------------------------------------------------------------
 kubernetes
 ---------------------------------------------------------------------
-- steps:
+- minikube setup steps:
 	- start minikube
 	- kubectl load env
 	- docker build image
@@ -1121,6 +1139,35 @@ kubernetes
 	- load env:
 		- powershell: (minikube --shell powershell docker-env) | Invoke-Expression
 
+- low level deployment steps:
+	- create pod
+	- create replicaset
+- high level deploymen steps (production):
+	- create deployment
+
+- EKS
+	- aws eks --region us-east-1 update-kubeconfig --name abc
+	- deploy ALB ingress -> nginx ingress controller service:
+		- kubectl apply -f ingress-nginx-controller-deploy.yaml
+		- rbac role
+		- alb ingress controller
+		- alb ingress
+		- deploy ingress
+
+- eksctl (EKS)
+	- create cluster: eksctl create cluster --name=abc --nodes=2 --region=us-east-1
+	- with node type: --node-type=a1.large
+	- e.g: eksctl create cluster --name=testing --nodes=3 --node-type=a1.large --region=us-east-1 --timeout=30m
+	- nodegroups:
+		- list: eksctl get nodegroups --cluster=abc
+		- create nodegroup:  create nodegroup --cluster=jennysss --nodes=6 --node-type=a1.xlarge --region=us-east-1 --nodes-max=10 --nodes-min=4
+		- delete: drain nodegroup --cluster=abc --name=ng-0
+		- delete: eksctl delete nodegroup --cluster=abc --name=ng-0
+		- scale: scale nodegroup --cluster=cluster-1 --nodes=5 ng-a345f4e1
+		- scale maxmin: scale nodegroup --cluster=abc --nodes=6 ng-a1b2c3 --nodes-min=4 --nodes-max=10
+
+
+
 - kubectl
 	- clusters : cluster-info
 	- nodes: get nodes
@@ -1133,6 +1180,7 @@ kubernetes
 	- pods: get pods
 		- pods in deployment label: get pods -l run=foo
 		- details: get pods -o wide
+		- delete pod: kubectl delete pod foobar-0
 	- pod info: describe pods
 	- pod logs: logs $POD_NAME
 	- pod exec commands: exec $POD_NAME -- ls
@@ -1154,6 +1202,8 @@ kubernetes
 	- log pod: logs foo-pod foo
 	- log previous crashed pod: logs -p foo-pod foo
 	- force update deployment : kubectl rollout restart deployment/demo
+	- replicasets:
+		- get replicasets: kubectl get rs
 - gen config -> .kube/config
 	- powershell:
 		- $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
@@ -1173,6 +1223,9 @@ AWS CLI
 	- docker build -t foobar .
 	- docker tag abc:latest 123.dkr.amazonaws.com/abc:latest
 	- docker push 123.dkr.ecr.amazonaws.com/abc:latest
+	- docker buildx steps:
+		- login
+		- docker buildx build -t abc.dkr.ecr.amazonaws.com/abc . --push
 
 ---------------------------------------------------------------------
 don't suspend on laptop lid close
