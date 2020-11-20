@@ -2588,6 +2588,7 @@ open link in newtab: T
 close tab: c
 move tab L/R:  <>
 bookmark: s
+add current page to bookmark: a
 options: o
 download (save as) current link: d
 download manager: D
