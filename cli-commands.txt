@@ -807,6 +807,8 @@ bash/zsh + linux terminal cli tools commands
 	- with pem file:
 		- rsync -atvzhrP -e "ssh -i ~/Documents/ssh/foobar.pem"
 - git
+	- clone: git clone
+		- specific branch: git clone --branch devbranch abc.git
 	- see changes of added files
 		- git diff --cached abc.js
 		- git diff --staged
@@ -844,6 +846,7 @@ bash/zsh + linux terminal cli tools commands
     - untrack file
         - git rm envfile --cached
 	- permission: git add --chmod=+x file
+	- rename: git mv -f abc Def
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
@@ -920,6 +923,10 @@ bash/zsh + linux terminal cli tools commands
 	- rg foobar
 	- e.g:
 		- ls -ltrha |rg "Abc|def" -i
+		- rg -uu -F "abc"
+	- rg -uu -F "sss"
+	- ignore gitignore: -uu
+
 - apt install from another source: -t <SOURCE>
 	- sudo apt -t stretch-backports install redis
 - diff : difference between files/dir
@@ -1070,9 +1077,15 @@ bash/zsh + linux terminal cli tools commands
 	- buildx:
 		- create: docker buildx create --name newbuilder
 		- set builder: docker buildx use newbuilder
+		- inspect: docker buildx inspect --bootstrap
 		- build: docker buildx build --platform linux/arm64 -t test_arm .
 			- push : --push
 			- multiplatform: --platform linux/amd64,linux/arm64
+		- enable multiarch:
+			- docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+			- docker buildx rm builder
+			- docker buildx create --name builder --driver docker-container --use
+			- docker buildx inspect --bootstrap
     - run container: docker container run -p 80:80 -d --name containername imagename
 	- run: docker run -p 8000:1234 -e PORT=1234 foobar
     - list images: docker image list
@@ -1086,6 +1099,7 @@ bash/zsh + linux terminal cli tools commands
 	- restart: docker restart containername
 	- remove unused/None images: docker image prune
 	- remove stopped containers :  docker rm (docker ps -a -q)
+	- remove by search:  docker image list |grep foobar |awk '{print $1}'|xargs docker image rm
 	- run without sudo:
 		- sudo groupadd docker
 		- sudo gpasswd -a $USER docker
@@ -1104,6 +1118,10 @@ bash/zsh + linux terminal cli tools commands
 - ngrok : ngrok tcp 22
     - with region: ngrok tcp 22 -region=ap
 - nethogs : monitor network
+- siege : stress test tool
+	- siege -c50 -t60S --content-type "application/json" 'http://domain.com/path/to/json.php POST {"ids": ["1","2","3"]}'
+- protoc: protobuffer
+	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
     
 
 ---------------------------------------------------------------------
@@ -1165,6 +1183,10 @@ kubernetes
 		- delete: eksctl delete nodegroup --cluster=abc --name=ng-0
 		- scale: scale nodegroup --cluster=cluster-1 --nodes=5 ng-a345f4e1
 		- scale maxmin: scale nodegroup --cluster=abc --nodes=6 ng-a1b2c3 --nodes-min=4 --nodes-max=10
+		- label nodes: kubectl label nodes -l alpha.eksctl.io/nodegroup-name=ng-0 type=worker
+	- fargate:
+		- create : eksctl create cluster --name=mycluster --fargate
+		- add namespace: eksctl create fargateprofile --namespace abc --cluster mycluster
 
 
 
@@ -1181,10 +1203,12 @@ kubernetes
 		- pods in deployment label: get pods -l run=foo
 		- details: get pods -o wide
 		- delete pod: kubectl delete pod foobar-0
+		- top: kubectl top pods
+			- (FOR EKS): install metric server first
 	- pod info: describe pods
 	- pod logs: logs $POD_NAME
 	- pod exec commands: exec $POD_NAME -- ls
-	- ssh into pod: exec -ti $POD_NAME bash
+	- ssh into pod: exec -ti $POD_NAME -- bash
 		- container in pod: exec -ti $POD_NAME -c foo-server -- /bin/sh
 	- services: get services
 		- services in deployment label: get services -l run=foo
@@ -1211,6 +1235,16 @@ kubernetes
 	- bash:
 		- TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 		- kubectl config set-credentials kubernetes-admin --token="${TOKEN}"
+
+---------------------------------------------------------------------
+rust create new project
+---------------------------------------------------------------------
+- cargo +nightly new testabc
+
+---------------------------------------------------------------------
+create-react-app ts
+---------------------------------------------------------------------
+- npx create-react-app testabc --template redux-typescript
 
 ---------------------------------------------------------------------
 AWS CLI
@@ -1950,6 +1984,7 @@ Powershell
 - restart wsl: Restart-Service LxssManager
 - change UI title : $Host.UI.RawUI.WindowTitle = "foobar"
 - install msix: Add-AppxPackage PowerShell-7.0.1-win-x64.msix
+- fix clipboard: echo off | clip
 
 ---------------------------------------------------------------------
 yarn
@@ -1961,6 +1996,9 @@ update global packages
 - yarn global upgrade
 - yarn global upgrade-interactive
 - specific package: yarn global add <package>@latest
+
+ignore engines
+- yarn --ignore-engines
 
 list installed global packages
 - yarn global list
