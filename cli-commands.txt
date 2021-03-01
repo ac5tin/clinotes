@@ -847,6 +847,7 @@ bash/zsh + linux terminal cli tools commands
         - git rm envfile --cached
 	- permission: git add --chmod=+x file
 	- rename: git mv -f abc Def
+	- change latest commit message: git commit --amend
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
@@ -1125,6 +1126,13 @@ bash/zsh + linux terminal cli tools commands
     
 
 ---------------------------------------------------------------------
+windows terminal
+---------------------------------------------------------------------
+- split | : alt + shift + v
+- split - : alt + shift + h
+- enlarge <-> : alt + shift + >
+- enlarge vertically: alt + shift + ^
+---------------------------------------------------------------------
 extend filesystem
 ---------------------------------------------------------------------
 - check: lsblk
@@ -1203,6 +1211,7 @@ kubernetes
 		- pods in deployment label: get pods -l run=foo
 		- details: get pods -o wide
 		- delete pod: kubectl delete pod foobar-0
+                    - delete failed/evicted pods: kubectl -n default delete pods --field-selector=status.phase=Failed
 		- top: kubectl top pods
 			- (FOR EKS): install metric server first
 	- pod info: describe pods
@@ -1311,6 +1320,9 @@ Reverse SSH Tunnel
 		GatewayPorts yes
 - ssh -i abc.pem -R 4567:localhost:8080 abc@123.567
 - {https://askubuntu.com/questions/50064/reverse-port-tunnelling}
+- forward port 80:
+	ssh -i ~/ssh/abc.pem -R 9159:localhost:9159 ubuntu@123.456.7.8 -t sudo socat TCP-LISTEN:80,fork TCP:localhost:9159
+- {https://unix.stackexchange.com/questions/41451/how-can-i-set-up-a-remote-port-forward-on-port-80-to-my-localhost-with-the-help}
 
 ---------------------------------------------------------------------
 svelte sapper setup
@@ -1985,6 +1997,10 @@ Powershell
 - change UI title : $Host.UI.RawUI.WindowTitle = "foobar"
 - install msix: Add-AppxPackage PowerShell-7.0.1-win-x64.msix
 - fix clipboard: echo off | clip
+- background jobs: nvim . &
+	- list jobs: Get-Job
+	- stop job: Stop-Job Job1
+	- remove job: Remove-Job Job1
 
 ---------------------------------------------------------------------
 yarn
@@ -2588,7 +2604,6 @@ open link in newtab: T
 close tab: c
 move tab L/R:  <>
 bookmark: s
-add current page to bookmark: a
 options: o
 download (save as) current link: d
 download manager: D
@@ -2685,6 +2700,12 @@ Doom Emacs
 - edit config : spc f p
 
 ---------------------------------------------------------------------
+onivim2
+---------------------------------------------------------------------
+- hover info: g h
+- type definition: g d
+
+---------------------------------------------------------------------
 vim
 ---------------------------------------------------------------------
 - copy = yy 
@@ -2698,6 +2719,19 @@ vim
     - create file: %
 - vertical slit= :vsplit                  |
 - horizontal split= :split          -----
+- resize:
+	- increase width: C-w >
+	- reduce width: C-w <
+	- increase height: C-w +
+	- reduce height: C-w -
+- move window:
+	- far right: C-w L
+	- far left: C-w H
+	- far bottom: C-w J
+	- far top: C-w K
+- rotate window:
+	- up/left: C-w R
+	- down/right: C-w r
 - close window = :hide
 - cylce through window = C-w
 - keep only this window open = :only
@@ -2716,6 +2750,11 @@ vim
 - cycle to tabs: ALT + number
 	- ALT + left or right
 - close tab = bd
+- tabs to 4 spaces
+	- filetype plugin indent on
+	- set sw=4 sts=4 et
+	- all tabs to spaces: %retab
+- guifont selector: set guifont=*
 - search: / 
     - whole word :  /\<word\>
 - remove(^M) : %s/\r/\r/g
@@ -2731,6 +2770,7 @@ git clone xxx.git
     - end of file: G
     - top of file: gg
 - multiple lines comment: ctrl+v (select lines)
+	- ctrl+q (mswin.vim)
     - shift + i + # + ESC 
     - (FOR REMOVING) : x
 - replace ^M linebreaks
@@ -2855,6 +2895,14 @@ Spacemacs
 - toggle neotree : SPC f t
 - reload after modifying ~/.spacemacs : SPC f e R
 - clean whitespaces: M-x whitespace-cleanup
+- restart: SPC q r
+- documentation at cursor: SPC m h h
+- centaur-tabs
+    - next tab: C-}
+    - prev tab: C-{
+- treemacs
+    - add proj dir: C-c C-p a
+    - list proj dir: C-c C-p p
 
 ---------------------------------------------------------------------
 http://www.downme.xyz
