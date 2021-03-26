@@ -827,6 +827,7 @@ bash/zsh + linux terminal cli tools commands
 	- revert: git revert --no-comit abc123..HEAD
 	- branching:
 		- new branch: git checkout -b newbranch
+		- start from scratch: git checkout --orphan rewrite
 		- push to new branch: git push -u origin newbranch
 		- list: git branch
 		- remove: git branch -d xyz
