@@ -820,6 +820,7 @@ bash/zsh + linux terminal cli tools commands
 	- if require ssh key files:
 		- ssh-agent bash -c 'ssh-add ~/keys/abc; git pull'
 	- see commit history log: git log
+		- pretty print: git log --all --graph --decorate --oneline
 	- see changes: git show
 		- specific commit: git show 00abcdef
 	- stash single file: git stash -- abc
