@@ -833,6 +833,8 @@ bash/zsh + linux terminal cli tools commands
 		- list: git branch
 		- remove: git branch -d xyz
 		- merge to specific commit: git merge 123abc
+			- ignore commits: git merge -s ours 123abc
+			- skip conflict: git merge master -X ours
 		- branch to specific commit: git checkout abc
 			- git checkout -b old
 		- rename branch: git branch -m newname
