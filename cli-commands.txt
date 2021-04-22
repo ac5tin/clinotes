@@ -852,6 +852,8 @@ bash/zsh + linux terminal cli tools commands
 	- permission: git add --chmod=+x file
 	- rename: git mv -f abc Def
 	- change latest commit message: git commit --amend
+	- ignore: git update-index --skip-worktree env
+		- track again: git update-index --no-skip-worktree env
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
