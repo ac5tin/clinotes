@@ -1132,6 +1132,17 @@ bash/zsh + linux terminal cli tools commands
     
 
 ---------------------------------------------------------------------
+create new user
+---------------------------------------------------------------------
+- sudo adduser new_user
+- add to sudoers:
+	- sudo usermod -aG sudo bob
+- (for ec2) valid login without key file
+	- edit: /etc/ssh/sshd_config
+		- PasswordAuthentication yes
+	- sudo service ssh restart
+
+---------------------------------------------------------------------
 windows terminal
 ---------------------------------------------------------------------
 - split | : alt + shift + v
