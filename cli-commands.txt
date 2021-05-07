@@ -1130,6 +1130,18 @@ bash/zsh + linux terminal cli tools commands
 - protoc: protobuffer
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
     
+---------------------------------------------------------------------
+setup k3s cluster
+---------------------------------------------------------------------
+Master Node
+- curl -sLS https://get.k3sup.dev | sh
+- sudo install k3sup /usr/local/bin/
+- install ssh
+- ssh-copy-id user@IP
+- sudo visudo
+    - austin ALL=(ALL) NOPASSWD:ALL
+- k3sup install --ip $IP --user austin
+
 
 ---------------------------------------------------------------------
 create new user
