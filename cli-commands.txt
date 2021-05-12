@@ -1131,6 +1131,13 @@ bash/zsh + linux terminal cli tools commands
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
     
 ---------------------------------------------------------------------
+install xrdp
+---------------------------------------------------------------------
+- sudo apt install xrdp
+- sudo apt install xfce4 xfce-terminal
+- sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.sh
+
+---------------------------------------------------------------------
 setup k3s cluster
 ---------------------------------------------------------------------
 Master Node
