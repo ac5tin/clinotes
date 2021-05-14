@@ -1129,6 +1129,8 @@ bash/zsh + linux terminal cli tools commands
 	- siege -c50 -t60S --content-type "application/json" 'http://domain.com/path/to/json.php POST {"ids": ["1","2","3"]}'
 - protoc: protobuffer
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
+- go: golang
+	- cross compile: GOOS=linux GOARCH=arm64 go build -o ./bin/app_arm64
     
 ---------------------------------------------------------------------
 install xrdp
