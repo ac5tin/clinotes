@@ -1131,7 +1131,21 @@ bash/zsh + linux terminal cli tools commands
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
 - go: golang
 	- cross compile: GOOS=linux GOARCH=arm64 go build -o ./bin/app_arm64
-    
+
+---------------------------------------------------------------------
+install ruby
+---------------------------------------------------------------------
+- sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+- curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+- rbenv init
+- add path: ~/.rbenv/bin
+- check if installation is correct:
+    - wget -q "https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor" -O- | bash
+- install latest version:
+    - check version: rbenv install -l
+    - rbenv install 3.0.1
+    - rbenv global 3.0.1
+
 ---------------------------------------------------------------------
 install xrdp
 ---------------------------------------------------------------------
