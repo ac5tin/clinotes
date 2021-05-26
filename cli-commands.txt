@@ -1133,6 +1133,20 @@ bash/zsh + linux terminal cli tools commands
 	- cross compile: GOOS=linux GOARCH=arm64 go build -o ./bin/app_arm64
 
 ---------------------------------------------------------------------
+gpg auto-sign git commits
+---------------------------------------------------------------------
+- gpg --full-generate-key
+	- use 4096 bits
+- get gpg key ID
+	- gpg --list-secret-keys --keyid-format LONG
+	- key ID is : sec 4096/MYKEY123ABC 2021-05-26
+- gpg --armor --export MYKEY123ABC
+	- add this to github
+- git config --global user.signingkey MYKEY123ABC
+- git config --global commit.gpgsign true
+
+
+---------------------------------------------------------------------
 install nodejs + yarn on debian/ubuntu
 ---------------------------------------------------------------------
 # Using Ubuntu
