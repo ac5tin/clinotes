@@ -1131,6 +1131,10 @@ bash/zsh + linux terminal cli tools commands
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
 - go: golang
 	- cross compile: GOOS=linux GOARCH=arm64 go build -o ./bin/app_arm64
+- slack-term: slack terminal client
+    - scroll chat up: ctrl + u
+    - scroll chat down: ctrl + d
+    - insert mode: i
 
 ---------------------------------------------------------------------
 gpg auto-sign git commits
