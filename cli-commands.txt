@@ -1143,6 +1143,10 @@ bash/zsh + linux terminal cli tools commands
     - scroll chat up: ctrl + u
     - scroll chat down: ctrl + d
     - insert mode: i
+- helm
+    - add repo: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    - update: help repo update
+    - install: helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
 
 ---------------------------------------------------------------------
 gpg auto-sign git commits
@@ -1197,6 +1201,12 @@ install xrdp
 ---------------------------------------------------------------------
 setup k3s cluster
 ---------------------------------------------------------------------
+Each Node
+- add to the end of /boot/cmdline.txt
+    - cgroup_memory=1 cgroup_enable=memory swapaccount=1
+- ssh-copy-id ubuntu@<ip>
+- sudo echo coolhost > /etc/hostname
+
 Master Node
 - curl -sLS https://get.k3sup.dev | sh
 - sudo install k3sup /usr/local/bin/
@@ -1205,6 +1215,43 @@ Master Node
 - sudo visudo
     - austin ALL=(ALL) NOPASSWD:ALL
 - k3sup install --ip $IP --user austin
+- script:
+    #!/bin/bash
+
+    MASTER_NODE=$1
+    NODE1=$2
+    NODE2=$3
+    NODE3=$4
+
+    # Init MASTER_NODE
+    echo "Initializing $MASTER_NODE as master node."
+    k3sup install --ip $MASTER_NODE --user ubuntu
+
+    # Join nodes
+    for NODE_IP in $NODE1 $NODE2 $NODE3
+    do
+      echo "Joining $NODE_IP to the cluster..."
+      k3sup join --ip $NODE_IP --server-ip $MASTER_NODE --user ubuntu
+    done
+    - ./init_pis.sh <master-ip> <node-ip> <node-ip> <node-ip>
+- {https://averywagar.com/post/k3s-pi/}
+
+Remote Access
+- remote access cluster: copy contents from /etc/rancher/k3s/k3s.yaml
+
+Helm
+- install Helm
+
+MetalLB
+- helm repo add metallb https://metallb.github.io/metallb
+- helm install metallb metallb/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=192.168.0.240-192.168.0.250
+
+Nginx-Ingress
+-  helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+-  helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
+
+
+
 
 
 ---------------------------------------------------------------------
