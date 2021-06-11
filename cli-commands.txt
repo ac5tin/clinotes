@@ -1190,9 +1190,35 @@ install ruby
 ---------------------------------------------------------------------
 install xrdp
 ---------------------------------------------------------------------
+Raspberry Pi OS
 - sudo apt install xrdp
 - sudo apt install xfce4 xfce-terminal
 - sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.sh
+
+Ubuntu Server
+- sudo apt purge hwe*
+- sudo apt purge xorg*
+- sudo apt purge xserver-xorg-core
+- sudo apt purge xrdp*
+- sudo apt purge mate*
+- sudo apt purge xfce4*
+- sudo apt purge xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils
+- sudo apt purge mate-core mate-desktop-environment mate-notification-daemon
+- sudo rm /etc/systemd/system/xrdp.service (if already have xrdp.service)
+- sudo apt autoremove
+- sudo apt update && sudo apt upgrade
+- sudo reboot
+
+- sudo apt-get install xorg
+- sudo apt-get install xserver-xorg-core
+- sudo apt-get install xorgxrdp
+- sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils
+- sudo apt install xrdp
+- sudo systemctl status xrdp
+- sudo systemctl restart xrdp
+- sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.s
+- enter this into ~/.xsession: xfce4-session
+- {https://blog.devgenius.io/install-xrdp-server-on-ubuntu-7088583bc01}
 
 ---------------------------------------------------------------------
 setup k3s cluster
