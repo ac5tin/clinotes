@@ -1147,6 +1147,8 @@ bash/zsh + linux terminal cli tools commands
     - add repo: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     - update: help repo update
     - install: helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
+    - list: helm list -n kube-system
+        - all: helm ls -A
 
 ---------------------------------------------------------------------
 gpg auto-sign git commits
@@ -1221,17 +1223,16 @@ Master Node
     MASTER_NODE=$1
     NODE1=$2
     NODE2=$3
-    NODE3=$4
 
     # Init MASTER_NODE
     echo "Initializing $MASTER_NODE as master node."
-    k3sup install --ip $MASTER_NODE --user ubuntu
+    k3sup-arm64 install --ip $MASTER_NODE --user ubuntu --k3s-extra-args "--no-deploy servicelb --no-deploy traefik"
 
     # Join nodes
-    for NODE_IP in $NODE1 $NODE2 $NODE3
+    for NODE_IP in $NODE1 $NODE2
     do
       echo "Joining $NODE_IP to the cluster..."
-      k3sup join --ip $NODE_IP --server-ip $MASTER_NODE --user ubuntu
+      k3sup-arm64 join --ip $NODE_IP --server-ip $MASTER_NODE --user ubuntu
     done
     - ./init_pis.sh <master-ip> <node-ip> <node-ip> <node-ip>
 - {https://averywagar.com/post/k3s-pi/}
@@ -1250,7 +1251,162 @@ Nginx-Ingress
 -  helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 -  helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
 
+Cert-Manager
+- helm repo add jetstack https://charts.jetstack.io && helm repo update
+- helm install cert-manager jetstack/cert-manager --namespace cert-manager --set installCRDs=true
+- kubectl create namespace cert-manager
+# letsencrypt-staging.yaml
+apiVersion: cert-manager.io/v1alpha3
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: <your-email-address>
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+# letsencrypt-prod.yaml
+apiVersion: cert-manager.io/v1alpha3
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: <your-email-address>
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+- Route53
+    - create IAM role with route53 policy
+    - create IAM user and attach role to it
+    - kubectl --namespace cert-manager create secret generic route53-credentials --from-literal="secret-access-key=$aws_secret"
+    - clusterissuer.yaml
+    apiVersion: cert-manager.io/v1alpha3
+    kind: ClusterIssuer
+    metadata:
+      name: letsencrypt-prod
+    spec:
+      acme:
+        email: xxxxxxxx@gmail.com
+        server: https://acme-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+          name: letsencrypt-prod
+        solvers:
+        - selector: {}
+          dns01:
+            route53:
+              region: us-east-1
+              accessKeyID: AKE789EXAMPLE
+              secretAccessKeySecretRef:
+                name: route53-credentials
+                key: secret-access-key
+    - create certificate
+    ---
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: "abc-xyz"
+      namespace: networking
+    spec:
+      secretName: "abc-xyz-tls"
+      issuerRef:
+        name: letsencrypt-prod
+        kind: ClusterIssuer
+      commonName: "abc.xyz"
+      dnsNames:
+      - "abc.xyz"
+      - "*.abc.xyz"
+    - {https://cert-manager.io/docs/configuration/acme/dns01/route53/}
+- {https://www.puzzle.ch/de/blog/articles/2020/10/13/k3s-on-raspberry-pi}
 
+Server Deployment
+- kubectl create namespace webserver
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: httpd
+  name: httpd
+  namespace: webserver
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: httpd
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: httpd
+  name: httpd
+  namespace: webserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: httpd
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - image: httpd:2.4.46
+        name: httpd
+        ports:
+          - containerPort: 80
+        resources:
+            requests:
+              memory: 250Mi
+              cpu: 0.25
+status: {}
+
+
+NGINX Ingress
+# nginx-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webserver-ingress
+  namespace: webserver
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - abiko.downme.xyz
+    secretName: httpd-prod-tls
+  rules:
+  - host: abiko.downme.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: httpd
+            port:
+              number: 80
 
 
 
