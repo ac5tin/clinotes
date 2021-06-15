@@ -1354,6 +1354,9 @@ spec:
     - {https://cert-manager.io/docs/configuration/acme/dns01/route53/}
 - {https://www.puzzle.ch/de/blog/articles/2020/10/13/k3s-on-raspberry-pi}
 
+Update Nginx default ssl
+- helm upgrade nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false --set controller.extraArgs.default-ssl-certificate="networking/abc-xyz-tls"
+
 Server Deployment
 - kubectl create namespace webserver
 apiVersion: v1
@@ -1433,6 +1436,31 @@ spec:
             name: httpd
             port:
               number: 80
+
+- with default SSL cert set
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: searx-ingress
+  namespace: searx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - searx.abcxyz
+  rules:
+  - host: searx.abc.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: searx
+            port:
+              number: 8080
 
 
 
