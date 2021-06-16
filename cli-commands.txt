@@ -1150,6 +1150,8 @@ bash/zsh + linux terminal cli tools commands
     - install: helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
     - list: helm list -n kube-system
         - all: helm ls -A
+- ix.io: sane text paste service
+    - cat ~/.config/mimeapps.list |curl -F 'f:1=<-' ix.io
 
 ---------------------------------------------------------------------
 gpg auto-sign git commits
