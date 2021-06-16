@@ -513,6 +513,7 @@ bash/zsh + linux terminal cli tools commands
         /set irc.channel.libera.autojoin #libera,#linux
         - edit: fset autojoin
             - append to the end of list: alt +
+    - canonical mode: alt + l
 - mps-youtube : mpsyt
      - set search to all cat. : set search_music false
      - video video output: set show_video true
