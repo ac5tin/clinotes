@@ -999,6 +999,7 @@ bash/zsh + linux terminal cli tools commands
         - edit mode: e
 - find : find files
     - find /home/austin/Downloads/ -name "*foobar*"
+    - find / |grep abc
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
     - set wallpaper: feh --bg-scale picture.png
