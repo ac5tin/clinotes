@@ -833,6 +833,10 @@ bash/zsh + linux terminal cli tools commands
 		- specific commit: git show 00abcdef
 	- stash single file: git stash -- abc
 	- stash all: git stash --all
+    - temp stash (for switching branch):
+        - stash save "save changes"
+        - git pull / git merge / git checkout
+        - stash pop (retrieve save)
 	- revert: git revert --no-comit abc123..HEAD
 	- branching:
 		- new branch: git checkout -b newbranch
@@ -862,6 +866,13 @@ bash/zsh + linux terminal cli tools commands
 	- change latest commit message: git commit --amend
 	- ignore: git update-index --skip-worktree env
 		- track again: git update-index --no-skip-worktree env
+        - switch branch
+            - turn off skip worktree first (track again)
+            - git stash save "save changes"
+            - git merge / pull / checkout
+            - git stash pop
+            - git ignore skip worktree (dont track)
+            - {https://stackoverflow.com/questions/35690736/handling-changes-to-files-with-skip-worktree-from-another-branch}
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
