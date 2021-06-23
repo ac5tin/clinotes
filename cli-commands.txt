@@ -3070,6 +3070,7 @@ Doom Emacs
     - doom re
 - treemacs : spc o p
 - edit config : spc f p
+- reload init.el: spc h r r
 
 ---------------------------------------------------------------------
 onivim2
