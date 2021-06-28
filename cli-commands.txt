@@ -1177,6 +1177,9 @@ gpg auto-sign git commits
 	- add this to github
 - git config --global user.signingkey MYKEY123ABC
 - git config --global commit.gpgsign true
+- sign in terminal: export GPG_TTY=$(tty)
+    - export GPG_TTY=(tty) // if using fish
+    - {https://superuser.com/questions/691395/git-tag-with-gpg-agent-and-pinentry-curses}
 
 
 ---------------------------------------------------------------------
