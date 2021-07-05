@@ -821,8 +821,13 @@ bash/zsh + linux terminal cli tools commands
 		- git diff --cached abc.js
 		- git diff --staged
         - file name: git diff --staged --name-only
-	- clean files
+	- clean untracked files
 		- git clean -f
+    - clean untracked files and directories
+        - git clean -fd
+    - discard uncommited changes
+        - git restore abc.txt
+        - everything: git restore .
 	- set account login cache timeout
 		- git config --global credential.helper 'cache --timeout=7200'
 	- if require ssh key files:
@@ -835,6 +840,10 @@ bash/zsh + linux terminal cli tools commands
 	- stash all: git stash --all
     - temp stash (for switching branch):
         - stash save "save changes"
+            - retrieve: 
+                - check number: git stash list
+                - apply stash and pop from stack: git stash pop stash@{n}
+                - {https://stackoverflow.com/questions/11269256/how-to-name-and-retrieve-a-stash-by-name-in-git}
         - git pull / git merge / git checkout
         - stash pop (retrieve save)
 	- revert: git revert --no-comit abc123..HEAD
@@ -3158,6 +3167,7 @@ git clone xxx.git
     - every occurence :s/foo/bar/g
     - specific lines :    :478,480s/old/new/g
 - find no. of matces: :%s/pattern//gn
+- fix broken syntax highlight: syntax sync fromstart
 - NERDTree : Ctrl+n
     - vertical split |  : s
     - horizontal split ---- : i
