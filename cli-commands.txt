@@ -882,6 +882,9 @@ bash/zsh + linux terminal cli tools commands
             - git stash pop
             - git ignore skip worktree (dont track)
             - {https://stackoverflow.com/questions/35690736/handling-changes-to-files-with-skip-worktree-from-another-branch}
+    - delete current(top) commit:
+        - git reset --hard HEAD~1
+        - {https://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git}
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
