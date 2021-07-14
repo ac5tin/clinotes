@@ -1252,9 +1252,11 @@ Ubuntu Server
 - sudo apt install xrdp
 - sudo systemctl status xrdp
 - sudo systemctl restart xrdp
-- sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.s
+- sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.sh
 - enter this into ~/.xsession: xfce4-session
 - {https://blog.devgenius.io/install-xrdp-server-on-ubuntu-7088583bc01}
+- disable gui on boot: sudo systemctl set-default multi-user.target
+    - {https://askubuntu.com/questions/1056363/how-to-disable-gui-on-boot-in-18-04-bionic-beaver#:~:text=To%2520disable%2520GUI%25[%E2%80%A6]t-default%2520graphical.target}
 
 ---------------------------------------------------------------------
 setup k3s cluster
