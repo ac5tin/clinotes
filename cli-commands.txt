@@ -3096,6 +3096,36 @@ onivim2
 - type definition: g d
 
 ---------------------------------------------------------------------
+lunarvim
+---------------------------------------------------------------------
+- start: lvim
+- toggle explorer: spc + e
+- toggle hover: shift + k
+- go to declaration file: gd
+- close buffer: spc + c
+- quickfix: spc + l + q
+- code action: spc + l + a
+- diagnostics:
+    - previous: spc + l + k
+    - next: spc + l + j
+    - document diagnostics: spc + l + d
+- go to buffer: spc + b + j + <LETTER>
+- wipeout buffer (except current) : spc + b + e
+- install LSP for a language:
+    - LspInstall typescript
+    - {https://github.com/kabouzeid/nvim-lspinstall}
+- NVIMTree
+    - toggle hidden folders: shift + i
+    - toggle dotfiles: shift + h
+    - refresh tree: shift + r
+    - rename: r
+    - add file: a
+    - delete file: d
+    - open in split
+     	- horizontal split (----) : ctrl + x
+	- vertical split (|) : ctrl + v
+    - {https://github.com/kyazdani42/nvim-tree.lua}
+---------------------------------------------------------------------
 vim
 ---------------------------------------------------------------------
 - copy = yy 
