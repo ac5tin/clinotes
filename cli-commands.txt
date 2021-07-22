@@ -3110,6 +3110,8 @@ lunarvim
     - next: spc + l + j
     - document diagnostics: spc + l + d
 - go to buffer: spc + b + j + <LETTER>
+- next tab : shift + l
+- previous tab: shift + h
 - wipeout buffer (except current) : spc + b + e
 - install LSP for a language:
     - LspInstall typescript
