@@ -3109,6 +3109,9 @@ lunarvim
     - previous: spc + l + k
     - next: spc + l + j
     - document diagnostics: spc + l + d
+    - view line diagnostics: gl
+- peek definition: gp
+- go to definition: gd
 - go to buffer: spc + b + j + <LETTER>
 - next tab : shift + l
 - previous tab: shift + h
