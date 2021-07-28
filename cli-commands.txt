@@ -868,6 +868,8 @@ bash/zsh + linux terminal cli tools commands
 		- git rebase --continue
 		- git push --force
 		- rebase back to master: rebase master
+	- prompt login: git config --global credential.helper cache
+		- prompt again after 1 hour: git config --global credential.helper 'cache --timeout=3600'
     - untrack file
         - git rm envfile --cached
 	- permission: git add --chmod=+x file
