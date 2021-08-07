@@ -696,6 +696,13 @@ bash/zsh + linux terminal cli tools commands
     - first check location : sudo fdisk -l
         - fdisk is in /sbin
         - then sudo mount -t ntfs /dev/sda1 ~/mnt
+    - format and mount:
+        - check block volumes: lsblk
+        - format into ext4: mkfs.ext4 /dev/sda
+        - ensure formatted correctly: lsblk -f
+        - create mount point: mkdir /mnt/block0
+        - mount block volume: mount -o defaults /dev/sda /mnt/block0
+        - persist mounting: echo '/dev/sda /mnt/block0 ext4 defaults 0 0' >> /etc/fstab
 - umount: unmount drives
     - sudo umount ~/shared/foo
     - virtualbox: sudo umount -i ~/shared/foo
