@@ -1168,6 +1168,7 @@ bash/zsh + linux terminal cli tools commands
 - nethogs : monitor network
 - siege : stress test tool
 	- siege -c50 -t60S --content-type "application/json" 'http://domain.com/path/to/json.php POST {"ids": ["1","2","3"]}'
+    - POST json file input: siege -c2 -t10s --content-type "application/json" 'https://api.test.xyz/run POST < ./test.json'
 - protoc: protobuffer
 	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
 - go: golang
