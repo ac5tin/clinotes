@@ -3406,6 +3406,20 @@ gcc  versions
 - {https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04}
 
 ---------------------------------------------------------------------
+Kitty
+---------------------------------------------------------------------
+- new tab: ctrl+shift+t
+- close tab: ctrl+shift+q
+- next tab: ctrl+shift+right
+- prev tab: ctrl+shift+left
+- move tab forward: ctrl+shift+.
+- move tab backward: ctrl+shift+,
+- rename tab: ctrl+shift+alt+t
+- scroll up: ctrl+shift+up
+- scroll down: ctrl+shift+down
+
+
+---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
