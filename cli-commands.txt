@@ -3052,6 +3052,7 @@ i3wm
 - toggle window (tiling/float): mod + shift + space
 - lock/logout : mod + 0
 - auto hide bottom status bar: mod + m
+- reload config: win + shift + r
 
 ---------------------------------------------------------------------
 emacs
