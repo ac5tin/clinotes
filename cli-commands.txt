@@ -1038,6 +1038,10 @@ bash/zsh + linux terminal cli tools commands
     - set wallpaper: feh --bg-scale picture.png
     - zoom in/out: up/down arrow
     - scroll up/down: alt + up/down arrow
+- sxiv: another image viewer
+    - zoom in/out: +/-
+    - max zoom in: =
+    - move around: hjkl
 - get news: curl getnews.tech
 - unimatrix
 	- lines move at diff speed: a
