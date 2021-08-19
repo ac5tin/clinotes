@@ -3417,6 +3417,7 @@ Kitty
 - rename tab: ctrl+shift+alt+t
 - scroll up: ctrl+shift+up
 - scroll down: ctrl+shift+down
+- reload config: ctrl+shift+f5
 
 
 ---------------------------------------------------------------------
