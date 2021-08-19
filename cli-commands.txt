@@ -1042,6 +1042,16 @@ bash/zsh + linux terminal cli tools commands
     - zoom in/out: +/-
     - max zoom in: =
     - move around: hjkl
+    - flip horizontally: |
+    - flip vertically: _
+    - fullscreen: f
+    - fit window width: e
+    - fit window height: E
+    - fit window: W
+    - rotate anti-clockwise 90deg: <
+    - rotate clockwise 90deg: >
+    - rotate 180deg: ?
+
 - get news: curl getnews.tech
 - unimatrix
 	- lines move at diff speed: a
