@@ -1052,6 +1052,8 @@ bash/zsh + linux terminal cli tools commands
     - rotate clockwise 90deg: >
     - rotate 180deg: ?
 
+- xdg-mime: default app handler
+    - xdg-mime default sxiv.desktop image/png image/jpeg image/jpg image/svg
 - get news: curl getnews.tech
 - unimatrix
 	- lines move at diff speed: a
