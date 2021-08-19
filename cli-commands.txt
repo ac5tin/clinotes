@@ -3421,8 +3421,16 @@ Kitty
 
 
 ---------------------------------------------------------------------
-TEMPLATE
+tabbed
 ---------------------------------------------------------------------
+- tabbed terminals: tabbed -c alacritty --embed
+- new tab: ctrl + shift + enter
+- previous tab: ctrl + shift + h
+- next tab: ctrl + shift + l
+- move tab to left: ctrl + shift + j
+- move tab to right: ctrl + shift + k
+- close tab: ctrl+q
+
 ---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
