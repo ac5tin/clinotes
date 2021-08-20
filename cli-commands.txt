@@ -100,6 +100,13 @@ bash/zsh + linux terminal cli tools commands
     - check devices: nmap -sP 192.168.1.0/24
     - host script: nmap -sC 138.253.207.103
 	- local opened ports: sudo nmap -sT -O localhost
+    - check what the flag does: nmap |grep -- -sV
+    - display ports regardless of the state: sudo nmap -sV
+    - verbose: -vv
+    - disable dns resolution (quicker): -n
+    - no port scan: -sn (replaces -sP)
+    - stealth scan: -sL
+    - {https://www.redhat.com/sysadmin/quick-nmap-inventory}
 - access device: telnet 192.168.1.1 23
     - test HTTP:     GET / HTTP/1.1
       host: 138.253.207.103
