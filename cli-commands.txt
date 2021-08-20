@@ -3456,6 +3456,12 @@ Kitty
 
 - new terminal : ctrl+shift+n
 
+- ssh: kitty +kitten ssh user@host
+- view image: kitty +kitten icat image.jpeg
+- diff files: kitty +kitten diff file1 file2
+
+- kittens: {https://wiki.archlinux.org/title/kitty,https://sw.kovidgoyal.net/kitty/kittens_intro/}
+
 
 ---------------------------------------------------------------------
 tabbed
