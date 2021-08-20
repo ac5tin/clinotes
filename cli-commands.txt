@@ -3449,7 +3449,7 @@ Kitty
 - prev window: ctrl+shift+[
 - close window: ctrl+shift+w
 - move window to top: ctrl+shift+`
-- move window forward : ctrl+shift+w
+- move window forward : ctrl+shift+f
 - move window backward : ctrl+shift+b
 - focus window : ctrl+shift+0..9
 - next layout : ctrl+shift+l
