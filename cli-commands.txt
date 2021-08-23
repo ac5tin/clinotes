@@ -3454,6 +3454,7 @@ Kitty
 - move window backward : ctrl+shift+b
 - focus window : ctrl+shift+0..9
 - next layout : ctrl+shift+l
+- resize window: ctrl+shift+r
 
 - new terminal : ctrl+shift+n
 
