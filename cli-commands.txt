@@ -3443,6 +3443,7 @@ Kitty
 - scroll down: ctrl+shift+down
 - reload config: ctrl+shift+f5
 - input unicode characters: ctrl+shift+u
+- scrollback buffer: ctrl+shift+h
 
 - new window: ctlr+shift+enter
 - next window: ctrl+shift+]
