@@ -1214,6 +1214,13 @@ bash/zsh + linux terminal cli tools commands
     - cat ~/.config/mimeapps.list |curl -F 'f:1=<-' ix.io
 
 ---------------------------------------------------------------------
+JPEG XL conversion
+---------------------------------------------------------------------
+- install: pip install makejxl
+- find /path/to/images -type f -iregex '.*\(gif\|jpe?g\|png\)$' | parallel convert {} {.}.jxl
+- {https://github.com/varnav/makejxl/}
+
+---------------------------------------------------------------------
 gpg auto-sign git commits
 ---------------------------------------------------------------------
 - gpg --full-generate-key
