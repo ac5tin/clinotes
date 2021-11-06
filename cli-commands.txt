@@ -2687,6 +2687,8 @@ ffmpeg concat videos
 - C:\Users\austin\Desktop\New folder>(for %i in (*.mp4) do @echo file '%i') > mylist.txt
     - for f in ./*.wav; do echo "file '$f'" >> mylist.txt; done
 - C:\Users\austin\Desktop\New folder>ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+- concat multiple MTS into a single mp4
+  - ffmpeg -i "concat:00019.MTS|00020.MTS|00021.MTS|00022.MTS" output.mp4
 
 
 ---------------------------------------------------------------------
