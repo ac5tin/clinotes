@@ -105,6 +105,11 @@ bash/zsh + linux terminal cli tools commands
         - T4: aggressive
         - T5: insane
     - scan types
+        - sL: list scan
+            - wont send packets
+            - list hosts
+            - does reverse dns resolution
+            - retrieves hostname
         - sn: host discovery
             - no DNS resolution (dont do reverse DNS resolution to IP)
             - for probing (host discovery) only
