@@ -105,6 +105,10 @@ bash/zsh + linux terminal cli tools commands
         - T4: aggressive
         - T5: insane
     - scan types
+        - sn: host discovery
+            - no DNS resolution (dont do reverse DNS resolution to IP)
+            - for probing (host discovery) only
+            - won't scan ports
         - sA: TCP ack
             - for probing firewall rulesets
             - only determines if port is filtered or not
