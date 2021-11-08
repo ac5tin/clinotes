@@ -97,6 +97,13 @@ bash/zsh + linux terminal cli tools commands
     - TCP/UDP scan: -sS -sU -PN ipaddress
     - test port 80: nmap -sT -P0 -p 80
         - nmap -sT -p 80
+    - T flag:
+        - T0: paranoid
+        - T1: sneaky
+        - T2: polite 
+        - T3: normal
+        - T4: aggressive
+        - T5: insane
     - check devices: nmap -sP 192.168.1.0/24
     - host script: nmap -sC 138.253.207.103
 	- local opened ports: sudo nmap -sT -O localhost
