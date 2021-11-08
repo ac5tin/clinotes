@@ -104,6 +104,32 @@ bash/zsh + linux terminal cli tools commands
         - T3: normal
         - T4: aggressive
         - T5: insane
+    - scan types
+        - sA: TCP ack
+            - for probing firewall rulesets
+            - only determines if port is filtered or not
+        - sT: TCP
+            - should be used if SYN it not an option
+        - sF: FIN
+            - slightly more stealthier than SYN
+        - sN: null
+            - slightly more stealthier than SYN
+        - sX: xmas
+            - slightly more stealthier than SYN
+        - sI: idle
+            - uses zombie host to scan
+        - sS: SYN
+            - most popular scan type
+            - quick
+            - stealthy, non-intrusive
+                - bc. it never completes TCP connection
+            - half-open scanning
+                - doesnt open a full tcp connection
+                - sends SYN packet
+        - sW: windows
+            - for windows
+            - same as ACK
+        - sU: UDP
     - check devices: nmap -sP 192.168.1.0/24
     - host script: nmap -sC 138.253.207.103
 	- local opened ports: sudo nmap -sT -O localhost
