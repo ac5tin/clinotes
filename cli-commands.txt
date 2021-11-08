@@ -104,6 +104,15 @@ bash/zsh + linux terminal cli tools commands
         - T3: normal
         - T4: aggressive
         - T5: insane
+    - os detection: -O
+    - version scanning: -sV
+    - script scanning: -sC
+    - aggressive mode: -A
+        - enables -O,-sC,-sV,--traceroute
+        - intrusive
+    - traceroute: --traceroute
+        - performed post scan
+        - use scanned info to determine port, protocol most likely to reach target
     - scan types
         - sL: list scan
             - wont send packets
@@ -139,6 +148,8 @@ bash/zsh + linux terminal cli tools commands
             - for windows
             - same as ACK
         - sU: UDP
+    - speedup scan
+        - nmap -T5 --min-parallelism=50 -n --min-rate=300
     - check devices: nmap -sP 192.168.1.0/24
     - host script: nmap -sC 138.253.207.103
 	- local opened ports: sudo nmap -sT -O localhost
