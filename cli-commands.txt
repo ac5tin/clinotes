@@ -113,6 +113,10 @@ bash/zsh + linux terminal cli tools commands
     - traceroute: --traceroute
         - performed post scan
         - use scanned info to determine port, protocol most likely to reach target
+    - P0: no dns resolution
+        - prevent doing reverse dns resolution
+        - previously Pn
+        - reduce scan time
     - scan types
         - sL: list scan
             - wont send packets
