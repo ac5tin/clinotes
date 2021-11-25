@@ -1271,6 +1271,13 @@ bash/zsh + linux terminal cli tools commands
     - cat ~/.config/mimeapps.list |curl -F 'f:1=<-' ix.io
 
 ---------------------------------------------------------------------
+Fix SSD read-only random freezes
+---------------------------------------------------------------------
+- edit /etc/default/grub
+  - add to GRUB_CMDLINE_LINUX_DEFAULT
+    - nvme_core.default_ps_max_latency_us=0
+- {https://askubuntu.com/questions/1266413/random-freezes-in-kubuntu-20-04}
+---------------------------------------------------------------------
 JPEG XL conversion
 ---------------------------------------------------------------------
 - install: pip install makejxl
