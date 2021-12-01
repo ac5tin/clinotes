@@ -1331,6 +1331,28 @@ Numeric shorthand of permissions (u g o)
     - 6 (110) Read and write permissions.
     - 7 (111) Read, write, and execute permissions.
 - {https://www.howtogeek.com/437958/how-to-use-the-chmod-command-on-linux/}
+
+
+---------------------
+permission
+
+File type	User	Group	Global
+d Directory	rwx	r-x	r-x
+- Regular file	rw-	r--	r--
+l Symbolic Link	rwx	rwx	rwx
+
+
+Binary	Octal	Permission
+000	0	—
+001	1	–x
+010	2	-w-
+011	3	-wx
+100	4	r–
+101	5	r-x
+110	6	rw-
+111	7	rwx
+
+-----------------------
 ---------------------------------------------------------------------
 Fix SSD read-only random freezes
 ---------------------------------------------------------------------
