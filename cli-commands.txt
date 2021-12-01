@@ -1099,6 +1099,8 @@ bash/zsh + linux terminal cli tools commands
 - find : find files
     - find /home/austin/Downloads/ -name "*foobar*"
     - find / |grep abc
+    - with size: find / -size 33c
+    - ignore errors: find / 2>/dev/null
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
     - set wallpaper: feh --bg-scale picture.png
