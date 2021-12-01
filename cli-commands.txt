@@ -1124,6 +1124,7 @@ bash/zsh + linux terminal cli tools commands
     - with size: find / -size 33c
     - ignore errors: find / 2>/dev/null
     - find readable: find / -readable 2>/dev/null
+        - find /  -size 33c -perm u+r 2>/dev/null
     - find and exec: find / -size 33c ! -perm /111 -exec file '{}' \; 2>/dev/null
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
