@@ -1302,6 +1302,7 @@ bash/zsh + linux terminal cli tools commands
         - or simply: sort file.txt|uniq -u
     - only print duplicated lines(one of each group): uniq -d
     - print all duplicated lines: uniq -D
+- strings: print out all human readable strings from a file
 
 ---------------------------------------------------------------------
 Numeric shorthand of permissions (u g o)
