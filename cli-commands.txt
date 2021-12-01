@@ -364,6 +364,7 @@ bash/zsh + linux terminal cli tools commands
 		- inverse: -v
 		- eg:
 			- ls -ltrha |grep "abc\|def" -i
+        - regex: grep -wE '[a-zA-Z1-9]{32}'
 - create multiple dirs: mkdir folder0 folder1 folder2 folder3
 - create nested subdirectories : mkdir -p d/s/a/e
 - sublime text : subl
