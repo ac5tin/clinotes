@@ -1305,6 +1305,11 @@ bash/zsh + linux terminal cli tools commands
 - strings: print out all human readable strings from a file
 
 ---------------------------------------------------------------------
+decryption
+---------------------------------------------------------------------
+- base64: base64 -d file.txt
+- rot13: tr 'A-Za-z' 'N-ZA-Mn-za-m'
+---------------------------------------------------------------------
 Numeric shorthand of permissions (u g o)
 ---------------------------------------------------------------------
 - u = user
