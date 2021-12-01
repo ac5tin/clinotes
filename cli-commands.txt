@@ -1269,6 +1269,8 @@ bash/zsh + linux terminal cli tools commands
         - all: helm ls -A
 - ix.io: sane text paste service
     - cat ~/.config/mimeapps.list |curl -F 'f:1=<-' ix.io
+- hydra: password cracker (bruteforce)
+    - crack ssh: hydra -t 4 -l root -P /home/user/password.txt 192.168.1.1 ssh
 
 ---------------------------------------------------------------------
 Fix SSD read-only random freezes
