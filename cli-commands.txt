@@ -88,6 +88,27 @@ bash/zsh + linux terminal cli tools commands
 - add permission:
     - chmod +x 
     - All permissions: sudo chmod -R 777
+    - format:
+        - chmod {who}{what}{which}
+            - chmod u+x
+                - user ADDS executable
+            - chmod u-x
+                - user REMOVES executable
+            - who:
+                - u: user (owner of the file)
+                - g: group (members of group the file belongs to)
+                - o: other ppl (outside of u and g)
+                - default who = a if not specified
+            - what:
+                - +: add
+                - -: remove
+                - =: set this permission only and remove all others
+            - which:
+                - r: read
+                - w: write
+                - x: execute
+
+    - {https://www.howtogeek.com/437958/how-to-use-the-chmod-command-on-linux/}
 - shutdown : shutdown now
     - safely: sudo shutdown -h now
 - reboot : reboot
@@ -1274,6 +1295,22 @@ bash/zsh + linux terminal cli tools commands
 - hydra: password cracker (bruteforce)
     - crack ssh: hydra -t 4 -l root -P /home/user/password.txt 192.168.1.1 ssh
 
+---------------------------------------------------------------------
+Numeric shorthand of permissions (u g o)
+---------------------------------------------------------------------
+- u = user
+- g = group
+- o = others
+- shorthand: 
+    - 0 (000) No permission.
+    - 1 (001) Execute permission.
+    - 2 (010) Write permission.
+    - 3 (011) Write and execute permissions.
+    - 4 (100) Read permission.
+    - 5 (101) Read and execute permissions.
+    - 6 (110) Read and write permissions.
+    - 7 (111) Read, write, and execute permissions.
+- {https://www.howtogeek.com/437958/how-to-use-the-chmod-command-on-linux/}
 ---------------------------------------------------------------------
 Fix SSD read-only random freezes
 ---------------------------------------------------------------------
