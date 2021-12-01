@@ -1123,6 +1123,8 @@ bash/zsh + linux terminal cli tools commands
     - find / |grep abc
     - with size: find / -size 33c
     - ignore errors: find / 2>/dev/null
+    - find readable: find / -readable 2>/dev/null
+    - find and exec: find / -size 33c ! -perm /111 -exec file '{}' \; 2>/dev/null
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
     - set wallpaper: feh --bg-scale picture.png
@@ -1303,6 +1305,9 @@ bash/zsh + linux terminal cli tools commands
     - only print duplicated lines(one of each group): uniq -d
     - print all duplicated lines: uniq -D
 - strings: print out all human readable strings from a file
+- xxd: create hexdump from binary or reverse
+    - reverse hexdump back to binary: xxd -r data.dump data
+- file: determine file type
 
 ---------------------------------------------------------------------
 decryption
