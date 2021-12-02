@@ -1313,6 +1313,10 @@ bash/zsh + linux terminal cli tools commands
 - file: determine file type
 - openssl
     - send string and get response : echo "YOUR TEXT HERE" | openssl s_client -connect host:port-ign_eof
+- nc: netcat
+    - listen on port: nc -lvvp 3345
+    - listen on port and send string to client on connection:
+        - echo "welcome" | nc -lvvp 2245
 
 ---------------------------------------------------------------------
 decryption
