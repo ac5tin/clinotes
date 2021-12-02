@@ -827,6 +827,8 @@ bash/zsh + linux terminal cli tools commands
     - delete invalid key: ssh-keygen -R 192.168.1.29
 	- with key: ssh -xCi ~/ssh/key.pem abc@123.456.789
 	- enable: sudo systemctl enable ssh
+    - execute command straight after ssh connection:
+        - ssh abc@def.xyz cat somefile
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
