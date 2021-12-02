@@ -1309,6 +1309,8 @@ bash/zsh + linux terminal cli tools commands
 - xxd: create hexdump from binary or reverse
     - reverse hexdump back to binary: xxd -r data.dump data
 - file: determine file type
+- openssl
+    - send string and get response : echo "YOUR TEXT HERE" | openssl s_client -connect host:port-ign_eof
 
 ---------------------------------------------------------------------
 decryption
