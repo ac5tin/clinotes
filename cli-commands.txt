@@ -1001,6 +1001,10 @@ bash/zsh + linux terminal cli tools commands
 	- ls -l /proc/3141/exe
 - ufw: firewall
 	- start: ufw enable
+    - default deny all incoming: sudo ufw default deny incoming
+    - check status: ufw status
+    - reset: sudo ufw reset
+    - {https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04#:~:text=By%20default%2C%20UFW%20is%20set,to%20reach%20the%20outside%20world.}
 - remove all folders : rm -R -- */
 - count lines from grep: grep abc | wc -l
 - fix broken install: apt --fix-broken install
