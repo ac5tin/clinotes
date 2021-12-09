@@ -1724,6 +1724,7 @@ create new user
 - sudo adduser new_user
 - add to sudoers:
 	- sudo usermod -aG sudo bob
+    - set user primary group: usermod -g sudo bob
 - (for ec2) valid login without key file
 	- edit: /etc/ssh/sshd_config
 		- PasswordAuthentication yes
