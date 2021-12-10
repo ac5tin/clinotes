@@ -1332,6 +1332,7 @@ bash/zsh + linux terminal cli tools commands
         - set handler: use exploit/multi/handler
         - php: set payload php/meterpreter/reverse_tcp
         - exploit: exploit -j
+            - -j flag sends to background
         - post exploit:
             - edit myfile
 - msfvenom:
