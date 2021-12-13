@@ -184,6 +184,8 @@ bash/zsh + linux terminal cli tools commands
     - disable dns resolution (quicker): -n
     - no port scan: -sn (replaces -sP)
     - stealth scan: -sL
+    - scan with vulns: --script vuln
+      - example: nmap -T4 -A --script vuln -P0 123.456.789.111
     - {https://www.redhat.com/sysadmin/quick-nmap-inventory}
 - access device: telnet 192.168.1.1 23
     - test HTTP:     GET / HTTP/1.1
