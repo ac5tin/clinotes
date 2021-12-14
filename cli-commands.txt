@@ -1342,8 +1342,21 @@ bash/zsh + linux terminal cli tools commands
         - exploit: exploit -j
             - -j flag sends to background
         - post exploit:
+            - migrate to another process:
+              - run post/windows/manage/migrate
+              - migrate to process ID: migrate 3008
             - sysinfo
             - edit myfile
+            - get privilege: getsystem
+            - spawn shell: shell
+            - running processes: ps
+            - clear logs: clearev
+            - get user info: getuid
+            - download files: download file.txt
+            - upload files: upload file.txt
+            - hashdumping:
+              - hashdump
+              - run post/windows/gather/hashdump
         - backgorund session: bg
         - go into session: sessions -i 2
 - msfvenom:
