@@ -1374,6 +1374,14 @@ bash/zsh + linux terminal cli tools commands
     - release cursor focus from window: ctrl + alt + g
 
 ---------------------------------------------------------------------
+virtualbox setup internal network
+---------------------------------------------------------------------
+- set network to internal network
+- assign up using dhcp
+  - vboxmanage dhcpserver add --network=intnet --server-ip=192.168.3.1 --netmask=255.255.255.0 --lower-ip=192.168.3.2 --upper-ip=192.168.3.254 --enable
+  - check: vboxmanage list dhcpservers
+
+---------------------------------------------------------------------
 exploit using systemctl (SUID config)
 ---------------------------------------------------------------------
 
