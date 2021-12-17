@@ -1374,7 +1374,18 @@ bash/zsh + linux terminal cli tools commands
         - qemu-img convert -O qcow2 abc.vmdk abc.qcow2
     - run image: qemu-system-x86_64 -hda ./abc.vmdk -nic user
     - release cursor focus from window: ctrl + alt + g
+- nikto: web server vulnerability scanner
+  - nikto -h 192.168.1.2
+- dirb: web directory scanner
+  - dirb http://192.168.1.2
 
+---------------------------------------------------------------------
+useful enumeration tools
+---------------------------------------------------------------------
+- web:
+  - nikto
+  - dirb
+  - ffuf
 ---------------------------------------------------------------------
 virtualbox setup internal network
 ---------------------------------------------------------------------
