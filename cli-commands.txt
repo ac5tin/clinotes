@@ -1367,6 +1367,11 @@ bash/zsh + linux terminal cli tools commands
   - windows type hashes: --format=NT
   - use wordlist: john --wordlist=/usr/share/wordlists/rockyou.txt ~/hashes.txt
   - {https://bytesoverbombs.io/cracking-everything-with-john-the-ripper-d434f0f6dc1c}
+- qemu
+    - convert vmware disk to qcow2
+        - qemu-img convert -O qcow2 abc.vmdk abc.qcow2
+    - run image: qemu-system-x86_64 -hda ./abc.vmdk -nic user
+    - release cursor focus from window: ctrl + alt + g
 
 ---------------------------------------------------------------------
 exploit using systemctl (SUID config)
