@@ -831,6 +831,9 @@ bash/zsh + linux terminal cli tools commands
 	- enable: sudo systemctl enable ssh
     - execute command straight after ssh connection:
         - ssh abc@def.xyz cat somefile
+    - access remote machine via key:
+      - generate client machine ssh key (if ~/.ssh/id_rsa.pub doesn't exist already): ssh-keygen -t rsa
+      - copy contents of key into target remote machine ~/.ssh/authorized_keys
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
