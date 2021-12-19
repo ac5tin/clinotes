@@ -1367,6 +1367,7 @@ bash/zsh + linux terminal cli tools commands
 - john: john the ripper (password hashdump cracker)
   - displayed results of file: john --show ./hash.txt
   - windows type hashes: --format=NT
+  - md5: john hash.txt --format=raw-md5 --wordlist=./rockyou.txt
   - use wordlist: john --wordlist=/usr/share/wordlists/rockyou.txt ~/hashes.txt
   - {https://bytesoverbombs.io/cracking-everything-with-john-the-ripper-d434f0f6dc1c}
 - qemu
