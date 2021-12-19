@@ -1373,6 +1373,8 @@ bash/zsh + linux terminal cli tools commands
   - md5: john hash.txt --format=raw-md5 --wordlist=./rockyou.txt
   - use wordlist: john --wordlist=/usr/share/wordlists/rockyou.txt ~/hashes.txt
   - {https://bytesoverbombs.io/cracking-everything-with-john-the-ripper-d434f0f6dc1c}
+- hashcat: hash cracker
+  - hashcat -m 0 hash.txt ~/Documents/rockyou.txt
 - qemu
     - convert vmware disk to qcow2
         - qemu-img convert -O qcow2 abc.vmdk abc.qcow2
