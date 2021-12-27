@@ -1391,6 +1391,12 @@ bash/zsh + linux terminal cli tools commands
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
 
 ---------------------------------------------------------------------
+AV1 encode
+---------------------------------------------------------------------
+- av1an
+  - sudo docker run -v "$(pwd)":/videos --user $(id -u):$(id -g) -it --rm masterofzen/av1an:latest -i myvid.mp4 --target-quality 95  -a " -c:a libopus -ac 2 -b:a 192k " -o output.webm
+
+---------------------------------------------------------------------
 mysql
 ---------------------------------------------------------------------
 - exploit through UDF (mysql running in root)
