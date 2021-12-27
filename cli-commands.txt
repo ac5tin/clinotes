@@ -1389,6 +1389,10 @@ bash/zsh + linux terminal cli tools commands
 - aws: aws cli
     - s3
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
+- mkvmerge: get stream info of mkv file
+  - mkvmerge -i vid.mkv
+- mkvextract: extract streams out of mkv
+  - mkvextract tracks vid.mkv 3:3.srt
 
 ---------------------------------------------------------------------
 AV1 encode
