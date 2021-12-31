@@ -2132,9 +2132,12 @@ create swap
 - {https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/}
 
 ---------------------------------------------------------------------
-clear cache
+clear cache and swap (requires superuser privileges)
 ---------------------------------------------------------------------
-- sync; echo 3 > /proc/sys/vm/drop_caches
+- clear cache
+  - sync; echo 3 > /proc/sys/vm/drop_caches
+- clear swap memory
+  - swapoff -a && swapon -a
 ---------------------------------------------------------------------
 bug.n
 ---------------------------------------------------------------------
