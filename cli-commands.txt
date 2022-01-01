@@ -1393,6 +1393,7 @@ bash/zsh + linux terminal cli tools commands
   - mkvmerge -i vid.mkv
 - mkvextract: extract streams out of mkv
   - mkvextract tracks vid.mkv 3:3.srt
+- sudo -l: list of allowed/forbidden commands
 
 ---------------------------------------------------------------------
 escape ksh (korn shell)
