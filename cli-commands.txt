@@ -1401,6 +1401,10 @@ bash/zsh + linux terminal cli tools commands
     - previous chapter: p
     - up down: j,k
     - up down (half screen): h,l
+- epy: another epub cli reader (fork of epr)
+    - table of contents: t
+    - scroll up,down: j,k
+    - prev,next chapter: L H
 
 ---------------------------------------------------------------------
 LFI (Local File Inclusion)
