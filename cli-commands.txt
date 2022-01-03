@@ -841,6 +841,7 @@ bash/zsh + linux terminal cli tools commands
 - read pdf: lesspipe abc.pdf |less
     - might need to install pdftohtml
     - alternative: pdftotext file.pdf - | less
+    - pdftohtml file.pdf -i -stdout > file.html
 - check disk space left: df
     - human readable: df -h
 - charge ios from usb: sudo usbmuxd -u -U usbmux
