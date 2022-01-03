@@ -1395,6 +1395,12 @@ bash/zsh + linux terminal cli tools commands
 - mkvextract: extract streams out of mkv
   - mkvextract tracks vid.mkv 3:3.srt
 - sudo -l: list of allowed/forbidden sudo commands
+- epr: epub cli reader
+    - to read file: epr file.epub
+    - next chapter: n
+    - previous chapter: p
+    - up down: j,k
+    - up down (half screen): h,l
 
 ---------------------------------------------------------------------
 LFI (Local File Inclusion)
