@@ -1375,6 +1375,11 @@ bash/zsh + linux terminal cli tools commands
   - windows type hashes: --format=NT
   - md5: john hash.txt --format=raw-md5 --wordlist=./rockyou.txt
   - use wordlist: john --wordlist=/usr/share/wordlists/rockyou.txt ~/hashes.txt
+  - crack /etc/shadow:
+    - shadow.txt: /etc/shadow shadow.txt
+    - passwd.txt: /etc/passwd
+    - unshadow passwd.txt shadow.txt > unshadowed.txt
+    - john --wordlist=rockyou.txt unshadowed.txt
   - {https://bytesoverbombs.io/cracking-everything-with-john-the-ripper-d434f0f6dc1c}
 - hashcat: hash cracker
   - hashcat -m 0 hash.txt ~/Documents/rockyou.txt
@@ -1416,6 +1421,13 @@ bash/zsh + linux terminal cli tools commands
             - dicts: http://download.huzheng.org/
         - sudo tar xvjf dict.tar.bz2 -C /usr/share/stardict/dic
         - {https://askubuntu.com/questions/191125/is-there-an-offline-command-line-dictionary}
+- unshadow: unshadow shadowed file
+  - unshadow passwd shadow > unshadowed
+
+---------------------------------------------------------------------
+get user account passwords (linux)
+---------------------------------------------------------------------
+- /etc/shadow
 
 ---------------------------------------------------------------------
 LFI (Local File Inclusion)
