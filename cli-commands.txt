@@ -1406,6 +1406,14 @@ bash/zsh + linux terminal cli tools commands
     - table of contents: t
     - scroll up,down: j,k
     - prev,next chapter: L H
+- sdcv: stardict command line dictionary
+    - sdcv word
+    - setup dictionary:
+        - sudo mkdir -p /usr/share/stardict/dic/
+        - download dictionary and put files inside the above dir
+            - dicts: http://download.huzheng.org/
+        - sudo tar xvjf dict.tar.bz2 -C /usr/share/stardict/dic
+        - {https://askubuntu.com/questions/191125/is-there-an-offline-command-line-dictionary}
 
 ---------------------------------------------------------------------
 LFI (Local File Inclusion)
