@@ -429,6 +429,7 @@ bash/zsh + linux terminal cli tools commands
     - copy selected : P
     - pin: b
         - go to pin: ctrl + b
+    - view keybinds: ?
 - rtv (reddit terminal viewer)
     - view comments :  ->
     - visit site : enter
