@@ -493,7 +493,8 @@ bash/zsh + linux terminal cli tools commands
 - including hidden files: -a
 - check my username: whoami
 - change password: passwd austin
-- extract all images from pdf: pdfimages -j abc.pdf ./
+- extract all images from pdf: pdfimages -j abc.pdf ./img
+    - extracted images will begin with the prefix img
 - convert images:  convert a.ppm b.jpg
 - docx to txt : docx2txt abc.docx
 - URL Shortener:
