@@ -1424,6 +1424,14 @@ bash/zsh + linux terminal cli tools commands
         - {https://askubuntu.com/questions/191125/is-there-an-offline-command-line-dictionary}
 - unshadow: unshadow shadowed file
   - unshadow passwd shadow > unshadowed
+- annie: cli video downloader
+  - annie "https://www.youtube.com/watch?v=..."
+  - playlist: annie -p "PLAYLIST_URL"
+    - specify items: annie -items 1,4,8 -p "PLAYLIST_URL"
+    - with info: annie -i -p "PLAYLIST_URL"
+    - with quality: annie -items 4,5,9 -f 64 -p "PLAYLIST_URL"
+  - specify file quality: annie -f 64
+  - get info: annie -i "URL"
 
 ---------------------------------------------------------------------
 get user account passwords (linux)
