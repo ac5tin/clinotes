@@ -335,6 +335,11 @@ bash/zsh + linux terminal cli tools commands
 - zathura: 
     - goto page X : Xgg
     - see table of content: TAB
+    - fit page: a
+    - fit width: s
+    - invert colours: ctrl+i
+      - add line to ~/.config/zathura/zathurarc
+        - map <C-i> recolor
 - connmanctl (network manager)
     - enable wifi: enable wifi
     - scan for wifi: scan wifi
