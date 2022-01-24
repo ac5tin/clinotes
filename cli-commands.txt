@@ -1709,6 +1709,7 @@ Each Node
 - add to the end of /boot/cmdline.txt
     - cgroup_memory=1 cgroup_enable=memory swapaccount=1
 - ssh-copy-id ubuntu@<ip>
+  - if doesnt work, run: ssh-keygen
 - sudo echo coolhost > /etc/hostname
 
 Master Node
