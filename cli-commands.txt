@@ -1742,6 +1742,12 @@ Master Node
 
 Remote Access
 - remote access cluster: copy contents from /etc/rancher/k3s/k3s.yaml
+- basically set env KUBECONFIG to the kubeoconfig file generated
+  - quick: export KUBECONFIG=`pwd`/kubeconfig
+  - long: 
+    - mkdir ~/k8s
+    - mv ./kubeconfig/k8s
+    - set env of KUBECONFIG to ~/k8s/kubeconfig
 
 Helm
 - install Helm
