@@ -1740,6 +1740,13 @@ Master Node
     - ./init_pis.sh <master-ip> <node-ip> <node-ip> <node-ip>
 - {https://averywagar.com/post/k3s-pi/}
 
+Join Node to cluster
+- get master server token:
+  - cat /var/lib/rancher/k3s/server/node-token
+- curl -sfL https://get.k3s.io | K3S_URL=https://<<MASTER_IP>>:6443 K3S_TOKEN="<<MASTER_SERVER_TOKEN>>" sh -
+- systemctl enable --now k3s-agent
+- {https://pet2cattle.com/2021/04/k3s-join-nodes}
+
 Remote Access
 - remote access cluster: copy contents from /etc/rancher/k3s/k3s.yaml
 - basically set env KUBECONFIG to the kubeoconfig file generated
