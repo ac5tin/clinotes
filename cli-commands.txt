@@ -1953,6 +1953,21 @@ spec:
               number: 8080
 
 
+Longhorn storage
+- external ssd storage
+  - check storage path: lsblk
+    - sudo blkid
+  - sudo mkfs.ext4 /dev/sda
+  - sudo mkdir /mnt/ssd0
+  - sudo chown -R austin:austin /mnt/ssd0/ 
+  - sudo mount /dev/sda /mnt/ssd0/
+  - sudo vim /etc/fstab
+  - longhorn ui
+    - click add disk
+    - sudo mkdir /mnt/ssd0/block
+    - path: /mnt/ssd0/block/
+    - set storage reserved
+  - {https://www.jericdy.com/blog/installing-k3s-with-longhorn-and-usb-storage-on-raspberry-pi}
 
 ---------------------------------------------------------------------
 remove k3s
