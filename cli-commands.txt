@@ -1437,6 +1437,11 @@ bash/zsh + linux terminal cli tools commands
     - with quality: annie -items 4,5,9 -f 64 -p "PLAYLIST_URL"
   - specify file quality: annie -f 64
   - get info: annie -i "URL"
+- gpg: privacy crypto tool
+  - list keys: gpg --list-secret-keys --keyid-format LONG
+    - all keys: gpg --list-keys
+  - delete key: gpg --delete-key ABC1234
+    - secret key: gpg --delete-secret-key ABC123
 
 ---------------------------------------------------------------------
 check github repo forks stats
