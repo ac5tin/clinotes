@@ -1444,6 +1444,13 @@ bash/zsh + linux terminal cli tools commands
     - secret key: gpg --delete-secret-key ABC123
 
 ---------------------------------------------------------------------
+Neovim clean/uninstall settings
+---------------------------------------------------------------------
+- rm -rf ~/.config/nvim
+- rm -rf ~/.local/share/nvim
+- rm -rf ~/.cache/nvim
+
+---------------------------------------------------------------------
 check github repo forks stats
 ---------------------------------------------------------------------
 - go to forks page
