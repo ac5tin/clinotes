@@ -1444,6 +1444,15 @@ bash/zsh + linux terminal cli tools commands
     - secret key: gpg --delete-secret-key ABC123
 
 ---------------------------------------------------------------------
+k8s private image registry setup
+---------------------------------------------------------------------
+create secret
+- kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email> --namespace <namespace>
+- add (same level as container):
+  imagePullSecrets:
+    - name: regcred
+
+---------------------------------------------------------------------
 Neovim clean/uninstall settings
 ---------------------------------------------------------------------
 - rm -rf ~/.config/nvim
