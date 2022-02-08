@@ -1444,6 +1444,11 @@ bash/zsh + linux terminal cli tools commands
     - secret key: gpg --delete-secret-key ABC123
 
 ---------------------------------------------------------------------
+ntfy.sh send notifications
+---------------------------------------------------------------------
+- curl -d "test abc" ntfy.sh/testing
+
+---------------------------------------------------------------------
 k8s private image registry setup
 ---------------------------------------------------------------------
 create secret
