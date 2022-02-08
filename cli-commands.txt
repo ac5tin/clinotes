@@ -1443,6 +1443,8 @@ bash/zsh + linux terminal cli tools commands
   - delete key: gpg --delete-key ABC1234
     - secret key: gpg --delete-secret-key ABC123
 
+-  write to file in newline: echo -e '\nyarn.lock' >> .gitignore
+
 ---------------------------------------------------------------------
 ntfy.sh send notifications
 ---------------------------------------------------------------------
