@@ -1444,6 +1444,11 @@ bash/zsh + linux terminal cli tools commands
     - secret key: gpg --delete-secret-key ABC123
 
 -  write to file in newline: echo -e '\nyarn.lock' >> .gitignore
+- megatools
+  - get storage size: megadf -u myuser@gmail.com -h
+  - sync files from local to cloud: megacopy -u --local ~/files/ --remote /Root/files
+  - copy files from cloud to local: megacopy -u --local . --remote /Root/files --download
+  - {https://linuxconfig.org/megatools-linux-install-and-basic-introduction}
 
 ---------------------------------------------------------------------
 ntfy.sh send notifications
