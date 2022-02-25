@@ -887,6 +887,8 @@ bash/zsh + linux terminal cli tools commands
     - pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25
 - opusenc : opus encoder
     - opusenc --bitrate 160 in.wav out.opus
+    - loop
+      - fish: for i in *.flac;opusenc --bitrate 128 $i (basename $i .flac).opus;end
 - tail : output last parts of a file
     - last 10 lines: tail -10 abc.txt
 - fff : file manager
