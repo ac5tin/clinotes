@@ -1307,7 +1307,13 @@ bash/zsh + linux terminal cli tools commands
 	- siege -c50 -t60S --content-type "application/json" 'http://domain.com/path/to/json.php POST {"ids": ["1","2","3"]}'
     - POST json file input: siege -c2 -t10s --content-type "application/json" 'https://api.test.xyz/run POST < ./test.json'
 - protoc: protobuffer
-	- protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
+    - install:
+      - go install google.golang.org/protobuf/cmd/protoc-gen-go
+      - go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+      - {https://grpc.io/docs/languages/go/quickstart/}
+    - protoc --go_out=. --go-grpc_out=. ./foobar/proto/hello.proto
+    - protoc --go-grpc_out=. ./foo/proto/foo.proto
+    - protoc --go_out=plugins=grpc:. YOUR_ROOT_FOLDER/hellopb/hello.proto
 - go: golang
 	- cross compile: GOOS=linux GOARCH=arm64 go build -o ./bin/app_arm64
     - powershell: $Env:GOOS = "linux"; $Env:GOARCH = "arm64"; go build -o .\bin\app_arm64
