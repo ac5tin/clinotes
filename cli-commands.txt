@@ -2612,6 +2612,8 @@ bluetoothctl
 virtualbox mount
 ---------------------------------------------------------------------
 - sudo mount -t vboxsf MEGA ~/shared/MEGA
+- to access shared directory (add user to vbox usergroup)
+  - sudo adduser $USER vboxsf
 
 ---------------------------------------------------------------------
 install xfce themes
