@@ -2124,6 +2124,7 @@ kubernetes
 	- pod exec commands: exec $POD_NAME -- ls
 	- ssh into pod: exec -ti $POD_NAME -- bash
 		- container in pod: exec -ti $POD_NAME -c foo-server -- /bin/sh
+          - with namespace: kubectl exec -it MY_POD_123 -n myns -- /bin/sh
 	- services: get services
 		- services in deployment label: get services -l run=foo
 	- expose deployment: expose deployment/foo --type="NodePort" --port 8080
