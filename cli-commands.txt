@@ -1464,6 +1464,10 @@ bash/zsh + linux terminal cli tools commands
   - copy files from cloud to local: megacopy -u --local . --remote /Root/files --download
   - {https://linuxconfig.org/megatools-linux-install-and-basic-introduction}
 
+- podman:
+  - build multi-arch: podman build --platform linux/amd64,linux/arm64 --format docker --manifest myapp .
+  - push: podman manifest push --format v2s2 myapp docker://xxx/myapp:1.0.2
+
 ---------------------------------------------------------------------
 podman setup
 ---------------------------------------------------------------------
