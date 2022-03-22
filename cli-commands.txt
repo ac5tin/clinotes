@@ -2167,6 +2167,9 @@ kubernetes
 		- get replicasets: kubectl get rs
         - port forward:
           - kubectl port-forward svc/mysql -n myns 3306:3306
+        - context:
+          - list: kubectl config get-contexts
+          - switch to context: kubectl config use-context CONTEXT_NAME
     - autoscale:
         - kubectl autoscale deployment foobar --cpu-percent=80 --min=5 --max=10
         - get horizontal pod autoscaler info:
