@@ -2149,6 +2149,8 @@ kubernetes
 	- force update deployment : kubectl rollout restart deployment/demo
 	- replicasets:
 		- get replicasets: kubectl get rs
+        - port forward:
+          - kubectl port-forward svc/mysql -n myns 3306:3306
     - autoscale:
         - kubectl autoscale deployment foobar --cpu-percent=80 --min=5 --max=10
         - get horizontal pod autoscaler info:
