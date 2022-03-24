@@ -1463,6 +1463,9 @@ bash/zsh + linux terminal cli tools commands
   - sync files from local to cloud: megacopy -u --local ~/files/ --remote /Root/files
   - copy files from cloud to local: megacopy -u --local . --remote /Root/files --download
   - {https://linuxconfig.org/megatools-linux-install-and-basic-introduction}
+- base64:
+  - decode text: cat file |base64 --decode
+  - encode file into single line: base64 ssl/ca.pem |tr -d '\n'
 
 - podman:
   - build multi-arch: podman build --platform linux/amd64,linux/arm64 --format docker --manifest myapp .
