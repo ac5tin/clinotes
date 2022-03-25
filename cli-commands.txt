@@ -1005,6 +1005,7 @@ bash/zsh + linux terminal cli tools commands
       - tag current commit: git tag -a v0.1 -m "version 0.1"
       - delete tag: git tag -d v0.1
       - tag specific commit: git tag -a v0.3 09e6 -m "version 0.3"
+      - push tags: git push --tags
 - checkinstall
 	- create deb without installing: make -> checkinstall --install=no
 - usermod : modify user
