@@ -1158,6 +1158,7 @@ bash/zsh + linux terminal cli tools commands
     - find SUID file: find / -perm /4000
     - find file with name: find / -name myfile 2>/dev/null
       - wildcard: find / -name *file 2>/dev/null
+    - set max depth: find ~/ -maxdepth 2 -name '*rc'
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
     - set wallpaper: feh --bg-scale picture.png
