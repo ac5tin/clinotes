@@ -1209,8 +1209,11 @@ bash/zsh + linux terminal cli tools commands
 	- decode: ff2png
 		- ff2png < abc.ff > abc.png
 		- bzcat abc.ff.bz2 | ff2png > abc.png
+                - view image: bzcat abc.ff.bz2 |lel
     - for loop
         - fish: for i in *.PNG;png2ff < $i | bzip2 -9 > (basename $i .PNG).ff.bz2;end
+- lel: farbfeld image viewer
+    - view image: bzcat abc.ff.bz2 |lel
 - mtm
     - ctrl + g :
         - split horizontal | : h
