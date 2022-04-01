@@ -2131,7 +2131,10 @@ kubernetes
 	- fargate:
 		- create : eksctl create cluster --name=mycluster --fargate
 		- add namespace: eksctl create fargateprofile --namespace abc --cluster mycluster
-
+    - update:
+        - kube-proxy: eksctl utils update-kube-proxy --cluster=<clusterName>
+        - aws-node: eksctl utils update-aws-node --cluster=<clusterName>
+        - coredns: eksctl utils update-coredns --cluster=<clusterName> 
 
 
 - kubectl
