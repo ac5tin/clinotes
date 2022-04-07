@@ -1449,6 +1449,14 @@ bash/zsh + linux terminal cli tools commands
 - aws: aws cli
     - s3
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
+    - iam
+        - create user:
+            - aws iam create-user --user-name ccp-ecr-user
+            - aws iam create-access-key --user-name ccp-ecr-user
+            - aws iam attach-user-policy --user-name ccp-ecr-user --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+            - {https://github.com/CiscoDevNet/multicloud-integrations/blob/master/AWS/AWSConfig/ecr/ecr-registry-creds.md}
+    - ecr
+      - create: aws ecr create-repository --repository-name ccp-repo/nginx --region us-east-1
 - mkvmerge: get stream info of mkv file
   - mkvmerge -i vid.mkv
 - mkvextract: extract streams out of mkv
