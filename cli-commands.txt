@@ -1381,6 +1381,7 @@ bash/zsh + linux terminal cli tools commands
     - listen on port: nc -lvvp 3345
     - listen on port and send string to client on connection:
         - echo "welcome" | nc -lvvp 2245
+    - pipe stdout to nc: while true;ping -c3 google.com;sleep 5;end |nc -lvnp 3128
 - msfconsole: metasploit
     - go to session: sessions -i 3
     - sessions: sessions
