@@ -1382,8 +1382,10 @@ bash/zsh + linux terminal cli tools commands
     - listen on port and send string to client on connection:
         - echo "welcome" | nc -lvvp 2245
     - pipe stdout to nc: while true;ping -c3 google.com;sleep 5;end |nc -lvnp 3128
+    - connect to server: nc -v localhost 3128
 - socat:
     - pipe stdout to socat: while true;ping -c3 google.com;date;sleep 5;end | socat - TCP-LISTEN:3128,reuseaddr,fork
+    - listen on port: socat TCP-LISTEN:3128,reuseaddr,fork -
 - msfconsole: metasploit
     - go to session: sessions -i 3
     - sessions: sessions
