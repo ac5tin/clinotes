@@ -1524,6 +1524,7 @@ bash/zsh + linux terminal cli tools commands
           - role: worker
           - role: worker
     - list clusters: kind get clusters
+    - delete cluster: kind delete cluster --name mycluster
 
 ---------------------------------------------------------------------
 podman setup
