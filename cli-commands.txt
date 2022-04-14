@@ -1532,6 +1532,15 @@ bash/zsh + linux terminal cli tools commands
     - close tab: tab -w mytab
     - terminate all: tab -W
     - view active tab: echo $TAB
+- zellij: terminal workspace
+    - new pane: alt+n
+        - to right: (ctrl+p) +r
+        - to down: (ctrl+p) +d
+    - switch to pane: alt + h/j/k/l
+    - move pane: ctrl+h
+    - resize:
+        - bigger: alt +
+        - smaller: alt -
 
 ---------------------------------------------------------------------
 podman setup
