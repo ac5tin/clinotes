@@ -1541,6 +1541,10 @@ bash/zsh + linux terminal cli tools commands
     - resize:
         - bigger: alt +
         - smaller: alt -
+- vimdot: graphviz editor
+- dot: graphviz
+    - convert graph to png: dot -Tpng -o out.png ./file.gv
+    - convert graph to svg: dot -Tsvg -o out.svg ./file.gv
 
 ---------------------------------------------------------------------
 podman setup
