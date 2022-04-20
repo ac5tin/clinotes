@@ -3751,6 +3751,7 @@ onivim2
 lunarvim
 ---------------------------------------------------------------------
 - start: lvim
+- edit config: SPC + L + c
 - toggle explorer: spc + e
 - toggle hover: shift + k
 - go to declaration file: gd
@@ -3772,6 +3773,9 @@ lunarvim
 - install LSP for a language:
     - LspInstall typescript
     - {https://github.com/kabouzeid/nvim-lspinstall}
+- Update:
+  - LvimUpdate
+  - PackerUpdate / PackerSync
 - NVIMTree
     - toggle hidden folders: shift + i
     - toggle dotfiles: shift + h
