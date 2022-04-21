@@ -1546,6 +1546,28 @@ bash/zsh + linux terminal cli tools commands
 - dot: graphviz
     - convert graph to png: dot -Tpng -o out.png ./file.gv
     - convert graph to svg: dot -Tsvg -o out.svg ./file.gv
+- nu: nushell
+    - some common useful builtins:
+        - which
+        - where
+        - list: ls
+        - ps
+        - date
+        - sys
+        - get
+        - zip
+    - sort: ls | sort-by size
+        - reverse: sort-by size |reverse
+    - filter:
+        - by size: ls | where size > 10kb
+        - by column: ps |where cpu > 10
+        - equals: ps |where status == 'Running'
+    - get content:
+        - get: sys |get host
+        - braces: (sys).host
+    - help: help zip
+    - env:
+        - echo $env.PATH
 
 ---------------------------------------------------------------------
 podman setup
