@@ -1568,6 +1568,31 @@ bash/zsh + linux terminal cli tools commands
     - help: help zip
     - env:
         - echo $env.PATH
+- gobang: TUI db tool
+    - scroll: h,j,k,l
+        - multi lines: ctrl+u, ctrl+d
+    - to top: g
+    - to bottom: G
+    - extend selection by 1cell to left/down/up/right: H,J,K,L
+    - copy cell value: y
+    - move focus to left/right: <-, ->
+    - move focus to connections: c
+    - filter: /
+    - help: ?
+    - switch to:
+        - records: 1
+        - columns: 2
+        - constraints: 3
+        - foreign keys: 4
+        - indexes: 5
+    - config: ~/.config/gobang/config.toml
+        [[conn]]
+        type = "mysql"
+        user = "root"
+        host = "localhost"
+        port = 3306
+        password = "password"
+        database = "foo"
 
 ---------------------------------------------------------------------
 podman setup
