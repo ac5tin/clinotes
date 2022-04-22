@@ -1582,9 +1582,10 @@ bash/zsh + linux terminal cli tools commands
     - switch to:
         - records: 1
         - columns: 2
-        - constraints: 3
-        - foreign keys: 4
-        - indexes: 5
+        - sql: 3
+        - constraints: 4
+        - foreign keys: 5
+        - indexes: 6
     - config: ~/.config/gobang/config.toml
         [[conn]]
         type = "mysql"
