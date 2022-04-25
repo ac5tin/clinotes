@@ -3702,6 +3702,8 @@ options: o
 download (save as) current link: d
 download manager: D
 quit: q
+get header: |
+get doc info: =
 
 re-written config
 - goto url : o
