@@ -1904,9 +1904,14 @@ setup k3s cluster
 Each Node
 - add to the end of /boot/cmdline.txt
     - cgroup_memory=1 cgroup_enable=memory swapaccount=1
+    - alternate:
+        - sudo vim /boot/firmware/cmdline.txt
+        - add to end of line: cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1
+        - {https://github.com/k3s-io/k3s/issues/2067}
 - ssh-copy-id ubuntu@<ip>
   - if doesnt work, run: ssh-keygen
 - sudo echo coolhost > /etc/hostname
+
 
 Master Node
 - curl -sLS https://get.k3sup.dev | sh
@@ -1925,7 +1930,7 @@ Master Node
 
     # Init MASTER_NODE
     echo "Initializing $MASTER_NODE as master node."
-    k3sup-arm64 install --ip $MASTER_NODE --user ubuntu --k3s-extra-args "--no-deploy servicelb --no-deploy traefik"
+    k3sup-arm64 install --ip $MASTER_NODE --user ubuntu --k3s-extra-args "--no-deploy servicelb --no-deploy traefik"  --k3s-version v1.23.5+k3s1
 
     # Join nodes
     for NODE_IP in $NODE1 $NODE2
@@ -1942,6 +1947,13 @@ Join Node to cluster
 - curl -sfL https://get.k3s.io | K3S_URL=https://<<MASTER_IP>>:6443 K3S_TOKEN="<<MASTER_SERVER_TOKEN>>" sh -
 - systemctl enable --now k3s-agent
 - {https://pet2cattle.com/2021/04/k3s-join-nodes}
+
+
+- multi master HA setup
+    - k3sup install --ip 192.168.50.79 --user ubuntu --k3s-extra-args "--no-deploy servicelb --no-deploy traefik" --cluster  --k3s-version v1.23.5+k3s1 
+    - other master: k3sup join --ip 192.168.50.117 --server-ip 192.168.50.79 --user ubuntu --server-user ubuntu --server --k3s-extra-args "--no-deploy servicelb --no-deploy traefik" --k3s-version v1.23.5+k3s1
+    - join worker nodees: k3sup join --ip 192.168.50.149 --server-ip 192.168.50.79 --user ubuntu --k3s-version v1.23.5+k3s1
+
 
 Remote Access
 - remote access cluster: copy contents from /etc/rancher/k3s/k3s.yaml
