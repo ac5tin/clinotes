@@ -3849,6 +3849,7 @@ lunarvim
   - LvimUpdate
   - PackerUpdate / PackerSync
 - NVIMTree
+    - file info: ctrl+k
     - toggle hidden folders: shift + i
     - toggle dotfiles: shift + h
     - refresh tree: shift + r
