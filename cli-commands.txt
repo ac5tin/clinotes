@@ -3846,6 +3846,8 @@ lunarvim
     - next: spc + l + j
     - document diagnostics: spc + l + d
     - view line diagnostics: gl
+- ctrl+e: copilot
+- ctrl+t: popup terminal
 - peek definition: gp
 - go to definition: gd
 - go to buffer: spc + b + j + <LETTER>
