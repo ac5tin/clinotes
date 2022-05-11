@@ -3848,6 +3848,8 @@ lunarvim
     - view line diagnostics: gl
 - ctrl+e: copilot
 - ctrl+t: popup terminal
+    - enter normal mode(for scroll): c+\ ctrl+n
+        - back to insert mode: i
 - peek definition: gp
 - go to definition: gd
 - go to buffer: spc + b + j + <LETTER>
