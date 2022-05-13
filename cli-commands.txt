@@ -1606,6 +1606,10 @@ bash/zsh + linux terminal cli tools commands
 - rustc: rust compiler
     - list supported targets: rustc --print target-list
     - list supported cpus: rustc --target=x86_64-unknown-linux-gnu --print target-cpus
+- nmtui: network management
+- nmcli: network manager cli
+    - locate ssid: nmcli dev wifi
+    - connect: nmcli device wifi connect APname password password
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
