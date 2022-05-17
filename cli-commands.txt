@@ -564,6 +564,7 @@ bash/zsh + linux terminal cli tools commands
 	- to mp3: youtube-dl -x --audio-format mp3 url
 	- manual:  tldr youtube-dl
 - IRC client: weechat
+    - multiline: alt+enter
     - set ssl_cert :  "%h/certs/freenode.pem"
     - set nickname: /nick foobar
     - check user mode: /mode
