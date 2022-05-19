@@ -1281,6 +1281,7 @@ bash/zsh + linux terminal cli tools commands
     - next : >
     - prev: <
     - play/pause: p / <SPACE>
+    - screenshot: s
  - qrencode
     - wireguard: sudo cat /etc/wireguard/clients/user0/user0.conf | qrencode -t ansiutf8
 - musikcube
