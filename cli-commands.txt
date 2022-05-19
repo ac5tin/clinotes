@@ -1611,6 +1611,8 @@ bash/zsh + linux terminal cli tools commands
 - nmcli: network manager cli
     - locate ssid: nmcli dev wifi
     - connect: nmcli device wifi connect APname password password
+- unclutter: hide x11 mouse cursor
+    - start in background: unclutter &
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
