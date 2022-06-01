@@ -4182,6 +4182,8 @@ Kitty
 - view image: kitty +kitten icat image.jpeg
 - diff files: kitty +kitten diff file1 file2
 
+- type emojis: ctrl+shift+u
+
 - kittens: {https://wiki.archlinux.org/title/kitty,https://sw.kovidgoyal.net/kitty/kittens_intro/}
 
 
