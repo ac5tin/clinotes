@@ -707,6 +707,33 @@ bash/zsh + linux terminal cli tools commands
     - vtop
     - nmon
     - gtop
+- top: monitor linux processes
+    - sort CPU:
+        - high to low: top -o +%CPU
+        - low to high: top -o -%CPU
+    - sort memory:
+        - top -o +%MEM
+    - sort pid:
+        - top -o +%PID
+    - field descriptions:
+        - PID: process id
+        - USER: owner
+        - PR: priority
+        - NI: nice value, negative = higher priority, positive = lower priority
+        - VIRT: virtual memory used
+        - RES: resident memory
+        - SHR: shared memory
+        - S: status
+            - D: uninterruptibe sleep
+            - I: idle
+            - R: running
+            - S: sleeping
+            - T: stopped by job control signal
+            - t: stopped by debugger during trace
+            - Z: zombie
+        - %CPU: cpu usage
+        - %MEM: memory usage
+    - {https://www.linuxcommands.site/linux-monitor-commands/top-sort-by-cpu-by-memory-in-linux/}
 - json processor : jq
     - e.g.: curl httpbin.org/ip | jq
     - filter: .foo.bar
