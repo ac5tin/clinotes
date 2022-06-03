@@ -1641,6 +1641,14 @@ bash/zsh + linux terminal cli tools commands
     - connect: nmcli device wifi connect APname password password
 - unclutter: hide x11 mouse cursor
     - start in background: unclutter &
+- animwall: set animated wallpaper
+    - config file: ~/.confg/animwall/animwall.conf
+    - vertical dual monitor:
+        ~/images/wallpaper/1.gif:1920x1080+0+0:0
+        ~/images/wallpaper/3.gif:1920x1200+0+1080:0
+    - horizontal dual monitor:
+        ~/images/wallpaper/1.gif:1920x1080+0+0:0
+        ~/images/wallpaper/3.gif:1920x1080+1920+0:0
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
