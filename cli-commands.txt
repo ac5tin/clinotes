@@ -1898,8 +1898,20 @@ gpg auto-sign git commits
 ---------------------------------------------------------------------
 github SSH key
 ---------------------------------------------------------------------
+- edit ~/.gitconfig:
+    [user]
+        email = austinchang4@gmail.com
+        signingkey = 123456A1B12C123D
+    [commit]
+        gpgsign = true
+    [gpg]
+        program = gpg2
+    [url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+
 - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 - add ssh key: cat ~/.ssh/id_rsa.pub
+- {https://www.digitalocean.com/community/tutorials/how-to-use-a-private-go-module-in-your-own-project}
 
 ---------------------------------------------------------------------
 install nodejs + yarn on debian/ubuntu
