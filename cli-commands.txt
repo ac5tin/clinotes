@@ -267,6 +267,11 @@ bash/zsh + linux terminal cli tools commands
 		- dir: nz a -cc test.nz -r test
 	- (.zpaq) zpaq: zpaq add test.zpaq test -m5
 		- max: zpaq add test.zpaq test -m611 -t1
+    - (.bzip3): bzip3 (spiritual successor of bzip2)
+        - max: bzip3 -e -b 511 -j 4 myfile
+        - flags:
+            - -b: block size in MiB
+            - -j: parallel threads
 - extract:
     - (.tar.xz / .tar.gz):   tar xpvf XXXX.tar.xz
     - (.tar.xz) tar xJvf abc.tar.xz
@@ -1256,7 +1261,8 @@ bash/zsh + linux terminal cli tools commands
 - farbfeld
 	- encode: png2ff
 		- png2ff < abc.png > abc.ff
-		- png2ff < abc.png | bzip2 -9 > abc.ff.bz2
+		- png2ff < abc.png | bzip2 -9 -k > abc.ff.bz2
+		- png2ff < abc.png | bzip3 -e -b 511 -j 4 > abc.ff.bz3
 	- decode: ff2png
 		- ff2png < abc.ff > abc.png
 		- bzcat abc.ff.bz2 | ff2png > abc.png
