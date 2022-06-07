@@ -1655,6 +1655,8 @@ bash/zsh + linux terminal cli tools commands
     - horizontal dual monitor:
         ~/images/wallpaper/1.gif:1920x1080+0+0:0
         ~/images/wallpaper/3.gif:1920x1080+1920+0:0
+- cargo: rust package manager
+    - update packages: cargo update
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
