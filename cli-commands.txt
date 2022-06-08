@@ -1657,6 +1657,8 @@ bash/zsh + linux terminal cli tools commands
         ~/images/wallpaper/3.gif:1920x1080+1920+0:0
 - cargo: rust package manager
     - update packages: cargo update
+- sea-orm-cli:
+    - sea generate entity -u postgres://user:password@my.db.instance/mydb -s myschema -o entity/src -v
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
