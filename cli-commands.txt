@@ -3930,6 +3930,7 @@ lunarvim
 - wipeout buffer (except current) : spc + b + e
 - resize window: ctrl + (up/down/left/arrow) key
 - move to buffer: ctrl + h,l,j,k
+- git blame: spc g l
 - install LSP for a language:
     - LspInstall typescript
     - {https://github.com/kabouzeid/nvim-lspinstall}
