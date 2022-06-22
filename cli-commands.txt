@@ -1659,6 +1659,10 @@ bash/zsh + linux terminal cli tools commands
     - update packages: cargo update
 - sea-orm-cli:
     - sea generate entity -u postgres://user:password@my.db.instance/mydb -s myschema -o entity/src -v
+- vagrant: virtual machine manager
+    - vagrant init ubuntu/bionic64
+    - start: vagrant up
+    - teardown: vagrant destroy
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
