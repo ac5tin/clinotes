@@ -1800,6 +1800,13 @@ useful enumeration tools & checks
 - port knocking
   - check /etc/knockd.conf
 ---------------------------------------------------------------------
+virtualbox installation
+---------------------------------------------------------------------
+- yay -S virtualbox
+- yay virtualbox-host-modules
+- must load module first: modprobe vboxdrv
+
+---------------------------------------------------------------------
 virtualbox setup internal network
 ---------------------------------------------------------------------
 - set network to internal network
