@@ -1663,6 +1663,8 @@ bash/zsh + linux terminal cli tools commands
     - vagrant init ubuntu/bionic64
     - start: vagrant up
     - teardown: vagrant destroy
+- linkerd
+    - check env: linkerd check
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
