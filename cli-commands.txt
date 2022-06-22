@@ -1662,6 +1662,12 @@ bash/zsh + linux terminal cli tools commands
 - vagrant: virtual machine manager
     - vagrant init ubuntu/bionic64
     - start: vagrant up
+    - list: vagrant box list
+    - ssh into machine: vagrant ssh
+        - fix/kitty:
+            - vagrant ssh-config > vagrant-ssh
+            - kitty +kitten ssh -F vagrant-ssh default
+            - {https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh}
     - teardown: vagrant destroy
 - linkerd
     - check env: linkerd check
