@@ -1669,6 +1669,10 @@ bash/zsh + linux terminal cli tools commands
             - kitty +kitten ssh -F vagrant-ssh default
             - {https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh}
     - reboot: vagrant reload
+    - save state: vagrant snapshot save mysnapshot
+    - delete state: vagrant snapshot delete mysnapshot
+    - restore state: vagrant snapshot restore mysnapshot
+    - list states: vagrant snapshot list
     - teardown: vagrant destroy
 - linkerd
     - check env: linkerd check
