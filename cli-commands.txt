@@ -1676,6 +1676,11 @@ bash/zsh + linux terminal cli tools commands
     - teardown: vagrant destroy
 - linkerd
     - check env: linkerd check
+- tailscale
+    - enable service: sudo systemctl enable --now tailscaled
+    - connect: sudo tailscale up
+    - get ipv4 addr: tailscale ip -4
+    - {https://tailscale.com/download/linux/arch}
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
