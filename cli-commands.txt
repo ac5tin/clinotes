@@ -1082,7 +1082,13 @@ bash/zsh + linux terminal cli tools commands
     - default deny all incoming: sudo ufw default deny incoming
     - check status: ufw status
     - reset: sudo ufw reset
+    - only allow ssh for certain ip: sudo ufw allow from 123.456.7.8 proto tcp to any port 22
+        - restrict to only allow tcp ssh protocol
+    - list rules with numbers: ufw status numbered
+    - delete rule: ufw delete <number>
     - {https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04#:~:text=By%20default%2C%20UFW%20is%20set,to%20reach%20the%20outside%20world.}
+    - {https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands}
+    - {https://linuxhint.com/ufw_list_rules/}
 - remove all folders : rm -R -- */
 - count lines from grep: grep abc | wc -l
 - fix broken install: apt --fix-broken install
