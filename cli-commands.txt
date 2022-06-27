@@ -13,6 +13,7 @@ bash/zsh + linux terminal cli tools commands
 - move multiple files: mv -t DESTINATION file1 file2
 - move all folders: mv  -v ~/Downloads/* ~/Videos/
 - check battery status: upower -i /org/freedesktop/UPower/devices/battery_BAT0
+- clear screen: ctrl+l
 - tmux (with oh-my-tmux installed)
     - C-b + 
             - %  split vertically            |
