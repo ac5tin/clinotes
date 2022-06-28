@@ -2453,6 +2453,7 @@ kubernetes
         - context:
           - list: kubectl config get-contexts
           - switch to context: kubectl config use-context CONTEXT_NAME
+	- copy directory: kubectl cp mydir/ mypod:/media/ -n myns
     - autoscale:
         - kubectl autoscale deployment foobar --cpu-percent=80 --min=5 --max=10
         - get horizontal pod autoscaler info:
