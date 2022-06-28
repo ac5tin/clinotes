@@ -1577,6 +1577,8 @@ bash/zsh + linux terminal cli tools commands
           - role: worker
     - list clusters: kind get clusters
     - delete cluster: kind delete cluster --name mycluster
+    - get nodes: kind get nodes --name cluster0
+    - load images: kind load docker-image myimage --name cluster0
 - tab-rs: terminal multiplexer
     - list tabs: tab -l
     - go into tab: tab mytab
