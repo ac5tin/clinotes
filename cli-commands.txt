@@ -1579,6 +1579,13 @@ bash/zsh + linux terminal cli tools commands
     - delete cluster: kind delete cluster --name mycluster
     - get nodes: kind get nodes --name cluster0
     - load images: kind load docker-image myimage --name cluster0
+- k3d: lightweight k3s wrapped in docker
+    - create: k3d cluster create cluster0
+    - create multi-node:
+        - multi master: k3d cluster create cluster0 --servers 3
+        - multi worker: k3d cluster create cluster0 --servers 2 --agents 3
+    - delete : k3d cluster delete cluster0
+
 - tab-rs: terminal multiplexer
     - list tabs: tab -l
     - go into tab: tab mytab
