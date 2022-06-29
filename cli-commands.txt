@@ -1697,6 +1697,24 @@ bash/zsh + linux terminal cli tools commands
     - connect: sudo tailscale up
     - get ipv4 addr: tailscale ip -4
     - {https://tailscale.com/download/linux/arch}
+- dnf: YUM successor (RPM package manager)
+    - install: dnf install <package>
+    - update: dnf update (deprecated)
+        - dnf update bash -y
+    - remove: dnf remove <package>
+    - list: dnf list installed
+    - search: dnf search <package>
+    - info: dnf info <package>
+    - check update: dnf check-update
+    - remove not required pkgs: dnf autoremove
+    - upgrade: dnf upgrade
+        - preferred overd dnf update
+        - force immediate update of repo list: dnf upgrade --refresh
+    - downlod package: dnf download <package>
+    - clear cache: dnf clean all
+
+- lchsh: fedora version of chsh
+    - sudo lchsh $USER
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
