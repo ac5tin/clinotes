@@ -1590,6 +1590,7 @@ bash/zsh + linux terminal cli tools commands
         - multi master: k3d cluster create cluster0 --servers 3
         - multi worker: k3d cluster create cluster0 --servers 2 --agents 3
     - delete : k3d cluster delete cluster0
+    - import image from docker: k3d image import myimage -c mycluster
 
 - tab-rs: terminal multiplexer
     - list tabs: tab -l
