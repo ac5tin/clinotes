@@ -1110,6 +1110,8 @@ bash/zsh + linux terminal cli tools commands
 - inspect program with memory usage:
     - ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort rss 
         - sort high to low: -rss
+    - top 10: ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss |head -n 10
+- top lines in command: cmd |head -n 10
 - see working dir of running process: pwdx 3461
 	- pipe pgrep: pgrep node |xargs pwdx
 - npx : npm package runtime
