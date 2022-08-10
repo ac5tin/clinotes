@@ -1111,6 +1111,8 @@ bash/zsh + linux terminal cli tools commands
     - ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort rss 
         - sort high to low: -rss
     - top 10: ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss |head -n 10
+    - with numft: ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss |head -n 10 |grep -v "Isolated Web"| numfmt --header --to=
+iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column -t
 - top lines in command: cmd |head -n 10
 - see working dir of running process: pwdx 3461
 	- pipe pgrep: pgrep node |xargs pwdx
