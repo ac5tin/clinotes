@@ -2460,6 +2460,7 @@ kubernetes
 		- uptodate = no. of replicas updated
 		- available = no. of replicas available
 	- proxy: proxy
+        - stop proxy: pkill -9 -f "kubectl proxy"
 	- pods: get pods
 		- pods in deployment label: get pods -l run=foo
 		- details: get pods -o wide
