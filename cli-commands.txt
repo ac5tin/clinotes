@@ -1370,6 +1370,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 	- remove unused/None images: docker image prune
 	- remove stopped containers :  docker rm (docker ps -a -q)
 	- remove by search:  docker image list |grep foobar |awk '{print $1}'|xargs docker image rm
+    - clean up: docker system prune -a
+    - clean volume: docker volume prune -f
 	- run without sudo:
 		- sudo groupadd docker
 		- sudo gpasswd -a $USER docker
