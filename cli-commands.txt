@@ -1743,6 +1743,10 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - mycli , pgcli / litecli: cli db client
     - export data to csv: \T csv; \o ~/Downloads/site_diary.csv;SELECT * from mytable limit 10;
 
+- ffuf: fast web fuzzer
+    - dir: ffuf -ic -w ./dirs.txt -e '' -u "http://192.168.1.2:8080/FUZZ" -r
+    - subdomain: ffuf -ic -w ./subdomains.txt -e '' -u "https://www.example.com" -H "Host: FUZZ.example.com" -o example_subdomain.json
+    - follow redirect: -r
 
 =======
 - valgrind: memory error checker
@@ -3895,6 +3899,7 @@ download (save as) current link: d
 download manager: D
 quit: q
 get header: |
+get doc raw html: \
 get doc info: =
 
 re-written config
