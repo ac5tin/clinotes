@@ -188,6 +188,8 @@ bash/zsh + linux terminal cli tools commands
     - scan with vulns: --script vuln
       - example: nmap -T4 -A --script vuln -P0 123.456.789.111
     - {https://www.redhat.com/sysadmin/quick-nmap-inventory}
+- masscan: internet scale port scanner
+    - scan with range: masscan --range 192.168.0.255-192.168.10.255 --top-ports 100 --rate 10000 > results
 - access device: telnet 192.168.1.1 23
     - test HTTP:     GET / HTTP/1.1
       host: 138.253.207.103
