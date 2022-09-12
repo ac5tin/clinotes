@@ -681,6 +681,7 @@ bash/zsh + linux terminal cli tools commands
         - good quality : ffmpeg -i orig.mp4 -c:v libvpx-vp9 -c:a libopus -b:v 0 -b:a 0 -crf 30 win.webm
     - batch convert : for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done
         - multiple extensions: for i in *.{avi,mkv}
+    - add subs to video: ffmpeg -i myvid.raw.mp4 -i subs.srt  -c copy -c:s copy -metadata:s:s:0 language=eng myvid.subs.mkv
 
 - file transfer :
     - transfer.sh :
