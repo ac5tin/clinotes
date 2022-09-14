@@ -1417,6 +1417,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - install: helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system --set defaultBackend.enabled=false
     - list: helm list -n kube-system
         - all: helm ls -A
+    - get existing values: helm get values grafana -n monitor
+    - get all existing values: helm get values grafana -n monitor -a
 - ix.io: sane text paste service
     - cat ~/.config/mimeapps.list |curl -F 'f:1=<-' ix.io
 - hydra: password cracker (bruteforce)
