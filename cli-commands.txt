@@ -1756,9 +1756,11 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - subdomain: ffuf -ic -w ./subdomains.txt -e '' -u "https://www.example.com" -H "Host: FUZZ.example.com" -o example_subdomain.json
     - follow redirect: -r
 
-=======
 - valgrind: memory error checker
     - valgrind --leak-check=full --show-leak-kinds=all myExecutable
+
+- last: check last successful login
+- lastb: check last failed login
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
