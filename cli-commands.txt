@@ -2381,6 +2381,9 @@ remove k3s
 create new user
 ---------------------------------------------------------------------
 - sudo adduser new_user
+- archlinux: 
+    - sudo adduser new_user
+    - sudo usermod -aG wheel new_user
 - add to sudoers:
 	- sudo usermod -aG sudo bob
     - set user primary group: usermod -g sudo bob
@@ -4386,8 +4389,19 @@ Sourcehut (sr.ht)
   - {https://man.sr.ht/tutorials/set-up-account-and-git.md}
 
 ---------------------------------------------------------------------
-TEMPLATE
+Linux set ssh key login only
 ---------------------------------------------------------------------
+- generate ssh key on local machine
+- copy key to target server
+    - ssh-copy-id user@host
+- disable password login
+    - edit /etc/ssh/sshd_config
+    - change PasswordAuthentication to no
+- restart ssh service
+    - sudo systemctl restart sshd
+
+- https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+
 ---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
