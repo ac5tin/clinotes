@@ -1894,13 +1894,29 @@ useful enumeration tools & checks
   - nikto
   - dirb
   - ffuf
-  - sqlmap
+  - burp suite
+  - gobuster
+  - wfuzz
+  - wpscan
+  - whatweb
+  - wafw00f
+  - dirsearch
+  - joomscan
+  - droopescan
+  - jexboss
   - checks:
     - LFI
 - search exploits:
   - searchsploit
 - port knocking
   - check /etc/knockd.conf
+
+---------------------------------------------------------------------
+useful exploitation tools
+---------------------------------------------------------------------
+- sql injection
+    - sqlmap
+
 ---------------------------------------------------------------------
 virtualbox installation
 ---------------------------------------------------------------------
