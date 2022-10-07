@@ -461,6 +461,7 @@ bash/zsh + linux terminal cli tools commands
     - ip a s | grep -w inet | awk '{ print $2}'
     - ip route get 1.2.3.4 | awk '{print $7}'
 - empty file: truncate -s 0 foo.txt
+    - empty file with size: truncate -s 100M foo.txt
 - see sysinfo:  
     - neofetch
     - lsb_release -a
