@@ -1769,6 +1769,12 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 
 - last: check last successful login
 - lastb: check last failed login
+- trivy: vulnerability scanner
+    - dir: trivy fs .
+    - image: trivy image myimage
+- grype: vulnerability scanner
+    - dir: grype dir:./ --add-cpes-if-none
+    - image: grype podman:myimage
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
