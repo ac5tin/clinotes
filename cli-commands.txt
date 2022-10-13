@@ -89,6 +89,7 @@ bash/zsh + linux terminal cli tools commands
 - add permission:
     - chmod +x 
     - All permissions: sudo chmod -R 777
+    - allow others to read+write: chmod o=rw myfile
     - format:
         - chmod {who}{what}{which}
             - chmod u+x
