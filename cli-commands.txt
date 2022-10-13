@@ -1790,6 +1790,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - filters:
         - source IP: tshark -r cap.pcap ip.src="192.168.1.1"
         - dest IP: tshark -r cap.pcap ip.dst="192.168.1.1"
+    - write to file: sudo tshark -i any -w cap
+        - allow read permissions: sudo chmod o=rw cap
     - examples:
         - capture with host and export http objects: sudo tshark -f "host 192.168.1.123 and tcp port 80" --expo
 rt-objects http,objs
