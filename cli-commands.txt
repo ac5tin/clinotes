@@ -1779,6 +1779,19 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - grype: vulnerability scanner
     - dir: grype dir:./ --add-cpes-if-none
     - image: grype podman:myimage
+- tshark: network analyzer
+    - list interfaces: tshark -D
+    - capture: tshark -i eth0 -w capture.pcap
+    - filter: tshark -i eth0 -f "tcp port 80"
+    - display: tshark -r capture.pcap
+    - capture over all network: tshark -i any
+    - rotate: https://stackoverflow.com/questions/63717503/how-to-export-tshark-objects-without-stopping-it
+    - filters:
+        - source IP: tshark -r cap.pcap ip.src="192.168.1.1"
+        - dest IP: tshark -r cap.pcap ip.dst="192.168.1.1"
+    - examples:
+        - capture with host and export http objects: sudo tshark -f "host 192.168.1.123 and tcp port 80" --expo
+rt-objects http,objs
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
