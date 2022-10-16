@@ -1795,6 +1795,10 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - examples:
         - capture with host and export http objects: sudo tshark -f "host 192.168.1.123 and tcp port 80" --expo
 rt-objects http,objs
+- steghide: hide or extract data in media files
+    - hide: steghide embed -cf image.jpg -ef secret.txt
+    - extract: steghide extract -sf image.jpg
+    - info: steghide info image.jpg
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
