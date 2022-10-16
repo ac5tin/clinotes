@@ -1799,6 +1799,10 @@ rt-objects http,objs
     - hide: steghide embed -cf image.jpg -ef secret.txt
     - extract: steghide extract -sf image.jpg
     - info: steghide info image.jpg
+- stegcracker: steghide brute force
+    - stegcracker image.jpg /usr/share/wordlists/rockyou.txt
+- smbget: download files from smb share
+    - smbget -R smb://192.168.1.2/anonymous
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
