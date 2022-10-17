@@ -1805,6 +1805,8 @@ rt-objects http,objs
     - stegcracker image.jpg /usr/share/wordlists/rockyou.txt
 - smbget: download files from smb share
     - smbget -R smb://192.168.1.2/anonymous
+- smbclient: smb client
+    - connect with username: smbclient //192.168.1.2/secured -U myuser
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
