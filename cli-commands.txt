@@ -834,6 +834,7 @@ bash/zsh + linux terminal cli tools commands
     - first check location : sudo fdisk -l
         - fdisk is in /sbin
         - then sudo mount -t ntfs /dev/sda1 ~/mnt
+    - mount nfs: sudo mount -t nfs 192.168.1.2:/var/nfsshare ./mnt
     - format and mount:
         - check block volumes: lsblk
         - format into ext4: mkfs.ext4 /dev/sda
