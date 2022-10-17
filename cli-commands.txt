@@ -1235,6 +1235,7 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - find file with name: find / -name myfile 2>/dev/null
       - wildcard: find / -name *file 2>/dev/null
     - set max depth: find ~/ -maxdepth 2 -name '*rc'
+    - find files sorted by size: find . -type f -exec du -h {} + |sort -h
 - patch : patch -Np1 -i abc.diff
 - feh : image viewer
     - set wallpaper: feh --bg-scale picture.png
