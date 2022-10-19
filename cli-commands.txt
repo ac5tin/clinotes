@@ -1807,6 +1807,11 @@ rt-objects http,objs
     - smbget -R smb://192.168.1.2/anonymous
 - smbclient: smb client
     - connect with username: smbclient //192.168.1.2/secured -U myuser
+- trufflehog: find secrets in git repos
+    - fs: trufflehog filesystem --directory=/path
+    - github: trufflehog github --org=myorg
+    - inside container: podman run -it -v "$PWD:/pwd" trufflesecurity/trufflehog filesystem --directory=/pwd
+
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
