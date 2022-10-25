@@ -588,6 +588,7 @@ bash/zsh + linux terminal cli tools commands
 	- turn on/off autoconnect: /set irc.server.freenode.autoconnect on
 	- add tor: /proxy add tor socks5 127.0.0.1 9050
 		 - start tor first: sudo service tor start
+             - systemctl start tor.service 
 			 - reload tor: sudo service tor reload
 	- tor proxy: /set irc.server.freenode.proxy "tor"
 	- register: /msg NickServ REGISTER password youremail@example.com
