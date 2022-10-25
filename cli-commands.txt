@@ -1812,6 +1812,9 @@ rt-objects http,objs
     - fs: trufflehog filesystem --directory=/path
     - github: trufflehog github --org=myorg
     - inside container: podman run -it -v "$PWD:/pwd" trufflesecurity/trufflehog filesystem --directory=/pwd
+- torsocks: torify apps
+    - torsocks elinks
+    - torsocks ssh user@b.com
 
 
 ---------------------------------------------------------------------
