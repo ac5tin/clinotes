@@ -884,6 +884,7 @@ bash/zsh + linux terminal cli tools commands
     - access remote machine via key:
       - generate client machine ssh key (if ~/.ssh/id_rsa.pub doesn't exist already): ssh-keygen -t rsa
       - copy contents of key into target remote machine ~/.ssh/authorized_keys
+    - ssh tunnel: ssh -L 5432:0.0.0.0:5432 varadise@192.168.1.3
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
