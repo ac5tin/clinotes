@@ -1452,6 +1452,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - socat:
     - pipe stdout to socat: while true;ping -c3 google.com;date;sleep 5;end | socat - TCP-LISTEN:3128,reuseaddr,fork
     - listen on port: socat TCP-LISTEN:3128,reuseaddr,fork -
+    - redirect traffic: socat TCP-LISTEN:8081,fork,reuseaddr TCP:0.0.0.0:8080
+        - listen to port 8081 and redirect to localhost 8080
 - msfconsole: metasploit
     - go to session: sessions -i 3
     - sessions: sessions
