@@ -1818,6 +1818,45 @@ rt-objects http,objs
 - torsocks: torify apps
     - torsocks elinks
     - torsocks ssh user@b.com
+- gdb: gnu debugger
+    - gdb ./exec.test
+    - run: r
+    - break: b main
+        - break at malloc: b malloc
+        - break at file line: break file.c:133
+        - list break points: info break
+        - delete break point number: d 2
+    - backtrace: bt
+    - stack frame: info frame
+    - stack frame arguments: info args
+    - stack frame local variables: info locals
+    - next: n
+        - step over
+        - exec entire function
+    - step: s
+        - step into
+    - fin: step out
+    - continue: c
+    - lang specific:
+        - go:
+            - list running goroutines: info goroutines
+            - backtrace goroutine: goroutine 23 bt
+    - raw memory: x
+        - view top 10 elems on the stack: x/10x $rsp
+        - x myvar
+    - https://www.tutorialspoint.com/gn_debugger/gdb_commands.htm
+- delve: golang debugger
+    - tests: dlv test mygoproject/pkg/foobar
+        - list funcs: funcs foobar.Test*
+        - break funcs: break TestFoobar
+        - continue: c
+    - stack trace: stack
+    - step: s
+    - next source line: n
+    - local variables: locals
+    - print variable: p myvar
+        - length of arr: p len(myarr)
+        - nested: p len(myvar.arr)
 
 
 ---------------------------------------------------------------------
