@@ -2901,6 +2901,17 @@ golang
 - publish module with new version:
   - create tag: git tag -s v0.3.1 -m "v0.3.1"
   - GOPROXY=proxy.golang.org go list -m github.com/myusername/mypackage@v0.3.1
+- profiling
+    - go test -bench=. -cpuprofile=cpu.prof
+    - e.g.: go test -bench=. ./pkg/compress/ -count 5 -cpu 1 -benchmem -v -run=Bench -cpuprofile=cpuprof.out -memprofile=memprof.out
+    - pprof:
+        - cli: go tool pprof cpu.prof
+            - top
+        - web UI: go tool pprof -http=:8080 cpu.prof
+        - interpretation:
+            - cum: cumulative time (total exec time including sub functions)
+            - flat: time spent in the function itself
+            - sum%:  time/memory spend by previous lines 
 
 ---------------------------------------------------------------------
 jemalloc
