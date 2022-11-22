@@ -2943,6 +2943,8 @@ golang
 - profiling
     - go test -bench=. -cpuprofile=cpu.prof
     - e.g.: go test -bench=. ./pkg/compress/ -count 5 -cpu 1 -benchmem -v -run=Bench -cpuprofile=cpuprof.out -memprofile=memprof.out
+    - readings:
+        - heap allocations: x allocs/op
     - pprof:
         - cli: go tool pprof cpu.prof
             - top
@@ -2951,6 +2953,12 @@ golang
             - cum: cumulative time (total exec time including sub functions)
             - flat: time spent in the function itself
             - sum%:  time/memory spend by previous lines 
+- testing
+    - clear cache: go clean -testcache
+    - test pkg: go test myproj/pkg/mymod
+    - test with trace: go test -trace=trace.out myproj/pkg/mymod
+        - go tool trace trace.out
+
 
 ---------------------------------------------------------------------
 jemalloc
