@@ -1844,6 +1844,10 @@ rt-objects http,objs
     - raw memory: x
         - view top 10 elems on the stack: x/10x $rsp
         - x myvar
+    - watchpoints
+        - read/write: awatch myvar
+        - read: rwatch myvar
+        - https://www.thegeekstuff.com/2014/02/gdb-breakpoins-watchpoints/
     - https://www.tutorialspoint.com/gn_debugger/gdb_commands.htm
 - delve: golang debugger
     - tests: dlv test mygoproject/pkg/foobar
