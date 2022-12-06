@@ -1861,6 +1861,19 @@ rt-objects http,objs
     - print variable: p myvar
         - length of arr: p len(myarr)
         - nested: p len(myvar.arr)
+- k9s: kubernetes terminal ui
+    - popeye: :popeye
+    - pulses: :pulse
+    - sort by cpu: shift + c
+    - sort by memory: shift + m
+    - sort by cpu/r: shift + x
+    - sort by mem/r: shift + z
+    - sort by cpu/l: ctrl + x
+    - sort by mem/l: ctrl + q
+    - sort by namespace: shift + p
+    - sort by name: shift + n
+    - sort by node: shift + o
+    
 
 
 ---------------------------------------------------------------------
