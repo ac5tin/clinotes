@@ -4239,6 +4239,13 @@ lunarvim
      	- horizontal split (----) : ctrl + x
 	- vertical split (|) : ctrl + v
     - {https://github.com/kyazdani42/nvim-tree.lua}
+- Debugger
+    - toggle breakpoints: spc + d + t
+    - start debugger: spc + d + s
+    - step over: spc + d + o
+    - continue: spc + d + c
+    - toggle UI: spc + d + U
+    - quit: spc + d + q
 ---------------------------------------------------------------------
 vim
 ---------------------------------------------------------------------
