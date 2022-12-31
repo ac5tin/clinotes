@@ -1898,9 +1898,9 @@ rt-objects http,objs
         wrk.headers['Content-Type'] = "application/json"
         wrk.headers['X-Caller-Id'] = "austin"
         - wrk -c5 -t1 -d30s --timeout 100s -s wrk.lua http://
-    
-
-
+- fsck: check and repair file system
+    - force check: fsck -f /dev/sda1
+    - ready only fs check(for mounted fs): fsck -nf /dev/sda1
 ---------------------------------------------------------------------
 retrieve dbeaver password
 ---------------------------------------------------------------------
