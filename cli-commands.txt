@@ -1901,6 +1901,12 @@ rt-objects http,objs
 - fsck: check and repair file system
     - force check: fsck -f /dev/sda1
     - ready only fs check(for mounted fs): fsck -nf /dev/sda1
+- latex2html: convert latex to html
+    - latex2html test.tex -split 0 -no_navigation -info "" -address "" -html_version 4.0,unicode
+        - convert html to odt:
+            - libreoffice --headless --convert-to odt:"OpenDocument Text Flat XML" test/index.html
+    - https://askubuntu.com/questions/82634/how-to-convert-tex-into-odt
+
 ---------------------------------------------------------------------
 retrieve dbeaver password
 ---------------------------------------------------------------------
