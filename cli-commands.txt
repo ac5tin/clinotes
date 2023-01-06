@@ -1906,6 +1906,8 @@ rt-objects http,objs
         - convert html to odt:
             - libreoffice --headless --convert-to odt:"OpenDocument Text Flat XML" test/index.html
     - https://askubuntu.com/questions/82634/how-to-convert-tex-into-odt
+- pdflatex: latex to pdf
+    - pdflatex -halt-on-error -output-directory=/home/austin/temp/ report.tex
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
