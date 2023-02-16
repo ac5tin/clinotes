@@ -1805,9 +1805,9 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - tcpdump: network analyzer
     - list interfaces: tcpdump -D
     - capture: tcpdump -i eth0 -w capture.pcap
-    - filter: tcpdump -i eth0 -f "tcp port 80"
     - display: tcpdump -r capture.pcap
     - capture over all network: tcpdump -i any
+    - capture specific port: sudo tcpdump -i eth0 -nn -vv -s0 port 22
     - rotate: https://stackoverflow.com/questions/63717503/how-to-export-tshark-objects-without-stopping-it
     - filters:
         - source IP: tcpdump -r cap.pcap ip.src="
