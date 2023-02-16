@@ -1801,8 +1801,18 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - write to file: sudo tshark -i any -w cap
         - allow read permissions: sudo chmod o=rw cap
     - examples:
-        - capture with host and export http objects: sudo tshark -f "host 192.168.1.123 and tcp port 80" --expo
-rt-objects http,objs
+        - capture with host and export http objects: sudo tshark -f "host 192.168.1.123 and tcp port 80" --export-objects http,objs
+- tcpdump: network analyzer
+    - list interfaces: tcpdump -D
+    - capture: tcpdump -i eth0 -w capture.pcap
+    - filter: tcpdump -i eth0 -f "tcp port 80"
+    - display: tcpdump -r capture.pcap
+    - capture over all network: tcpdump -i any
+    - rotate: https://stackoverflow.com/questions/63717503/how-to-export-tshark-objects-without-stopping-it
+    - filters:
+        - source IP: tcpdump -r cap.pcap ip.src="
+    - capture and write to file (3M): sudo tcpdump -i eth1 -nn -vv -s0 -w out.pcap -C 3 -Z myuser
+    - file size: -C <size in MB>
 - steghide: hide or extract data in media files
     - hide: steghide embed -cf image.jpg -ef secret.txt
     - extract: steghide extract -sf image.jpg
