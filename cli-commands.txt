@@ -1918,6 +1918,75 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - https://askubuntu.com/questions/82634/how-to-convert-tex-into-odt
 - pdflatex: latex to pdf
     - pdflatex -halt-on-error -output-directory=/home/austin/temp/ report.tex
+- lsof: 
+    - Check ports in use: lsof -i -P -n |grep LISTEN
+
+---------------------------------------------------------------------
+nftables
+---------------------------------------------------------------------
+# list nftable rules
+nft list table <table_name> - This command lists all the rules in the specified table.
+nft list chain <chain_name> - This command lists all the rules in the specified chain.
+nft -a list ruleset - This command lists all the rules in the current ruleset, including their handles.
+nft -n -a list table <table_name> - This command lists all the rules in the specified table, including their handles and packet/byte counters.
+nft -n -a list chain <chain_name> - This command lists all the rules in the specified chain, including their handles and packet/byte counters.
+nft -n -a list rule <handle> - This command lists the rule with the specified handle, including its handle and packet/byte counters.
+
+
+# First, create a new table for the firewall rules
+nft add table inet my_firewall
+
+# Define a new chain to handle incoming traffic
+nft add chain inet my_firewall input { type filter hook input priority 0 \; }
+
+# Add a rule to allow SSH traffic from a specific IP address
+nft add rule inet my_firewall input tcp dport 22 ip saddr 192.168.0.100 accept
+
+# Add a rule to deny all other incoming traffic
+nft add rule inet my_firewall input drop
+
+---------------------------------------------------------------------
+tshark
+---------------------------------------------------------------------
+# capture 5432 tcp port and export tcp payload
+tshark -t ad -r cap -Y "tcp.port == 5432 and tcp" -T fields -e tcp.payload > out
+
+# capture tcp payload data and decode it
+tshark -t ad -r cap -Y "tcp.port == 5432 and tcp" -T fields -e tcp.payload|strings|xxd -r -p
+
+# export postgres data
+tshark -t ad -r cap -Y "tcp.port == 5432 and pgsql" -e pgsql.query -T fields
+
+# export data with timestamp
+tshark -t ad -r cap -Y "tcp.port == 5432 and pgsql" -T fields -e pgsql.query -e ip.src -e frame.time
+
+# capture udp payload data and decode it
+tshark -t ad -r cap-20230224-045241.pcap -Y "ip.src == 192.168.51.72 and udp" -T fields -e udp.payload|strings|xxd -r -p > out
+
+# capture udp payload, export multiple fields and decode payload
+tshark -t ad -r cap-20230224-045241.pcap -Y "ip.src == 192.168.51.72 and udp" -T fields -e ip.src -e frame.time -e udp.payload | awk -F '\t' '{print $1 "\t" $2 | "cat"; cmd = "echo " $3 " | xxd -r -p"; system(cmd);}' > out
+tshark -t ad -r cap-20230224-045241.pcap -Y "ip.src == 192.168.51.72 and udp" -T fields -e ip.src -e frame.time -e udp.payload | awk -F '\t' '{print $1 "\t" $2 "\n" system("echo " $3 " | xxd -r -p")}' > out
+
+# Find Hostnames
+tshark -t ad -r cap-20230227-215128.pcap -Y "dns.flags.response == 0 and dns.qry.type == 1 and dns.qry.name contains \".local\" and udp.srcport == 5353" > out
+
+---------------------------------------------------------------------
+tcpdump
+---------------------------------------------------------------------
+# Print packets in ASCII
+tcpdump -r cap -n -A "tcp port 5432" > out
+
+# parse + print packets + headers in Hex + ASCII
+tcpdump -r cap -nn -X "tcp port 5432" > out
+
+# Track network + rotate files
+sudo tcpdump -i eth1 -nn -s0 -w '/home/vagrant/Documents/dumps/cap-%Y%m%d-%H%M%S.pcap' -G 3600 -C 100 -W 48 -Z root
+
+# merge multiple pcaps into single pcap
+mergecap -w cap-20230226 cap-20230226*
+
+# Cheatsheet
+https://www.comparitech.com/net-admin/tcpdump-cheat-sheet/
 
 ---------------------------------------------------------------------
 retrieve dbeaver password
