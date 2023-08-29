@@ -796,6 +796,7 @@ bash/zsh + linux terminal cli tools commands
     - AUR comments: -C
     - output PKGBUILD : -Sp
     - clear cache: -Scc
+    - find all files installed by a package: -Ql <package_name>
 - webp:
     - encode: 
         - cwebp foo.jpg -o foo.webp
