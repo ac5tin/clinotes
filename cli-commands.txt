@@ -1951,6 +1951,33 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+Cowrie
+---------------------------------------------------------------------
+# create user db file
+create etc/userdb.txt
+    myuser:x:mypass123
+
+
+# enable port 22
+sudo sysctl -w net.ipv4.ip_unprivileged_port_start=22
+
+# run script
+#!/bin/sh
+
+# sudo sysctl -w net.ipv4.ip_unprivileged_port_start=22
+
+podman run \
+    --rm \
+    -it \
+    --name cowrie \
+    --publish 22:2222 \
+    --publish 23:2223 \
+    --mount type=bind,source=./etc/userdb.txt,target=/cowrie/cowrie
+-git/etc/userdb.txt \
+    --read-only \
+    cowrie/cowrie:latest
+
+---------------------------------------------------------------------
 SFTP
 ---------------------------------------------------------------------
 # Only Grant SFTP access
