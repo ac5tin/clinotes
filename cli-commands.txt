@@ -1761,6 +1761,7 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - restore state: vagrant snapshot restore mysnapshot
     - list states: vagrant snapshot list
     - teardown: vagrant destroy
+    - remove box with version: vagrant box remove <box_name> --box-version <box_version>
 - linkerd
     - check env: linkerd check
 - tailscale
