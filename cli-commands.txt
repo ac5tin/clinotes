@@ -1957,6 +1957,12 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - kubectl get ingress -n auth -o json|fx
 
 ---------------------------------------------------------------------
+Modify Ubuntu static IPv4 address
+---------------------------------------------------------------------
+sudo vi /etc/netplan/01-netcfg.yaml
+sudo netplan apply
+
+---------------------------------------------------------------------
 Cassandra
 ---------------------------------------------------------------------
 # Snapshot everything (all keyspaces)
