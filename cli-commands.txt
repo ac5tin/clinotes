@@ -1951,6 +1951,19 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+SFTP
+---------------------------------------------------------------------
+# Only Grant SFTP access
+Match User sftp_user
+    DisableForwarding yes
+    ForceCommand internal-sftp
+    X11Forwarding no
+    AllowTcpForwarding no
+    AllowAgentForwarding no
+    PermitTTY no
+    PermitTunnel no
+
+---------------------------------------------------------------------
 Find opened ports without lsof,netstat,ss
 ---------------------------------------------------------------------
 cat /proc/net/tcp
