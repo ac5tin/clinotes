@@ -1951,6 +1951,15 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+Cassandra
+---------------------------------------------------------------------
+# Snapshot everything (all keyspaces)
+nodetool snapshot -t mysnapshot
+
+# restore table
+nodetool -u username refresh mykeyspace mytable
+
+---------------------------------------------------------------------
 Extend disk
 ---------------------------------------------------------------------
 # Grow
