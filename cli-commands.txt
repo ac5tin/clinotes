@@ -1948,6 +1948,19 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+Ansible
+---------------------------------------------------------------------
+# Ping all hosts
+ansible -i inventory.yaml all -m ping
+
+# Ping specific host
+ansible -i inventory.yaml host1 -m ping
+
+# Run playbook
+ansible-playbook -i inventory.yaml playbook.yaml
+
+
+---------------------------------------------------------------------
 nftables
 ---------------------------------------------------------------------
 # list nftable rules
