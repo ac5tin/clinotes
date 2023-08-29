@@ -1703,6 +1703,14 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - nmcli: network manager cli
     - locate ssid: nmcli dev wifi
     - connect: nmcli device wifi connect APname password password
+    - show wifi password + qr code:
+        - nmcli dev wifi show
+    - show devices and connections:
+        - nmcli d
+    - show active connections only:
+        - nmcli con show --active
+    - disconnect
+        - nmcli con down id connectionname
 - unclutter: hide x11 mouse cursor
     - start in background: unclutter &
 - animwall: set animated wallpaper
