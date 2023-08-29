@@ -3110,6 +3110,24 @@ weechat setup
 - reconnect freenode
 - {https://szorfein.github.io/weechat/tor/configure-weechat/}
 
+
+# add server
+/server add libera irc.libera.chat/6697 -ssl
+
+# enable ssl
+/set irc.server.libera.addresses "irc.libera.chat/6697"
+/set irc.server.libera.ssl on
+
+# set username
+/set irc.server.libera.nicks "mynick,mynick2,mynick3,mynick4,mynick5"
+/set irc.server.libera.username "My user name"
+
+## Setup SASL
+/set irc.server.libera.sasl_mechanism PLAIN
+/set irc.server.libera.sasl_username <nickname>
+/set irc.server.libera.sasl_password <password>
+/save
+
 ---------------------------------------------------------------------
 bulk rename
 ---------------------------------------------------------------------
