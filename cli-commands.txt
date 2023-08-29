@@ -1949,6 +1949,17 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - glow: terminal markdown viewer
     - open file in pager mode
         - glow -p myfile.md
+---------------------------------------------------------------------
+MINIO Client
+---------------------------------------------------------------------
+# Add Alias
+mcli alias set hyd-prod https://minio.rmms.hk ACCESS_KEY SECRET_KEY --api S3v4
+
+# List files
+mcli ls hyd-prod
+
+# Copy entire bucket
+mcli cp --recursive hyd-prod/filesvc/ hyd-uat/filesvc
 
 ---------------------------------------------------------------------
 Ansible
