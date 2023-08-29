@@ -1920,6 +1920,9 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
     - pdflatex -halt-on-error -output-directory=/home/austin/temp/ report.tex
 - lsof: 
     - Check ports in use: lsof -i -P -n |grep LISTEN
+- glow: terminal markdown viewer
+    - open file in pager mode
+        - glow -p myfile.md
 
 ---------------------------------------------------------------------
 nftables
