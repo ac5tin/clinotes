@@ -1951,6 +1951,27 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+Extend disk
+---------------------------------------------------------------------
+# Grow
+sudo growpart /dev/sda3 1
+
+# Extend
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+# resize
+sudo resize2fs /dev/sda3
+sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+# If on ESXi
+sudo parted
+print
+resizepart 3
+100% # or  32.2GB
+q # quit
+sudo resize2fs /dev/sda3
+
+---------------------------------------------------------------------
 Cowrie
 ---------------------------------------------------------------------
 # create user db file
