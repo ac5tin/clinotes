@@ -1765,6 +1765,7 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - copy: ctrl+shift+c
         - reset: ctrl+u
         - cycle: ctrl+r
+    - get emoji drop down: ctrl + shift + u
 - mycli , pgcli / litecli: cli db client
     - export data to csv: \T csv; \o ~/Downloads/site_diary.csv;SELECT * from mytable limit 10;
 
