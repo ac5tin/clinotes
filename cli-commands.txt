@@ -1977,6 +1977,32 @@ podman run \
     --read-only \
     cowrie/cowrie:latest
 
+
+---------------------------------------------------------------------
+# Bubblewrap
+---------------------------------------------------------------------
+
+# Run with read only file system
+bwrap --ro-bind / / --dev-bind /dev /dev --proc /proc --unshare-all --die-with-parent myapp
+
+# Run with read only file system (specific directory only)
+bwrap --ro-bind /home/austin/bin /apps --ro-bind /home/austin/temp /temp --dev /dev/null --proc /proc --tmpfs /tmp --tmpfs /var/tmp --unshare-all --die-with-parent --chdir /apps /apps/simplepwd -f /temp/pass
+bwrap --ro-bind /usr/bin/date /apps/app --dev /dev/null --proc /proc --tmpfs /tmp --tmpfs /var/tmp --unshare-all --die-with-parent --chdir /apps ./app
+
+# Run with read only fs + binary
+bwrap --ro-bind ./bin/general /apps/app --dev /dev/null --proc /proc --tmpfs /tmp --tmpfs /var/tmp --unshare-all --die-with-parent --chdir /apps --ro-bind config.toml /apps/config.toml --ro-bind schema /apps/schema ./app -c config.toml
+
+
+---------------------------------------------------------------------
+# Firejail
+---------------------------------------------------------------------
+# Run with apparmor
+firejail --apparmor --seccomp firefox
+
+# disable network access
+firejail --apparmor --noprofile --net=none firefox
+
+
 ---------------------------------------------------------------------
 SFTP
 ---------------------------------------------------------------------
