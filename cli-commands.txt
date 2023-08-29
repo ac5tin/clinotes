@@ -1951,6 +1951,39 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+IRC
+---------------------------------------------------------------------
+# join a channel
+/join #channel
+
+# leave a channel
+/part #channel
+
+# hide nicklist bar
+/bar hide nicklist
+
+# hide join/part/quit messages
+/set irc.look.smart_filter on
+/filter add irc_smart * irc_smart_filter *
+
+- https://obda.net/blog/ignore-join-part-quit-messages-in-weechat/
+
+# get user mode
+/mode yourname
+
+- https://libera.chat/guides/usermodes
+
+# add user mode
+/mode yourname +<mode>
+
+# subscribe to wallops (see announcements)
+/mode yourname +w
+
+# create channels
+
+- https://libera.chat/guides/creatingchannels
+
+---------------------------------------------------------------------
 csplit
 ---------------------------------------------------------------------
 ## Split large SQL files into separate files for each table if every tabel starts with a 'DROP TABLE IF EXISTS' statement
