@@ -1980,6 +1980,18 @@ podman run \
 ---------------------------------------------------------------------
 SFTP
 ---------------------------------------------------------------------
+# Setup SFTP
+## generate pem key
+ssh-keygen -m pem -t rsa -b 4096 -C "sftp_user" -f sftp_user
+cat sftp_user.pub >> ~/.ssh/authorized_keys  (of the target user)
+
+## restart ssh
+sudo service ssh restart
+
+## links
+- https://www.9lessons.info/2021/04/setup-ssh-authentication-with-pem-rsa.html
+
+
 # Only Grant SFTP access
 Match User sftp_user
     DisableForwarding yes
