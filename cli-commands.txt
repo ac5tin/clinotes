@@ -885,6 +885,13 @@ bash/zsh + linux terminal cli tools commands
       - generate client machine ssh key (if ~/.ssh/id_rsa.pub doesn't exist already): ssh-keygen -t rsa
       - copy contents of key into target remote machine ~/.ssh/authorized_keys
     - ssh tunnel: ssh -L 5432:0.0.0.0:5432 varadise@192.168.1.3
+- ssh-keygen: generate ssh key
+    - generate ed25519 key:
+        - ssh-keygen -t ed25519 -C "login" -Z aes256-gcm@openssh.com
+    - flags
+        - -t ed25519: specifies the type of key to create. In this case, it’s an Ed25519 key.
+        - -C "login": adds a comment to the key. In this case, the comment is “login”.
+        - -Z aes256-gcm@openssh.com: specifies the cipher to use for encrypting the private key. In this case, it’s AES256-GCM.
 - scp
     - scp foo.bar abc@192.168.1.101:/home/abc/
         - dir with spaces: abc@192.168.1.101:"'/home/a d'"
