@@ -4711,6 +4711,106 @@ Enable and start tor service
 - sv restart tor
 
 ---------------------------------------------------------------------
+wireguard
+---------------------------------------------------------------------
+Setup
+- create private and public keys
+    - umask 077
+    - wg genkey | tee privatekey | wg pubkey > publickey
+- create config: sudo nvim /etc/wireguard/wg0.conf
+    [Interface]
+    PrivateKey = <contents inside your server private key>
+    Address = 10.0.0.1/24
+    ListenPort = 51820
+
+    [Peer]
+    PublicKey = <contents inside client public key>
+    AllowedIPs = 10.0.0.2/32
+- template for server config:
+    [Interface]
+    Address = <Server_IPv4_address>/24
+    Address = <Server_IPv6_address>/64
+    ListenPort = <Server_port>
+    PrivateKey = <Server_private_key>
+    PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i %i -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0-j MASQUERADE; ip6tables-D FORWARD-i %i-j ACCEPT; ip6tables-t nat-D POSTROUTING-o eth0-j MASQUERADE
+
+    [Peer]
+    PublicKey = <Client_1_public_key>
+    AllowedIPs = <Client_1_IPv4_address>/32,<Client_1_IPv6_address>/128
+
+    [Peer]
+    PublicKey = <Client_2_public_key>
+    AllowedIPs = <Client_2_IPv4_address>/32,<Client_2_IPv6_address>/128
+
+    # Repeat [Peer] section for each client
+- enable ip forwarding
+    - sudo sysctl -w net.ipv4.ip_forward=1
+    - sudo vim /etc/sysctl.conf
+        - net.ipv4.ip_forward=1
+    - sudo sysctl -p
+- start wireguard interface: sudo wg-quick up wg0
+- firewall allow wireguard (port 51820 udp)
+    - sudo ufw allow 51820/udp
+    - sudo ufw enable
+
+Add User
+- Generate key pair for new user
+    - wg genkey | tee privatekey | wg pubkey > publickey
+        - do this on the client machine
+        - copy the contents of the public key to the server
+- Add new user to wg0.conf
+    [Peer]
+    PublicKey = <contents inside client public key>
+    AllowedIPs =
+- template for client config
+    [Interface]
+    Address = <Client_IPv4_address>/24
+    Address = <Client_IPv6_address>/64
+    PrivateKey = <Client_private_key>
+    DNS = 8.8.8.8
+
+    [Peer]
+    PublicKey = <Server_public_key>
+    Endpoint = <Server_public_IP>:<Server_port>
+    AllowedIPs= 0.0.0.0/0,::/0
+    PersistentKeepalive=25
+- Restart wireguard interface: sudo wg-quick down wg0 && sudo wg-quick up wg0
+- Create new client config
+    [Interface]
+    PrivateKey = <contents inside your client private key>
+    Address =
+- generate qr code
+    - qrencode -t ansiutf8 < client.conf
+
+Revoke user access
+- Remove user in Peer section of wg0.conf
+- Restart wireguard interface: sudo wg-quick down wg0 && sudo wg-quick up wg0
+- Remove user private key
+- terminate connection to client: sudo wg set wg0 peer <user-public-key> remove
+
+Check status
+- sudo wg show
+- sudo systemctl status wg-quick@wg0.service
+
+Enable service
+sudo systemctl enable wg-quick@wg0.service
+
+Start Service
+sudo systemctl start wg-quick@wg0.service
+
+Restart service
+- sudo systemctl restart wg-quick@wg0.service
+
+Connect to server from client
+- sudo wg-quick up wg0
+
+Links
+- https://dev.to/miguelmota/getting-started-with-wireguard-n9e#generating-client-keys
+- https://github.com/burghardt/easy-wg-quick
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04#step-7-configuring-a-wireguard-peer
+
+---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
