@@ -1611,6 +1611,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
   - push: podman manifest push --format v2s2 myapp docker://xxx/myapp:1.0.2
   - remove dangling images: podman rmi (podman images -f 'dangling=true' -q)
   - start service: systemctl --user start podman.socket
+  - export built image: podman save -o image.tar <image_name>
+  - import built image: podman load -i image.tar
 - kcat: kafka cli tool
   - list all topics and brokers: kcat -L -b localhost
   - list topic metadaa: kcat -L -t mytopic -b localhost
