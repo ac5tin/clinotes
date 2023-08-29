@@ -5080,6 +5080,22 @@ nvm install 15
 nvm use node
 
 ---------------------------------------------------------------------
+Grant A user permission to another user B's directory
+---------------------------------------------------------------------
+# Add user A to group that owns the target directory
+sudo usermod -a -G <groupname> <username>
+
+# grant group read/write access
+sudo chmod -R g+rw <directory>
+
+
+## if this affects ssh
+ensure .ssh directory is 700
+- chmod -R 700 .ssh
+
+
+
+---------------------------------------------------------------------
 TEMPLATE
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
