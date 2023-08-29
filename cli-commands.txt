@@ -1541,6 +1541,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - aws: aws cli
     - s3
         - download bucket: aws s3 sync s3://my-bucket-0 . --region ap-east-1 
+        - generate presigned url (7 days):
+            - aws s3 presign s3://mybucket/myfile.zip --expires-in 604800 --region=ap-southeast-1
     - iam
         - create user:
             - aws iam create-user --user-name ccp-ecr-user
