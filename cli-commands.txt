@@ -1951,6 +1951,13 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
         - glow -p myfile.md
 
 ---------------------------------------------------------------------
+Find opened ports without lsof,netstat,ss
+---------------------------------------------------------------------
+cat /proc/net/tcp
+
+convert port from hex to integer (local_address column)
+
+---------------------------------------------------------------------
 IRC
 ---------------------------------------------------------------------
 # join a channel
