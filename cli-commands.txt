@@ -1973,6 +1973,9 @@ tshark -t ad -r cap-20230224-045241.pcap -Y "ip.src == 192.168.51.72 and udp" -T
 # Find Hostnames
 tshark -t ad -r cap-20230227-215128.pcap -Y "dns.flags.response == 0 and dns.qry.type == 1 and dns.qry.name contains \".local\" and udp.srcport == 5353" > out
 
+# Read latest from latest pcap file
+watch -n 5 'ls -Art|tail -n 1|xargs -I {} tshark -t ad -r {} -c 10'
+
 ---------------------------------------------------------------------
 tcpdump
 ---------------------------------------------------------------------
