@@ -1949,6 +1949,8 @@ iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column
 - glow: terminal markdown viewer
     - open file in pager mode
         - glow -p myfile.md
+- fx: interactable jq
+    - kubectl get ingress -n auth -o json|fx
 
 ---------------------------------------------------------------------
 Cassandra
